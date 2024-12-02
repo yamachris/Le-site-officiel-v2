@@ -1,0 +1,202 @@
+{
+  "nav": {
+    "home": "Home",
+    "play": "Play",
+    "rules": "Game Rules",
+    "ranking": "Ranking",
+    "community": "Community",
+    "shop": "Shop",
+    "search": "Search",
+    "menu": "Menu",
+    "assistant": "AI Assistant"
+  },
+  "rules": {
+    "title": "Game Rules",
+    "subtitle": "Discover all the rules and become a master of UNIT. Click on a card to learn more.",
+    "cards": {
+      "general": {
+        "title": "General Rules",
+        "description": "The basics of the game and fundamental principles",
+        "rules": [
+          "The game is played with a standard 52-card deck plus 2 jokers",
+          "The goal is to create columns of cards following specific rules",
+          "Special cards have unique powers that can change the course of the game"
+        ],
+        "strategies": [
+          "Always keep a special card in reserve",
+          "Observe your opponents' game",
+          "Plan your actions several moves ahead"
+        ],
+        "faq": [
+          {
+            "question": "How many cards can you have in hand?",
+            "answer": "Each player can have up to 5 cards in hand."
+          },
+          {
+            "question": "Can you play multiple cards per turn?",
+            "answer": "No, only one card can be played per turn."
+          }
+        ]
+      },
+      "king": {
+        "title": "The King",
+        "description": "Control the board with the King",
+        "rules": [
+          "The King can be placed on any card",
+          "It allows you to take control of an entire column",
+          "Once placed, the King can only be moved by another King"
+        ],
+        "strategies": [
+          "Use the King to capture strategic columns",
+          "Keep a King in reserve to counter your opponent's",
+          "Combine the King with other special cards for powerful combos"
+        ],
+        "faq": [
+          {
+            "question": "Can a King be moved?",
+            "answer": "Yes, but only by another King."
+          },
+          {
+            "question": "Can you have multiple Kings in the same column?",
+            "answer": "No, only one King can control a column at a time."
+          }
+        ]
+      },
+      "queen": {
+        "title": "The Queen",
+        "description": "Use the power of the Queen",
+        "rules": [
+          "The Queen can move freely on the board",
+          "She can take any card except a King",
+          "The Queen can protect adjacent cards"
+        ],
+        "strategies": [
+          "Use the Queen to protect your important cards",
+          "Create synergies with other special cards",
+          "Place the Queen strategically to block opponent moves"
+        ],
+        "faq": [
+          {
+            "question": "Can the Queen take a King?",
+            "answer": "No, the King is the only card that the Queen cannot take."
+          }
+        ]
+      },
+      "jack": {
+        "title": "The Jack",
+        "description": "Master the movements of the Jack",
+        "rules": [
+          "The Jack allows you to move a card to another column",
+          "It can be used to reorganize the playing field",
+          "Cannot move Kings"
+        ],
+        "strategies": [
+          "Use the Jack to disrupt opponent strategies",
+          "Move key cards to create opportunities",
+          "Save your important cards from dangerous situations"
+        ],
+        "faq": [
+          {
+            "question": "Can the Jack move multiple cards at once?",
+            "answer": "No, the Jack can only move one card at a time."
+          }
+        ]
+      },
+      "joker": {
+        "title": "The Joker",
+        "description": "Discover the special powers of the Joker",
+        "rules": [
+          "The Joker can copy the power of any card",
+          "It can be played at any time",
+          "Only one Joker can be active at a time"
+        ],
+        "strategies": [
+          "Save the Joker for critical situations",
+          "Adapt your strategy based on available powers",
+          "Use the Joker to surprise your opponents"
+        ],
+        "faq": [
+          {
+            "question": "Can the Joker copy a King?",
+            "answer": "Yes, the Joker can copy any card, including the King."
+          }
+        ]
+      },
+      "lucky7": {
+        "title": "Lucky 7",
+        "description": "Try your luck with the 7",
+        "rules": [
+          "The 7 allows you to draw an additional card",
+          "If you draw another 7, you can draw again",
+          "Maximum of three cards can be drawn per turn"
+        ],
+        "strategies": [
+          "Use the 7 when you need specific cards",
+          "Combine with other cards for powerful combos",
+          "Keep a 7 in reserve for critical moments"
+        ],
+        "faq": [
+          {
+            "question": "Can you play the drawn cards immediately?",
+            "answer": "No, drawn cards can only be played on the next turn."
+          }
+        ]
+      },
+      "units": {
+        "title": "The Units",
+        "description": "Learn to use the basic cards",
+        "rules": [
+          "Units are cards from 2 to 10",
+          "They can be placed in any column",
+          "Units follow specific placement rules"
+        ],
+        "strategies": [
+          "Create combinations with special cards",
+          "Use units to prepare for bigger moves",
+          "Don't underestimate the power of small units"
+        ],
+        "faq": [
+          {
+            "question": "How do you place units?",
+            "answer": "Units must be placed according to their value and color."
+          }
+        ]
+      }
+    },
+    "details": {
+      "backButton": "Back to rules",
+      "mainRules": "Main Rules",
+      "strategies": "Strategies",
+      "faq": "FAQ"
+    }
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "sendResetLink": "Send",
+    "cancel": "Cancel",
+    "resetEmailSent": "Reset email sent!",
+    "enterEmail": "Enter your email address to receive a reset link.",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "acceptTerms": "I accept the terms of service",
+    "acceptPrivacy": "I accept the privacy policy",
+    "loginButton": "Login",
+    "registerButton": "Register",
+    "alreadyAccount": "Already have an account? Login",
+    "noAccount": "Don't have an account? Register"
+  },
+  "error": {
+    "invalidCredentials": "Invalid username or password",
+    "passwordMatch": "Passwords do not match",
+    "acceptTerms": "You must accept the terms of service and privacy policy",
+    "userExists": "This username is already taken"
+  }
+}

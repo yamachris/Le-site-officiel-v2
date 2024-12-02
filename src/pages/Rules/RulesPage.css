@@ -1,0 +1,169 @@
+.rules-container {
+  padding: 4rem 2rem;
+  min-height: 100vh;
+}
+
+.rules-title {
+  margin: 0;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 0.35em;
+  color: #FFD700;
+  font-family: Orbitron;
+  font-weight: 700;
+  text-align: center;
+}
+
+.rules-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin-bottom: 4rem;
+  font-size: 1.2rem;
+}
+
+.rule-card {
+  height: 100%;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.rule-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+}
+
+.rule-card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  background: linear-gradient(45deg, #ff3366, #ff6b6b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.rule-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 1rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.rule-card-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.card-details {
+  padding: 3rem;
+  border-radius: 16px;
+  color: #fff;
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.back-button:hover {
+  opacity: 1;
+  transform: translateX(-5px);
+}
+
+.back-button svg {
+  font-size: 1.2rem;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
+  margin: 3rem 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(45deg, #ff3366, #ff6b6b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-title:first-of-type {
+  margin-top: 0;
+}
+
+.section-icon {
+  font-size: 1.5rem;
+  color: #ff3366;
+  -webkit-text-fill-color: #ff3366;
+}
+
+.rules-section {
+  margin-bottom: 2rem;
+}
+
+.rules-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rules-section li {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.rules-section li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #ff3366;
+}
+
+.faq-section {
+  margin-top: 3rem;
+}
+
+.faq-item {
+  margin-bottom: 2rem;
+}
+
+.faq-question {
+  color: #ff3366;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.faq-answer {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}

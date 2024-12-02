@@ -1,0 +1,114 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* App Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main Content Container */
+.main-content {
+  flex: 1;
+  padding-top: 70px; /* Hauteur exacte du header */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Header Styling */
+.MuiAppBar-root {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  height: 70px !important;
+  background-color: #1b1f24 !important;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Ensure content doesn't go under header */
+.MuiToolbar-root {
+  min-height: 70px !important;
+}
+
+/* Navigation Items */
+.nav-item {
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+  color: #ff5b5b;
+}
+
+.nav-item.active {
+  color: #ff5b5b;
+}
+
+/* Header Icons */
+.header-icon {
+  margin: 0 5px;
+  padding: 8px;
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.header-icon:hover {
+  color: #ff5b5b;
+}
+
+.shop-icon {
+  position: relative;
+}
+
+.shop-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff5b5b;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}

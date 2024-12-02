@@ -1,0 +1,251 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "play": "Jouer",
+    "rules": "Règles du jeu",
+    "ranking": "Classement",
+    "community": "Communauté",
+    "shop": "Boutique",
+    "search": "Rechercher",
+    "menu": "Menu",
+    "assistant": "Assistant IA"
+  },
+  "rules": {
+    "title": "Règles du jeu",
+    "subtitle": "Découvrez toutes les règles et devenez un maître du jeu UNIT",
+    "error": {
+      "cardNotFound": "Type de carte non trouvé"
+    },
+    "buttons": {
+      "back": "Retour aux règles"
+    },
+    "sections": {
+      "rules": "Règles principales",
+      "strategies": "Stratégies",
+      "faq": "FAQ"
+    },
+    "cards": {
+      "general": {
+        "title": "Règles générales",
+        "description": "Les principes fondamentaux du jeu UNIT",
+        "rules": {
+          "1": "Le jeu se joue avec un jeu de 52 cartes standard plus 2 jokers",
+          "2": "Le but est de créer des colonnes de cartes en suivant des règles spécifiques",
+          "3": "Les cartes spéciales ont des pouvoirs uniques qui peuvent changer le cours du jeu"
+        },
+        "strategies": {
+          "1": "Gardez toujours une carte spéciale en réserve",
+          "2": "Observez le jeu de vos adversaires",
+          "3": "Planifiez vos actions plusieurs coups à l'avance"
+        },
+        "faq": {
+          "1": {
+            "question": "Combien de cartes peut-on avoir en main ?",
+            "answer": "Chaque joueur peut avoir jusqu'à 5 cartes en main."
+          },
+          "2": {
+            "question": "Peut-on jouer plusieurs cartes par tour ?",
+            "answer": "Non, une seule carte peut être jouée par tour."
+          }
+        }
+      },
+      "king": {
+        "title": "Le Roi",
+        "description": "La carte la plus puissante du jeu",
+        "rules": {
+          "1": "Le Roi peut être placé sur n'importe quelle carte",
+          "2": "Il permet de prendre le contrôle d'une colonne entière",
+          "3": "Une fois placé, le Roi ne peut être déplacé que par un autre Roi"
+        },
+        "strategies": {
+          "1": "Utilisez le Roi pour capturer des colonnes stratégiques",
+          "2": "Gardez un Roi en réserve pour contrer celui de l'adversaire",
+          "3": "Combinez le Roi avec d'autres cartes spéciales pour des combos puissants"
+        },
+        "faq": {
+          "1": {
+            "question": "Un Roi peut-il être placé sur un autre Roi ?",
+            "answer": "Oui, un Roi peut être placé sur un autre Roi."
+          },
+          "2": {
+            "question": "Le Roi peut-il être affecté par le Joker ?",
+            "answer": "Non, le Roi est immunisé aux effets du Joker."
+          }
+        }
+      },
+      "queen": {
+        "title": "La Dame",
+        "description": "Une carte de contrôle stratégique",
+        "rules": {
+          "1": "La Dame peut être placée sur n'importe quelle carte de valeur inférieure",
+          "2": "Elle permet de bloquer une colonne pour l'adversaire",
+          "3": "Une Dame peut être déplacée par un Roi ou une autre Dame"
+        },
+        "strategies": {
+          "1": "Utilisez la Dame pour protéger vos colonnes importantes",
+          "2": "Créez des barrières stratégiques avec plusieurs Dames",
+          "3": "Combinez avec le Valet pour des manœuvres défensives"
+        },
+        "faq": {
+          "1": {
+            "question": "Une Dame peut-elle être placée sur une autre Dame ?",
+            "answer": "Oui, une Dame peut être placée sur une autre Dame."
+          },
+          "2": {
+            "question": "La Dame peut-elle bloquer un Roi ?",
+            "answer": "Non, le Roi peut toujours être placé sur une Dame."
+          }
+        }
+      },
+      "jack": {
+        "title": "Le Valet",
+        "description": "Le maître du déplacement",
+        "rules": {
+          "1": "Le Valet permet de déplacer une carte vers une autre colonne",
+          "2": "Il peut être utilisé pour réorganiser le terrain de jeu",
+          "3": "Ne peut pas déplacer les Rois"
+        },
+        "strategies": {
+          "1": "Utilisez le Valet pour perturber les stratégies adverses",
+          "2": "Déplacez des cartes clés pour créer des opportunités",
+          "3": "Sauvez vos cartes importantes des situations dangereuses"
+        },
+        "faq": {
+          "1": {
+            "question": "Le Valet peut-il déplacer plusieurs cartes à la fois ?",
+            "answer": "Non, le Valet ne peut déplacer qu'une seule carte à la fois."
+          },
+          "2": {
+            "question": "Peut-on utiliser le Valet sur ses propres cartes ?",
+            "answer": "Oui, le Valet peut être utilisé sur vos cartes et celles des adversaires."
+          }
+        }
+      },
+      "joker": {
+        "title": "Le Joker",
+        "description": "L'élément chaotique du jeu",
+        "rules": {
+          "1": "Le Joker peut copier le pouvoir de n'importe quelle carte spéciale",
+          "2": "Son effet ne dure qu'un tour",
+          "3": "Ne peut pas copier le pouvoir d'un Roi"
+        },
+        "strategies": {
+          "1": "Gardez le Joker pour les moments critiques",
+          "2": "Utilisez-le pour surprendre vos adversaires",
+          "3": "Combinez avec d'autres cartes pour des effets inattendus"
+        },
+        "faq": {
+          "1": {
+            "question": "Le Joker peut-il être utilisé plusieurs fois ?",
+            "answer": "Oui, mais une seule fois par tour."
+          },
+          "2": {
+            "question": "Peut-on contrer un Joker ?",
+            "answer": "Oui, avec les mêmes cartes qui contreraient la carte copiée."
+          }
+        }
+      },
+      "lucky7": {
+        "title": "7 de Chance",
+        "description": "La carte de la fortune",
+        "rules": {
+          "1": "Permet de piocher deux cartes supplémentaires",
+          "2": "Les cartes piochées peuvent être jouées immédiatement",
+          "3": "Si une carte spéciale est piochée, son effet peut être utilisé"
+        },
+        "strategies": {
+          "1": "Utilisez le 7 quand vous avez besoin de nouvelles options",
+          "2": "Gardez-le pour les situations critiques",
+          "3": "Planifiez vos actions en fonction des cartes potentielles"
+        },
+        "faq": {
+          "1": {
+            "question": "Doit-on jouer les cartes piochées ?",
+            "answer": "Non, vous pouvez les garder pour plus tard."
+          },
+          "2": {
+            "question": "Que se passe-t-il si la pioche est vide ?",
+            "answer": "Le 7 de Chance ne peut plus être utilisé dans ce cas."
+          }
+        }
+      },
+      "revolution10": {
+        "title": "10 Révolution",
+        "description": "Le bouleversement du jeu",
+        "rules": {
+          "1": "Inverse la valeur de toutes les cartes en jeu",
+          "2": "Les As deviennent les plus fortes, les Rois les plus faibles",
+          "3": "L'effet dure jusqu'au prochain 10 ou jusqu'à la fin de la partie"
+        },
+        "strategies": {
+          "1": "Jouez le 10 quand vos cartes faibles sont nombreuses",
+          "2": "Anticipez son utilisation par vos adversaires",
+          "3": "Construisez votre stratégie autour de cette carte"
+        },
+        "faq": {
+          "1": {
+            "question": "Les pouvoirs spéciaux sont-ils affectés ?",
+            "answer": "Non, seules les valeurs numériques sont inversées."
+          },
+          "2": {
+            "question": "Peut-on jouer plusieurs 10 consécutifs ?",
+            "answer": "Oui, chaque 10 inverse à nouveau les valeurs."
+          }
+        }
+      },
+      "units": {
+        "title": "Les Unités",
+        "description": "Les cartes de base du jeu",
+        "rules": {
+          "1": "Les cartes de 2 à 10 sont considérées comme des unités",
+          "2": "Elles suivent l'ordre numérique classique",
+          "3": "Peuvent être affectées par les cartes spéciales"
+        },
+        "strategies": {
+          "1": "Utilisez les unités pour construire des colonnes solides",
+          "2": "Gardez un équilibre entre hautes et basses valeurs",
+          "3": "Protégez vos unités importantes avec des cartes spéciales"
+        },
+        "faq": {
+          "1": {
+            "question": "Peut-on empiler les unités librement ?",
+            "answer": "Non, elles doivent suivre l'ordre croissant ou décroissant."
+          },
+          "2": {
+            "question": "Les unités ont-elles des pouvoirs spéciaux ?",
+            "answer": "Non, sauf le 7 de Chance et le 10 Révolution."
+          }
+        }
+      }
+    }
+  },
+  "auth": {
+    "login": "Connexion",
+    "register": "Inscription",
+    "username": "Nom d'utilisateur",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "resetPassword": "Réinitialiser le mot de passe",
+    "sendResetLink": "Envoyer",
+    "cancel": "Annuler",
+    "resetEmailSent": "Email de réinitialisation envoyé !",
+    "enterEmail": "Entrez votre adresse email pour recevoir un lien de réinitialisation.",
+    "gender": "Genre",
+    "male": "Homme",
+    "female": "Femme",
+    "acceptTerms": "J'accepte les conditions d'utilisation",
+    "acceptPrivacy": "J'accepte la politique de confidentialité",
+    "loginButton": "Se connecter",
+    "registerButton": "S'inscrire",
+    "alreadyAccount": "Vous avez déjà un compte ? Connectez-vous",
+    "noAccount": "Vous n'avez pas de compte ? Inscrivez-vous"
+  },
+  "error": {
+    "invalidCredentials": "Nom d'utilisateur ou mot de passe invalide",
+    "passwordMatch": "Les mots de passe ne correspondent pas",
+    "acceptTerms": "Vous devez accepter les conditions d'utilisation et la politique de confidentialité",
+    "userExists": "Ce nom d'utilisateur est déjà pris"
+  }
+}
