@@ -90,9 +90,15 @@ const RankingTable: React.FC = () => {
     }
   };
 
-  const filteredPlayers = players.filter((player) =>
-    player.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const userRegion = 'EU';
+
+  const filteredPlayers = players
+    .filter(
+      (player) => filter === 'global' || player.region === userRegion
+    )
+    .filter((player) =>
+      player.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   return (
     <Paper

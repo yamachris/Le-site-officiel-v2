@@ -158,7 +158,11 @@ const UserProfile: React.FC = () => {
   };
 
   const getProgressToNextRank = () => {
-    return ((stats.elo - 1200) % 300) / 3;
+    const baseElo = 1200;
+    const step = 300;
+    const diff = stats.elo - baseElo;
+    if (diff <= 0) return 0;
+    return ((diff % step) / step) * 100;
   };
 
   const chartData = {
