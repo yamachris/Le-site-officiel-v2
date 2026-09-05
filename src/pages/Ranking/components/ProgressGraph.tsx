@@ -36,7 +36,7 @@ const ProgressGraph: React.FC = () => {
         variant="h5"
         gutterBottom
         sx={{
-          fontFamily: 'Orbitron',
+          fontFamily: 'var(--unit-font-display)',
           display: 'flex',
           alignItems: 'center',
           gap: 1,

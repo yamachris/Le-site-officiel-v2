@@ -77,7 +77,7 @@ const CommunityWall: React.FC = () => {
         variant="h5"
         gutterBottom
         sx={{
-          fontFamily: 'Orbitron',
+          fontFamily: 'var(--unit-font-display)',
           mb: 3,
         }}
       >

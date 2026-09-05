@@ -1,146 +1,167 @@
-import React from 'react';
-import { Box, Container, Typography, Button, Grid } from '@mui/material';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaTrophy, FaChartLine, FaMedal } from 'react-icons/fa';
-import { useTheme } from '@mui/material/styles';
 import RankingTable from './components/RankingTable';
-import RankSystem from './components/RankSystem';
 import ProgressGraph from './components/ProgressGraph';
 import RewardsSection from './components/RewardsSection';
+import RankSystemTab from './components/RankSystemTab';
+import {
+  CinePage,
+  CineContainer,
+  CinePageHeader,
+  CineCard,
+  CineKpiStrip,
+  CineTabs,
+} from '../../components/cine';
+
+const RANKING_KPIS = [
+  { value: '2 847', label: 'meilleur MMR', tone: 'gold' as const },
+  { value: '96', label: 'pays actifs', tone: 'cyan' as const },
+  { value: '+24', label: 'plus forte montée', tone: 'accent' as const },
+];
+
+const TABS: { id: 'ladder' | 'system'; label: string; icon: React.ReactNode }[] = [
+  { id: 'ladder', label: 'Classement', icon: <FaTrophy aria-hidden /> },
+  { id: 'system', label: 'Système de rangs', icon: <FaMedal aria-hidden /> },
+];
 
 const RankingPage: React.FC = () => {
-  const theme = useTheme();
+  const [activeTab, setActiveTab] = useState<'ladder' | 'system'>('ladder');
 
   return (
-    <Box
-      component={motion.div}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      sx={{
-        minHeight: '100vh',
-        py: 8,
-        background: theme.palette.background.default,
-      }}
-    >
-      <Container maxWidth="lg">
-        {/* Header Section */}
-        <Box textAlign="center" mb={8}>
-          <Typography
-            variant="h2"
-            component="h1"
-            gutterBottom
-            sx={{
-              fontFamily: 'Orbitron',
-              color: theme.palette.primary.main,
-              fontWeight: 'bold',
-            }}
-          >
-            Classement UNIT : Gravissez les Échelons !
-          </Typography>
-          <Typography
-            variant="h5"
-            color="text.secondary"
-            sx={{ mb: 4, maxWidth: '800px', mx: 'auto' }}
-          >
-            Mesurez-vous à la communauté internationale avec un système de classement dynamique basé sur vos performances.
-          </Typography>
+    <CinePage>
+      <CinePageHeader
+        eyebrow="Acte III — L'Arène"
+        title={<>Gravissez <em>les échelons.</em></>}
+        lede="Mesurez-vous à la communauté internationale avec un système MMR dynamique inspiré de l'Elo. Rangs D à SSS, placements, récompenses saisonnières."
+      >
+        <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
+          <button type="button" className="cine-button cine-button--primary">
+            <FaTrophy aria-hidden /> Rejoindre le classement
+          </button>
+          <button type="button" className="cine-button cine-button--ghost">
+            <FaChartLine aria-hidden /> Défier un adversaire
+          </button>
+        </div>
+      </CinePageHeader>
 
-          {/* Call-to-Action Buttons */}
-          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', mb: 6 }}>
-            <Button
-              variant="contained"
-              size="large"
-              startIcon={<FaTrophy />}
-              sx={{
-                fontFamily: 'Orbitron',
-                px: 4,
-                py: 1.5,
-                borderRadius: 2,
-              }}
-            >
-              Rejoindre le Classement
-            </Button>
-            <Button
-              variant="outlined"
-              size="large"
-              startIcon={<FaChartLine />}
-              sx={{
-                fontFamily: 'Orbitron',
-                px: 4,
-                py: 1.5,
-                borderRadius: 2,
-                borderWidth: 2,
-              }}
-            >
-              Défiez un adversaire
-            </Button>
-          </Box>
-        </Box>
+      <CineContainer>
+        <CineKpiStrip items={RANKING_KPIS} style={{ marginBottom: '2rem' }} />
 
-        {/* Main Content */}
-        <Grid container spacing={4}>
-          {/* Left Column */}
-          <Grid item xs={12} md={8}>
-            <RankingTable />
-            <Box mt={4}>
-              <ProgressGraph />
-            </Box>
-          </Grid>
-
-          {/* Right Column */}
-          <Grid item xs={12} md={4}>
-            <RankSystem />
-            <Box mt={4}>
-              <RewardsSection />
-            </Box>
-          </Grid>
-        </Grid>
-
-        {/* Footer Links */}
-        <Box
-          sx={{
-            mt: 8,
-            pt: 4,
-            borderTop: `1px solid ${theme.palette.divider}`,
-            display: 'flex',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: 2,
+        <CineCard
+          style={{
+            marginBottom: '2.5rem',
+            padding: 'clamp(18px, 3vw, 28px)',
           }}
         >
-          <Box>
-            <Typography variant="h6" gutterBottom sx={{ fontFamily: 'Orbitron' }}>
-              Liens rapides
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <Button variant="text" size="small">
-                Découvrir le système Elo
-              </Button>
-              <Button variant="text" size="small">
-                Règles des tournois
-              </Button>
-              <Button variant="text" size="small">
-                Rejoindre Discord
-              </Button>
-            </Box>
-          </Box>
-          <Box>
-            <Typography variant="h6" gutterBottom sx={{ fontFamily: 'Orbitron' }}>
-              Raccourcis
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <Button variant="text" size="small">
-                Classement régional
-              </Button>
-              <Button variant="text" size="small">
-                Historique tournois
-              </Button>
-            </Box>
-          </Box>
-        </Box>
-      </Container>
-    </Box>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'minmax(0, 1fr) auto',
+              gap: '1.5rem',
+              alignItems: 'end',
+              marginBottom: '1.4rem',
+            }}
+            className="cine-ranking-command"
+          >
+            <div>
+              <span className="cine-mono" style={{ color: 'var(--cine-accent-2)' }}>Ladder live</span>
+              <h2 className="cine-section-title" style={{ marginTop: '0.5rem' }}>
+                Centre de compétition
+              </h2>
+              <p style={{ color: 'var(--cine-ink-soft)', lineHeight: 1.55, maxWidth: 680, margin: '0.7rem 0 0' }}>
+                Suivez le classement mondial, basculez vers le système de rangs, puis lancez un défi sans changer d'univers.
+              </p>
+            </div>
+            <div className="cine-mono" style={{ color: 'var(--cine-accent-3)' }}>
+              Saison 01 · actif
+            </div>
+          </div>
+          <CineTabs
+            items={TABS}
+            active={activeTab}
+            onChange={setActiveTab}
+            ariaLabel="Sections du classement"
+          />
+        </CineCard>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.22 }}
+          >
+            {activeTab === 'ladder' && (
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '2fr 1fr',
+                  gap: '2rem',
+                  paddingBottom: '6rem',
+                }}
+                className="cine-ranking-grid"
+              >
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', minWidth: 0 }}>
+                  <RankingTable />
+                  <ProgressGraph />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', minWidth: 0 }}>
+                  <RewardsSection />
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'system' && <RankSystemTab />}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Liens rapides — uniquement sur l'onglet ladder */}
+        {activeTab === 'ladder' && (
+          <div
+            style={{
+              marginTop: '1rem',
+              paddingTop: '2.5rem',
+              paddingBottom: '4rem',
+              borderTop: '1px solid var(--cine-line)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '2rem',
+            }}
+          >
+            <div>
+              <span className="cine-mono">Liens rapides</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginTop: '0.8rem' }}>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('system')}
+                  style={{ background: 'none', border: 'none', padding: 0, color: 'var(--cine-ink-soft)', textDecoration: 'none', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', fontSize: 'inherit' }}
+                >
+                  Découvrir le système de rangs
+                </button>
+                <a href="#tournois" style={{ color: 'var(--cine-ink-soft)', textDecoration: 'none' }}>Règles des tournois</a>
+                <a href="#discord" style={{ color: 'var(--cine-ink-soft)', textDecoration: 'none' }}>Rejoindre Discord</a>
+              </div>
+            </div>
+            <div>
+              <span className="cine-mono">Raccourcis</span>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', marginTop: '0.8rem' }}>
+                <a href="#region" style={{ color: 'var(--cine-ink-soft)', textDecoration: 'none' }}>Classement régional</a>
+                <a href="#history" style={{ color: 'var(--cine-ink-soft)', textDecoration: 'none' }}>Historique tournois</a>
+              </div>
+            </div>
+          </div>
+        )}
+      </CineContainer>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .cine-ranking-grid { grid-template-columns: 1fr !important; }
+          .cine-ranking-command { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+    </CinePage>
   );
 };
 

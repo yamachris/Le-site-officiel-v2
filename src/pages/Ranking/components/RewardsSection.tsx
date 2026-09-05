@@ -17,28 +17,28 @@ const rewards: Reward[] = [
     rank: 'SSS',
     title: 'Emblème Légendaire',
     description: 'Titre exclusif et skin personnalisé pour toutes les cartes',
-    color: '#FF0000',
+    color: 'var(--unit-accent-danger)',
     unlocked: false,
   },
   {
     rank: 'SS',
     title: 'Skin Maître',
     description: 'Skin unique pour les cartes spéciales',
-    color: '#FF4D00',
+    color: 'var(--unit-rarity-unique)',
     unlocked: false,
   },
   {
     rank: 'S',
     title: 'Animation Élite',
     description: 'Effets visuels spéciaux pour les cartes',
-    color: '#FF9900',
+    color: 'var(--unit-accent-warning)',
     unlocked: false,
   },
   {
     rank: 'A',
     title: 'Badge Expert',
     description: 'Badge spécial sur votre profil',
-    color: '#FFD700',
+    color: 'var(--unit-accent-gold)',
     unlocked: true,
   },
 ];
@@ -59,14 +59,14 @@ const RewardsSection: React.FC = () => {
         variant="h5"
         gutterBottom
         sx={{
-          fontFamily: 'Orbitron',
+          fontFamily: 'var(--unit-font-display)',
           display: 'flex',
           alignItems: 'center',
           gap: 1,
           mb: 3,
         }}
       >
-        <FaGift style={{ color: '#FFD700' }} /> Récompenses
+        <FaGift style={{ color: 'var(--unit-accent-gold)' }} /> Récompenses
       </Typography>
 
       {rewards.map((reward, index) => (
@@ -106,7 +106,7 @@ const RewardsSection: React.FC = () => {
                 <Typography
                   variant="subtitle1"
                   sx={{
-                    fontFamily: 'Orbitron',
+                    fontFamily: 'var(--unit-font-display)',
                     color: reward.color,
                     fontWeight: 'bold',
                   }}

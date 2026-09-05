@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      args:
+        - REACT_APP_API_URL=http://localhost:4101
+        - REACT_APP_GAME_PORTAL_URL=http://localhost:4108
+    ports:
+      - "4100:80"
+    environment:
+      - NODE_ENV=production
+      - PORT=4100
+      - REACT_APP_API_URL=http://localhost:4101
+      - REACT_APP_GAME_PORTAL_URL=http://localhost:4108
+    depends_on:
+      - backend
+    networks:
+      - unit_network
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    ports:
+      - "4101:4101"
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/unit_game
+      - JWT_SECRET=votre_secret_jwt_securise
+      - PORT=4101
+      - HOST=0.0.0.0
+    depends_on:
+      - db
+    networks:
+      - unit_network
+    restart: unless-stopped
+
+  db:
+    image: postgres:14-alpine
+    ports:
+      - "4104:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=unit_game
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - unit_network
+    restart: unless-stopped
+
+networks:
+  unit_network:
+    driver: bridge
+
+volumes:
+  postgres_data:

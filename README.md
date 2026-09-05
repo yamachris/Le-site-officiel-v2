@@ -1,58 +1,73 @@
-# UNIT - Le Site Officiel
+# UNIT - Site officiel
 
-Site web officiel du jeu de cartes UNIT, un jeu de stratégie unique combinant deck-building et compétition.
+Depot du site officiel UNIT, avec l'API officielle et le portail de jeu connecte.
 
-## 🎮 Fonctionnalités
+## Applications
 
-- Système d'authentification complet
-- Profils utilisateurs personnalisables
-- Classement des joueurs
-- Forum communautaire
-- Boutique en ligne
-- Système de récompenses
-- Mode Premium avec avantages exclusifs
+- `src/` : frontend officiel React.
+- `backend/` : API officielle NestJS + Prisma.
+- `prototype-master-claude/client/` : client du jeu Next.js.
+- `prototype-master-claude/server/` : serveur du jeu NestJS/WebSocket.
 
-## 🛠 Technologies Utilisées
+## Ports locaux
 
-- React.js
-- TypeScript
-- Material-UI
-- Framer Motion
-- Firebase (Authentication & Database)
+- `4100` : site officiel.
+- `4101` : API officielle.
+- `4104` : PostgreSQL local via Docker.
+- `4107` : serveur du jeu.
+- `4108` : client du jeu.
 
-## 🚀 Installation
+## Demarrage local
 
-1. Clonez le repository
 ```bash
-git clone https://github.com/votre-username/le-site-officiel-unit.git
-```
-
-2. Installez les dépendances
-```bash
-cd le-site-officiel-unit
 npm install
+npm run dev:web
 ```
 
-3. Lancez le serveur de développement
+API officielle :
+
 ```bash
-npm start
+cd backend
+npm install
+npm run start:dev
 ```
 
-## 📝 Documentation
+Portail jeu :
 
-- [Règles du Jeu](/docs/rules.md)
-- [Guide de l'API](/docs/api.md)
-- [Politique de Confidentialité](/privacy)
-- [Conditions Générales d'Utilisation](/terms)
+```bash
+cd prototype-master-claude/server
+npm install
+npm run start:dev
+```
 
-## 🤝 Contribution
+```bash
+cd prototype-master-claude/client
+npm install
+npm run dev
+```
 
-Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou à soumettre une pull request.
+## Build
 
-## 📄 Licence
+```bash
+npm run build:web
+npm run build:api
+npm run build:game:client
+npm run build:game:server
+```
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+## Documentation
 
-## 📞 Contact
+- [Structure du projet](docs/PROJECT_STRUCTURE.md)
+- [Deploiement AWS](docs/deployment/AWS.md)
+- [Compose AWS exemple](infra/aws/docker-compose.aws.example.yml)
 
-Pour toute question ou suggestion, contactez-nous à : contact@unitcardgame.com
+## Environnements
+
+Copier les exemples avant configuration :
+
+```bash
+cp .env.example .env
+cp backend/.env.example backend/.env
+cp prototype-master-claude/client/.env.example prototype-master-claude/client/.env
+cp prototype-master-claude/server/.env.example prototype-master-claude/server/.env
+```

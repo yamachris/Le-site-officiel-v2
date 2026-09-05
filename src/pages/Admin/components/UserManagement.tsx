@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Paper,
@@ -22,6 +22,7 @@ import {
   InputLabel,
   Select,
   MenuItem,
+  Alert,
 } from '@mui/material';
 import {
   Edit as EditIcon,
@@ -29,53 +30,77 @@ import {
   Block as BlockIcon,
   Search as SearchIcon,
 } from '@mui/icons-material';
+import API_ENDPOINTS from '../../../config/api';
+import { useAuth } from '../../../contexts/AuthContext';
 
 interface User {
   id: number;
-  username: string;
+  pseudo: string;
   email: string;
-  role: string;
-  status: string;
-  lastLogin: string;
-  gamesPlayed: number;
+  scoreElo: number;
+  dateInscription: string;
 }
 
-const mockUsers: User[] = [
-  {
-    id: 1,
-    username: "JohnDoe",
-    email: "john@example.com",
-    role: "user",
-    status: "active",
-    lastLogin: "2023-12-01",
-    gamesPlayed: 42
-  },
-  {
-    id: 2,
-    username: "AdminSarah",
-    email: "sarah@example.com",
-    role: "admin",
-    status: "active",
-    lastLogin: "2023-12-02",
-    gamesPlayed: 15
-  },
-  {
-    id: 3,
-    username: "BlockedUser",
-    email: "blocked@example.com",
-    role: "user",
-    status: "blocked",
-    lastLogin: "2023-11-15",
-    gamesPlayed: 7
-  },
-];
-
 const UserManagement: React.FC = () => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [searchTerm, setSearchTerm] = useState('');
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [openDialog, setOpenDialog] = useState(false);
+
+  const { token } = useAuth();
+
+  const fetchUsers = async () => {
+    try {
+      console.log('UserManagement - token:', token);
+      
+      if (!token) {
+        console.log('UserManagement - No token available');
+        setError('Non authentifié');
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+      
+      console.log('UserManagement - Fetching users...');
+      const response = await fetch(API_ENDPOINTS.USERS, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      console.log('UserManagement - Response status:', response.status);
+      
+      if (!response.ok) {
+        if (response.status === 401) {
+          console.log('UserManagement - Unauthorized');
+          setError('Session expirée. Veuillez vous reconnecter.');
+          return;
+        }
+        throw new Error('Erreur lors de la récupération des utilisateurs');
+      }
+
+      const data = await response.json();
+      console.log('UserManagement - Users data:', data);
+      setUsers(data);
+    } catch (err) {
+      console.error('UserManagement - Error:', err);
+      setError('Erreur lors de la récupération des utilisateurs');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+    // Rafraîchir les données toutes les 30 secondes
+    const interval = setInterval(fetchUsers, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -91,164 +116,190 @@ const UserManagement: React.FC = () => {
     setPage(0);
   };
 
-  const handleEditUser = (user: User) => {
+  const handleEdit = (user: User) => {
     setSelectedUser(user);
-    setOpenDialog(true);
+    setEditDialogOpen(true);
   };
 
-  const handleCloseDialog = () => {
-    setSelectedUser(null);
-    setOpenDialog(false);
-  };
+  const handleDelete = async (userId: number) => {
+    if (window.confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
+      try {
+        if (!token) {
+          throw new Error('Non authentifié');
+        }
+        
+        const response = await fetch(`${API_ENDPOINTS.USERS}/${userId}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        });
 
-  const filteredUsers = mockUsers.filter(user =>
-    user.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    user.email.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => null);
+          throw new Error(errorData?.message || 'Erreur lors de la suppression de l\'utilisateur');
+        }
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'active':
-        return 'success';
-      case 'blocked':
-        return 'error';
-      default:
-        return 'default';
+        setUsers(users.filter(user => user.id !== userId));
+      } catch (err) {
+        const error = err as Error;
+        setError(error.message || 'Une erreur est survenue');
+      }
     }
   };
 
+  const handleEditSubmit = async () => {
+    if (!selectedUser) return;
+
+    try {
+      if (!token) {
+        throw new Error('Non authentifié');
+      }
+      
+      const response = await fetch(`${API_ENDPOINTS.USERS}/${selectedUser.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(selectedUser),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        throw new Error(errorData?.message || 'Erreur lors de la mise à jour de l\'utilisateur');
+      }
+
+      const updatedUser = await response.json();
+      setUsers(users.map(user => user.id === updatedUser.id ? updatedUser : user));
+      setEditDialogOpen(false);
+    } catch (err) {
+      const error = err as Error;
+      setError(error.message || 'Une erreur est survenue');
+    }
+  };
+
+  const filteredUsers = users.filter(user =>
+    user.pseudo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
-    <Box>
-      {/* Header with search and actions */}
-      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Typography variant="h5" component="h2">
-          Gestion des Utilisateurs
-        </Typography>
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <TextField
-            size="small"
-            placeholder="Rechercher un utilisateur..."
-            value={searchTerm}
-            onChange={handleSearch}
-            InputProps={{
-              startAdornment: <SearchIcon sx={{ color: 'action.active', mr: 1 }} />,
-            }}
-          />
-          <Button variant="contained" color="primary">
-            Ajouter un Utilisateur
-          </Button>
-        </Box>
-      </Box>
-
-      {/* Users Table */}
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Nom d'utilisateur</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Rôle</TableCell>
-              <TableCell>Statut</TableCell>
-              <TableCell>Dernière Connexion</TableCell>
-              <TableCell>Parties Jouées</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredUsers
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((user) => (
-                <TableRow key={user.id}>
-                  <TableCell>{user.id}</TableCell>
-                  <TableCell>{user.username}</TableCell>
-                  <TableCell>{user.email}</TableCell>
-                  <TableCell>
-                    <Chip
-                      label={user.role}
-                      color={user.role === 'admin' ? 'primary' : 'default'}
-                      size="small"
-                    />
-                  </TableCell>
-                  <TableCell>
-                    <Chip
-                      label={user.status}
-                      color={getStatusColor(user.status) as any}
-                      size="small"
-                    />
-                  </TableCell>
-                  <TableCell>{user.lastLogin}</TableCell>
-                  <TableCell>{user.gamesPlayed}</TableCell>
-                  <TableCell>
-                    <IconButton size="small" onClick={() => handleEditUser(user)}>
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton size="small" color="error">
-                      <DeleteIcon />
-                    </IconButton>
-                    <IconButton size="small">
-                      <BlockIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
-        </Table>
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={filteredUsers.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
-      </TableContainer>
-
-      {/* Edit User Dialog */}
-      <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogTitle>Modifier l'Utilisateur</DialogTitle>
-        <DialogContent>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, pt: 2 }}>
+    <Box sx={{ width: '100%', p: 3 }}>
+      {error ? (
+        <Alert severity="error" sx={{ mb: 2 }}>
+          {error}
+        </Alert>
+      ) : null}
+      
+      {loading ? (
+        <Typography>Chargement...</Typography>
+      ) : (
+        <Box>
+          <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Typography variant="h6" component="h2">
+              Gestion des Utilisateurs
+            </Typography>
             <TextField
-              label="Nom d'utilisateur"
-              fullWidth
-              value={selectedUser?.username || ''}
+              size="small"
+              placeholder="Rechercher..."
+              value={searchTerm}
+              onChange={handleSearch}
+              InputProps={{
+                startAdornment: <SearchIcon sx={{ mr: 1, color: 'text.secondary' }} />,
+              }}
             />
-            <TextField
-              label="Email"
-              fullWidth
-              value={selectedUser?.email || ''}
-            />
-            <FormControl fullWidth>
-              <InputLabel>Rôle</InputLabel>
-              <Select
-                value={selectedUser?.role || ''}
-                label="Rôle"
-              >
-                <MenuItem value="user">Utilisateur</MenuItem>
-                <MenuItem value="admin">Administrateur</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl fullWidth>
-              <InputLabel>Statut</InputLabel>
-              <Select
-                value={selectedUser?.status || ''}
-                label="Statut"
-              >
-                <MenuItem value="active">Actif</MenuItem>
-                <MenuItem value="blocked">Bloqué</MenuItem>
-              </Select>
-            </FormControl>
           </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDialog}>Annuler</Button>
-          <Button variant="contained" onClick={handleCloseDialog}>
-            Sauvegarder
-          </Button>
-        </DialogActions>
-      </Dialog>
+
+          <TableContainer component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>ID</TableCell>
+                  <TableCell>Pseudo</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Score Elo</TableCell>
+                  <TableCell>Date d'inscription</TableCell>
+                  <TableCell>Actions</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {filteredUsers
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((user) => (
+                    <TableRow key={user.id}>
+                      <TableCell>{user.id}</TableCell>
+                      <TableCell>{user.pseudo}</TableCell>
+                      <TableCell>{user.email}</TableCell>
+                      <TableCell>{user.scoreElo}</TableCell>
+                      <TableCell>{new Date(user.dateInscription).toLocaleDateString()}</TableCell>
+                      <TableCell>
+                        <IconButton size="small" onClick={() => handleEdit(user)}>
+                          <EditIcon />
+                        </IconButton>
+                        <IconButton size="small" onClick={() => handleDelete(user.id)}>
+                          <DeleteIcon />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+              </TableBody>
+            </Table>
+            <TablePagination
+              component="div"
+              count={filteredUsers.length}
+              page={page}
+              onPageChange={handleChangePage}
+              rowsPerPage={rowsPerPage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              labelRowsPerPage="Lignes par page"
+            />
+          </TableContainer>
+
+          <Dialog open={editDialogOpen} onClose={() => setEditDialogOpen(false)}>
+            <DialogTitle>Modifier l'utilisateur</DialogTitle>
+            <DialogContent>
+              {selectedUser && (
+                <Box sx={{ pt: 2 }}>
+                  <TextField
+                    fullWidth
+                    label="Pseudo"
+                    value={selectedUser.pseudo}
+                    onChange={(e) => setSelectedUser({ ...selectedUser, pseudo: e.target.value })}
+                    sx={{ mb: 2 }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Email"
+                    value={selectedUser.email}
+                    onChange={(e) => setSelectedUser({ ...selectedUser, email: e.target.value })}
+                    sx={{ mb: 2 }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Score Elo"
+                    value={selectedUser.scoreElo}
+                    onChange={(e) => setSelectedUser({ ...selectedUser, scoreElo: parseInt(e.target.value, 10) })}
+                    sx={{ mb: 2 }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Date d'inscription"
+                    value={selectedUser.dateInscription}
+                    onChange={(e) => setSelectedUser({ ...selectedUser, dateInscription: e.target.value })}
+                    sx={{ mb: 2 }}
+                  />
+                </Box>
+              )}
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setEditDialogOpen(false)}>Annuler</Button>
+              <Button onClick={handleEditSubmit} variant="contained">Sauvegarder</Button>
+            </DialogActions>
+          </Dialog>
+        </Box>
+      )}
     </Box>
   );
 };

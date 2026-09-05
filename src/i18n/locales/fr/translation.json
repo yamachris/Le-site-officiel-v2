@@ -1,4 +1,1112 @@
 {
+  "game": {
+    "turn": "Tour {{number}}",
+    "discard": "Défausse",
+    "draw": "Pioche",
+    "play": "Jouer",
+    "yourTurn": "Votre Tour",
+    "opponentTurn": "Tour de l'Adversaire",
+    "waitingForPlayers": "En attente des autres joueurs...",
+    "timeRunningOut": "Le temps est presque écoulé !",
+    "messages": {
+      "discardPhase": "Défaussez une carte pour continuer",
+      "drawPhase": "Piochez une carte",
+      "actionPhase": "Jouez vos cartes ou passez votre tour",
+      "canEndTurn": "Vous pouvez terminer votre tour",
+      "strategicShuffleFirst": "Premier mélange stratégique ! ⚠️ La prochaine utilisation vous fera passer votre tour.",
+      "strategicShuffleNext": "Mélange stratégique effectué - Fin de votre tour",
+      "blockWithJokerSuccess": "Attaque bloquée par le Joker !",
+      "blockWithSevenSuccess": "Attaque bloquée par le 7 !",
+      "reserveSuitOccupied": "Cette colonne a déjà un activateur (7 ou Joker)",
+      "faceCardPlaced": "{{value}} placé avec un activateur",
+      "wrongSuit": "Cette carte doit être placée dans sa colonne de couleur",
+      "slotOccupied": "Cet emplacement est déjà occupé",
+      "queenHealing": "La Dame vous soigne de {{amount}} PV !",
+      "queenChallengeResult": "Défi {{result}} ! Vous gagnez {{amount}} PV ❤️",
+      "queenChallengeStart": "Défi de la Bonne Dame lancé !",
+      "cardExchanged": "Cartes échangées",
+      "valetAttack": "Le Valet a détruit {{count}} cartes de la colonne {{suit}} !",
+      "valetCannotAttack": "Le Valet ne peut pas attaquer maintenant",
+      "valetPassive": "Valet passif - Ne peut pas attaquer ce tour",
+      "valetActive": "Cliquez pour attaquer avec le Valet"
+    },
+    "gameOver": {
+      "title": "Partie Terminée",
+      "surrendered": "Vous avez abandonné",
+      "finalScore": "Score final",
+      "newGame": "Nouvelle Partie"
+    },
+    "setup": {
+      "title": "Phase de préparation",
+      "welcome": "Bienvenue sur UNIT Card Game! Veuillez sélectionner 2 cartes pour votre réserve",
+      "reserve": "Réserve",
+      "yourHand": "Votre main",
+      "handCount": "cartes",
+      "selectCards": "Sélectionnez 2 cartes pour la réserve",
+      "startGame": "Commencer la partie",
+      "timeLeft": "Temps restant",
+      "timeExpired": "Partie annulée - Temps de préparation expiré"
+    },
+    "cards": {
+      "deck": "Pioche",
+      "discard": "Défausse",
+      "hand": "Main",
+      "reserve": "Réserve",
+      "total": "Total",
+      "slot": "Emplacement",
+      "jack": "Valet",
+      "king": "Roi",
+      "as": "As",
+      "revolution": "révolution",
+      "of": "de",
+      "suits": {
+        "hearts": "Cœurs",
+        "diamonds": "Carreaux",
+        "clubs": "Trèfles",
+        "spades": "Piques"
+      }
+    },
+    "actions": {
+      "exchange": "Échanger",
+      "surrender": "Abandonner",
+      "skipAction": "Passer l'Action",
+      "endTurn": "Fin du Tour",
+      "turnPassed": "Tour Passé",
+      "strategicShuffle": {
+        "button": "Mélange Stratégique",
+        "tooltip": "Mélanger les cartes de manière stratégique"
+      },
+      "placeSeven": "Placer",
+      "confirmSurrender": "Êtes-vous sûr de vouloir abandonner la partie ?",
+      "nextPhase": "Phase Suivante",
+      "startTurn": "Démarrer le Tour",
+      "block": {
+        "action": "Bloquer",
+        "tooltip": "Bloquer une attaque adverse",
+        "success": "Blocage activé ! Vous êtes protégé contre la prochaine attaque."
+      },
+      "sacrifice": {
+        "button": "Sacrifice",
+        "tooltip": "Sacrifier une carte spéciale"
+      }
+    },
+    "ui": {
+      "startMessage": "Sélectionnez votre première carte à défausser",
+      "cardCount": "cartes",
+      "strategicShuffle": "Mélange Stratégique",
+      "cancel": "Annuler",
+      "confirm": "Confirmer",
+      "opponentCards": "Cartes de l'adversaire"
+    },
+    "attack": {
+      "chooseAttack": "Choisissez votre attaque",
+      "selectTarget": "Sélectionnez une cible",
+      "noValidTargets": "Aucune cible valide disponible",
+      "healthTarget": "points de vie",
+      "warnings": {
+        "invalidTarget": "Cible invalide",
+        "unitAlreadyAttacked": "Cette unité a déjà attaqué",
+        "protectedByKing": "Protégé par le Roi",
+        "cardNotAvailable": "Carte non disponible en main",
+        "invalidHealthAttackCard": "Cette carte ne peut pas être utilisée pour les attaques de points de vie"
+      }
+    },
+    "block": {
+      "title": "Bloquer avec un Joker ou 7 de chance ?",
+      "description": "Le joueur {{player}} attaque votre {{target}} avec {{card}}. Vous pouvez bloquer cette attaque avec un Joker ou un 7 de chance.",
+      "selectJoker": "Sélectionnez un Joker à utiliser :",
+      "selectCard": "Sélectionnez une carte:",
+      "inHand": "En Main",
+      "inReserve": "En Réserve",
+      "inColumn": "En colonne",
+      "block": "Bloquer l'Attaque",
+      "decline": "Laisser Passer l'Attaque",
+      "noJokers": "Vous n'avez pas de Jokers pour bloquer."
+    }
+  },
+  "home": {
+    "subtitle": "Jeu de Cartes",
+    "tagline": "Stratégie et chance se rencontrent dans ce jeu de cartes rapide. Défiez l'IA ou affrontez de vrais joueurs en ligne !",
+    "discover": {
+      "title": "Découvrez UNIT",
+      "subtitle": "Un jeu de cartes stratégique explosif"
+    },
+    "tutorial": {
+      "button": "Ouvrir le tutoriel complet"
+    },
+    "profile": {
+      "title": "Profil Joueur",
+      "nicknameLabel": "Votre Pseudo :",
+      "nicknamePlaceholder": "Entrez votre pseudo",
+      "statsTitle": "Statistiques Joueur",
+      "gamesPlayed": "Parties Jouées",
+      "winRate": "Taux de Victoire"
+    },
+    "solo": {
+      "title": "Mode Solo",
+      "description": "Défiez l'IA dans un duel stratégique en tête-à-tête. Parfait pour perfectionner vos compétences !",
+      "button": "Jouer contre l'Ordinateur"
+    },
+    "online": {
+      "title": "Mode En Ligne",
+      "description": "Affrontez de vrais adversaires en ligne et prouvez vos compétences. Le matchmaking trouvera l'adversaire parfait !",
+      "button": "Trouver une Partie En Ligne"
+    },
+    "errors": {
+      "enterNickname": "Veuillez entrer votre pseudo",
+      "soloFailed": "Échec du lancement du jeu solo. Veuillez réessayer.",
+      "matchFailed": "Impossible de trouver une partie. Veuillez réessayer."
+    },
+    "presentation": {
+      "line1": "🎙️ « Bienvenue dans UNIT – un jeu de cartes stratégique explosif, où chaque joueur construit des armées pour déclencher... une Révolution. »",
+      "line2": "🎙️ « Avec un simple jeu de 54 cartes, vous assemblez des colonnes d'unités – de l'As au 10 – pour attaquer, défendre, et manipuler le terrain. »",
+      "line3": "🎙️ « Attention : les cartes spéciales comme les Rois, les Valets, ou les Jokers peuvent tout renverser. »",
+      "line4": "🎙️ « L'objectif ? Réduire les points de vie de votre adversaire à zéro… ou déclencher une Révolution qui inflige 10 dégâts d'un seul coup. »",
+      "line5": "🎙️ « C'est simple à comprendre, profond à maîtriser… et chaque partie est unique. »",
+      "line6": "🎙️ « Prêt à changer le cours de l'Histoire ? C'est le moment d'entrer dans UNIT. »"
+    }
+  },
+  "matchmaking": {
+    "title": "Recherche d'adversaire",
+    "searching": "Recherche en cours",
+    "regions": "Recherche dans toutes les régions...",
+    "cancel": "Annuler"
+  },
+  "loading": {
+    "game": "Chargement du jeu..."
+  },
+  "tutorial": {
+    "nav": {
+      "chapters": "Chapitres",
+      "close": "Fermer",
+      "prev": "← Chapitre précédent",
+      "next": "Chapitre suivant →"
+    },
+    "mainTitle": "📖 Règles complètes du jeu UNIT",
+    "chapter1": {
+      "title": "Comprendre le déroulement d'un tour dans UNIT",
+      "subtitle": "Chapitre 1 • Les bases du gameplay",
+      "debut-partie": {
+        "title": "Début de la Partie",
+        "content": [
+          "Chaque joueur commence avec un deck personnel de 54 cartes.",
+          "Il pioche 7 cartes au début de la partie.",
+          "Parmi ces 7 cartes, 2 cartes de son choix sont placées face cachée en réserve, sur le terrain.",
+          "Le joueur conserve donc 5 cartes en main, et 2 cartes en réserve."
+        ],
+        "highlight": "🧠 Rappel important : La réserve est une extension stratégique de la main, elle reste face cachée et accessible durant la partie."
+      },
+      "structure-tour": {
+        "title": "Structure d'un Tour",
+        "content": [
+          "Chaque tour suit toujours la même séquence."
+        ]
+      },
+      "cas-1": {
+        "title": "Cas 1 : Le joueur commence son tour avec 7 cartes",
+        "subtitle": "(5 en main + 2 en réserve)",
+        "content": [
+          "Défausse obligatoire : Le joueur doit défausser 1 carte de sa main (il choisit laquelle).",
+          "Pioche : Ensuite, il pioche 1 carte pour revenir à un total de 7 cartes.",
+          "Phase d'action : Il peut alors :",
+          "• Poser des cartes pour construire des unités,",
+          "• Utiliser une carte spéciale (Valet, Roi, etc.),",
+          "• Attaquer ou activer un effet.",
+          "Fin de tour : Une fois ses actions terminées, le joueur annonce la fin de son tour."
+        ],
+        "warning": "🛑 Si le joueur ne peut ou ne veut effectuer aucune action, il doit obligatoirement indiquer la fin de son tour."
+      },
+      "cas-2": {
+        "title": "Cas 2 : Le joueur a moins de 7 cartes en début de tour",
+        "subtitle": "(parce qu'il a joué des cartes précédemment)",
+        "content": [
+          "Le joueur pioche immédiatement le nombre de cartes nécessaire pour revenir à 7 cartes (main + réserve).",
+          "Puis il entre en phase d'action : il peut jouer, attaquer, activer un effet...",
+          "Fin de tour : il termine son tour comme d'habitude."
+        ]
+      },
+      "rappel-general": {
+        "title": "Rappel général",
+        "content": [
+          "Les joueurs ne peuvent jamais dépasser 7 cartes (5 en main + 2 en réserve).",
+          "S'il est à 7 au début du tour : il doit défausser 1 carte avant de piocher.",
+          "S'il a joué des cartes : il pioche directement, sans défausse.",
+          "À chaque tour, un joueur peut agir ou passer, mais il doit l'indiquer."
+        ]
+      }
+    },
+    "chapter2": {
+      "title": "La Phase d'Action",
+      "subtitle": "Chapitre 2 • Actions et stratégies",
+      "introduction-phase": {
+        "title": "La Phase d'Action",
+        "content": [
+          "Pendant son tour, après la pioche, le joueur entre dans sa phase d'action.",
+          "Il peut réaliser plusieurs types d'actions, dans l'ordre qu'il souhaite, tant qu'il respecte les limites suivantes :"
+        ]
+      },
+      "actions-disponibles": {
+        "title": "Les actions disponibles",
+        "content": [
+          "Chaque action coûte 1 action, sauf cas spéciaux.",
+          "Voici la liste des actions principales qu'un joueur peut effectuer pendant son tour :"
+        ]
+      },
+      "action-construire": {
+        "title": "1. Jouer une carte pour construire une unité",
+        "content": [
+          "Le joueur place une carte dans la colonne correspondante (par couleur).",
+          "Les unités doivent être posées dans l'ordre croissant, de l'As jusqu'au 10."
+        ],
+        "highlight": "➡️ ✅ Cette action permet de progresser vers une attaque ou une Révolution."
+      },
+      "action-speciale": {
+        "title": "2. Jouer une carte spéciale (Valet, Roi, Dame)",
+        "content": [
+          "Le joueur peut invoquer une carte spéciale par :",
+          "• Sacrifice (cartes déjà posées),",
+          "• Utilisation d'un Joker,",
+          "• Ou un 7 de chance.",
+          "L'invocation compte comme une action."
+        ],
+        "highlight": "💡 Exception : Si un Valet est invoqué par Joker ou sacrifice, il peut attaquer immédiatement dans le même tour. (Sinon, il est passif jusqu'au tour suivant.)"
+      },
+      "action-attaquer": {
+        "title": "3. Attaquer avec une unité",
+        "content": [
+          "Une unité peut attaquer une seule fois dans sa catégorie.",
+          "Cette attaque coûte 1 action."
+        ],
+        "warning": "⚠️ Après une attaque, toute la catégorie d'unités est désactivée, même si l'attaque est bloquée."
+      },
+      "action-echanger": {
+        "title": "4. Échanger une carte avec un Joker déjà posé",
+        "content": [
+          "Si un Joker est posé sur le terrain pour remplacer une carte, le joueur peut le remplacer par la vraie carte (même couleur et valeur).",
+          "Le Joker retourne dans la main ou réserve selon son origine."
+        ],
+        "highlight": "➡️ ✅ Cet échange compte comme une action."
+      },
+      "defense": {
+        "title": "5. Défense pendant le tour adverse",
+        "content": [
+          "Bien que la défense n'intervienne pas pendant la phase d'action du joueur, il est important de la connaître.",
+          "Un joueur peut bloquer une attaque adverse :",
+          "• S'il possède un JOKER (en main ou en réserve) → il le joue immédiatement, il bloque l'attaque.",
+          "• Si un 7 de chance est présent dans la colonne attaquée, à la bonne place (après le 6), alors :",
+          "  - Il bloque une seule attaque.",
+          "  - Il est ensuite désactivé jusqu'à ce que la colonne soit détruite puis reconstruite."
+        ],
+        "highlight": "🧠 À retenir : Un Joker peut bloquer toute attaque (sauf Révolution). Un Joker peut bloquer n'importe quelle attaque, quelle que soit la colonne, sauf une Révolution. Chaque défense est valable une fois, puis la carte va en fosse ou devient inactive."
+      },
+      "limites-action": {
+        "title": "Limites d'action",
+        "content": [
+          "Le joueur peut faire autant d'actions qu'il le souhaite dans son tour, tant qu'il a des cartes pour le faire.",
+          "Cependant :",
+          "• Il ne peut faire qu'un seul échange de Joker par tour.",
+          "• Il ne peut attaquer qu'une seule fois par catégorie d'unité.",
+          "• Certaines cartes (Valet) n'attaquent pas immédiatement, sauf cas spéciaux."
+        ]
+      },
+      "fin-tour": {
+        "title": "Fin de Tour",
+        "content": [
+          "Une fois toutes les actions terminées, le joueur annonce la fin de son tour.",
+          "S'il ne fait aucune action, il doit quand même déclarer la fin de son tour."
+        ]
+      }
+    },
+    "chapter3": {
+      "title": "Les Activateurs : 7 de Chance & Joker",
+      "subtitle": "Chapitre 3 • Mécaniques d'activation",
+      "introduction-activateurs": {
+        "title": "Les Activateurs : 7 de Chance & Joker",
+        "content": [
+          "Dans UNIT, pour construire une colonne d'unité, il ne suffit pas de poser les cartes dans l'ordre. Il faut activer la colonne avec une carte spéciale appelée activateur.",
+          "Il existe deux types d'activateurs :",
+          "• 🟦 Le 7 de chance",
+          "• 🃏 Le Joker"
+        ]
+      },
+      "comment-activer": {
+        "title": "Comment activer une colonne ?",
+        "content": [
+          "Pour démarrer une colonne, il faut poser un As, puis monter progressivement jusqu'au 6.",
+          "Cet activateur est placé dans une zone spéciale de la colonne, appelée réserveSuitColonne."
+        ],
+        "highlight": "🧠 Mais pour pouvoir aller au-delà du 6 (et jouer le 8, 9, 10), il est obligatoire d'avoir un activateur en place."
+      },
+      "fonctionnement-activateur": {
+        "title": "Fonctionnement d'un activateur",
+        "content": [
+          "Lorsqu'un 7 de chance ou un Joker est joué comme activateur :",
+          "• Il est placé à côté de la colonne, dans la réserveSuitColonne.",
+          "• Il permet de déverrouiller la montée vers le 8, 9, 10.",
+          "• Il reste actif tant que la colonne n'est pas détruite."
+        ]
+      },
+      "exemple-activation": {
+        "title": "Exemple",
+        "content": [
+          "Vous avez les cartes de l'As au 6 en Carreau.",
+          "Vous placez un 7 de chance Carreau dans la réserveSuitColonne.",
+          "Vous pouvez maintenant poser le 8, 9, 10 de Carreau."
+        ]
+      },
+      "conditions-importantes": {
+        "title": "Attention aux conditions !",
+        "content": [
+          "Un Joker ou n'importe quel 7 de chance peut être joué en début de partie pour ouvrir le jeu, même s'il ne correspond pas à la couleur."
+        ],
+        "highlight": "✅ Cela permet d'avancer et d'adapter sa stratégie.",
+        "warning": "❌ Mais pour passer de la carte 6 à 8 dans une colonne, il faut obligatoirement le bon 7 de chance de la même couleur que la colonne."
+      },
+      "echange-activateur": {
+        "title": "L'échange d'activateur",
+        "content": [
+          "Si vous avez placé le mauvais 7 ou un Joker dans la réserveSuitColonne, pas de panique :",
+          "• Vous pouvez échanger l'activateur par le bon 7 de chance de la couleur de la colonne si vous le récupérez dans votre main ou réserve.",
+          "• Le Joker ou 7 précédent retourne à sa position d'origine.",
+          "• Cet échange coûte une action.",
+          "• Il permet de débloquer la progression vers le haut de la colonne (et d'éventuellement préparer une Révolution)."
+        ]
+      },
+      "attaque-activateur": {
+        "title": "Que se passe-t-il en cas d'attaque ?",
+        "content": [
+          "Si un Valet attaque une colonne activée avec un 7 ou un Joker :",
+          "• Toutes les cartes de la colonne, y compris l'activateur, vont dans la fosse.",
+          "• Cela annule la progression de la colonne.",
+          "• Il faudra recommencer depuis l'As."
+        ]
+      },
+      "activateurs-cartes-speciales": {
+        "title": "Les activateurs et les cartes spéciales (Têtes de jeu)",
+        "content": [
+          "Les 7 de chance et Jokers peuvent aussi servir à invoquer les têtes de jeu :",
+          "• Roi → 7 ou Joker → Fosse",
+          "• Dame → 7 ou Joker → Fosse",
+          "• Valet → 7 ou Joker → Fosse"
+        ],
+        "warning": "❗ Dès qu'un 7 ou un Joker est utilisé pour jouer une carte spéciale, il est immédiatement envoyé dans la fosse."
+      },
+      "resume-activateurs": {
+        "title": "Résumé à retenir",
+        "content": [
+          "▶️ Activer une colonne = As + 7 ou Joker dans la réserveSuitColonne.",
+          "🔒 Pour poser un 8, il faut le 7 de chance de la même couleur.",
+          "🔁 On peut échanger l'activateur si besoin (action unique).",
+          "💥 En cas d'attaque par Valet, la colonne + l'activateur sont détruits.",
+          "👑 Les activateurs peuvent aussi servir pour jouer un Roi, une Dame ou un Valet, mais ils partent alors en fosse."
+        ]
+      }
+    },
+    "chapter4": {
+      "title": "La Révolution - L'attaque ultime",
+      "subtitle": "Chapitre 4 • L'aboutissement du jeu",
+      "revolution-intro": {
+        "title": "La Révolution – L'attaque ultime",
+        "content": [
+          "La Révolution est le but stratégique suprême dans UNIT.",
+          "C'est l'attaque la plus puissante du jeu, celle qui peut retourner une partie entière si elle est bien préparée.",
+          "Elle symbolise l'aboutissement parfait d'une colonne complète et l'exécution d'un plan sans faute."
+        ]
+      },
+      "revolution-conditions": {
+        "title": "Conditions obligatoires pour déclencher une Révolution",
+        "content": [
+          "Pour lancer une Révolution, il faut réunir toutes ces conditions :",
+          "",
+          "✅ Avoir posé les 10 cartes d'une même couleur dans l'ordre, de l'As au 10",
+          "✅ Ne pas avoir utilisé de Joker dans la colonne (aucun remplacement)",
+          "✅ Avoir activé la colonne correctement avec le bon 7 de chance de la couleur",
+          "✅ Avoir posé le 10 (ce dernier déclenche la Révolution automatiquement)"
+        ]
+      },
+      "revolution-effects": {
+        "title": "Effets immédiats de la Révolution",
+        "content": [
+          "💥 Le Roi adverse de la même couleur est détruit, même s'il est encore en jeu.",
+          "💥 L'adversaire subit 10 points de dégâts directs, sans défense possible.",
+          "🪦 Toute la colonne (As à 10) est envoyée dans la fosse après l'attaque.",
+          "❗ Aucun Joker, 7 de chance, Valet ou autre effet ne peut bloquer une Révolution."
+        ]
+      },
+      "revolution-unstoppable": {
+        "title": "Pourquoi la Révolution est inarrêtable",
+        "content": [
+          "La Révolution est la seule attaque totalement imparable du jeu.",
+          "Elle ignore tous les mécanismes de défense :",
+          "",
+          "✅ Ignore les Rois",
+          "✅ Ignore les Jokers",
+          "✅ Ignore les 7 de chance",
+          "✅ Ignore les cartes en réserve",
+          "✅ Ignore toute action de contre",
+          "",
+          "Elle représente un événement rare, mais dévastateur, qui récompense les joueurs rigoureux et patients."
+        ]
+      },
+      "revolution-joker-case": {
+        "title": "Cas particulier : Joker dans la colonne",
+        "content": [
+          "Si un seul Joker remplace une carte dans la colonne :",
+          "",
+          "❌ La Révolution est bloquée.",
+          "",
+          "La colonne est considérée incomplète, même si elle semble visuellement terminée.",
+          "Il faudra échanger le Joker contre la vraie carte (avec une action) pour débloquer la Révolution."
+        ]
+      },
+      "revolution-strategy": {
+        "title": "Réflexion stratégique",
+        "content": [
+          "Le Joker est une carte utile mais dangereuse à placer dans une colonne si vous visez la Révolution.",
+          "Parfois, il vaut mieux retarder une action que sacrifier la possibilité d'une Révolution.",
+          "Garder la colonne pure vous garantit une issue brutale et spectaculaire."
+        ]
+      },
+      "revolution-perfect": {
+        "title": "La Révolution parfaite",
+        "content": [
+          "Une Révolution parfaite se produit lorsque le joueur déclenche une Révolution sans avoir effectué aucune autre attaque avec ses unités au cours de la partie.",
+          "",
+          "🎖️ Elle témoigne d'un contrôle absolu du tempo, de la patience, et d'un style de jeu pur.",
+          "Elle peut surprendre un adversaire trop agressif, et l'éliminer en une seule frappe."
+        ]
+      },
+      "revolution-summary": {
+        "title": "Résumé rapide",
+        "content": [
+          "🎯 Cartes nécessaires : As à 10, même couleur, sans Joker",
+          "🔧 Activation obligatoire : Oui, avec 7 de chance correspondant",
+          "⚡ Déclenchement : Pose du 10",
+          "💥 Effets : Destruction du Roi + 10 dégâts directs",
+          "🛡️ Blocable ? : Non, impossible",
+          "🪦 Conséquences : Colonne entière envoyée en fosse",
+          "🏆 Bonus stratégique : Révolution parfaite si aucune autre attaque faite"
+        ]
+      }
+    },
+    "chapter5": {
+      "title": "La Défense - Protéger ses points de vie",
+      "subtitle": "Chapitre 5 • Mécanismes défensifs",
+      "defense-intro": {
+        "title": "La Défense – Protéger ses points de vie et ses unités",
+        "content": [
+          "Dans UNIT, la défense est aussi importante que l'attaque.",
+          "Certaines cartes et positions permettent d'annuler ou limiter l'impact d'une action adverse."
+        ]
+      },
+      "defense-objectives": {
+        "title": "Objectif de la défense",
+        "content": [
+          "Empêcher l'adversaire :",
+          "",
+          "• D'infliger des dégâts directs à vos points de vie.",
+          "• De détruire vos unités ou cartes spéciales trop facilement.",
+          "• De briser votre stratégie (ex : empêcher un Valet de nettoyer une colonne)."
+        ]
+      },
+      "joker-defense": {
+        "title": "Le Joker – Défenseur universel",
+        "content": [
+          "🔹 Effet : Le Joker peut bloquer n'importe quelle attaque, peu importe la colonne ou la carte attaquante.",
+          "🔹 Limite : Il ne peut pas bloquer une Révolution.",
+          "",
+          "📋 Utilisation :",
+          "• Joué depuis la main ou la réserve pendant le tour de l'adversaire.",
+          "• Après usage, il part immédiatement dans la fosse.",
+          "",
+          "💡 Astuce : Garder un Joker en main est souvent plus sûr que de l'utiliser en attaque."
+        ]
+      },
+      "seven-defense": {
+        "title": "Le 7 de chance – Bouclier de colonne",
+        "content": [
+          "🔹 Effet : Un 7 de chance placé dans une colonne, à sa position normale (après le 6), peut bloquer une seule attaque visant cette colonne.",
+          "",
+          "📋 Conditions :",
+          "• Le 7 doit être de la même couleur que la colonne.",
+          "• Il ne protège que la colonne où il est placé.",
+          "",
+          "⚡ Après utilisation :",
+          "• Le 7 est désactivé jusqu'à ce que la colonne soit détruite et reconstruite.",
+          "• Il reste physiquement en jeu, mais ne bloque plus.",
+          "",
+          "💡 Astuce : Un 7 bien positionné peut forcer l'adversaire à gaspiller une attaque ou un Joker."
+        ]
+      },
+      "defense-interactions": {
+        "title": "Interactions importantes",
+        "content": [
+          "🔸 Unité classique (1–6) : Bloquée par Joker ✅ | Bloquée par 7 de chance ✅",
+          "🔸 8 ou 9 : Bloquée par Joker ✅ | Bloquée par 7 de chance ✅",
+          "🔸 Valet : Bloquée par Joker ✅ | Bloquée par 7 de chance ✅",
+          "🔸 Roi : Bloquée par Joker ❌ | Bloquée par 7 de chance ❌",
+          "🔸 Joker : Bloquée par Joker ✅ | Bloquée par 7 de chance ✅",
+          "🔸 Révolution (10) : Bloquée par Joker ❌ | Bloquée par 7 de chance ❌"
+        ]
+      },
+      "defense-strategy": {
+        "title": "Stratégie défensive",
+        "content": [
+          "🎯 Anticiper : Garder au moins un moyen de défense actif à chaque tour.",
+          "🎯 Protéger ses colonnes clés : Placer un 7 de chance sur la colonne la plus avancée.",
+          "🎯 Forcer les choix adverses : Laisser croire qu'une colonne est vulnérable alors qu'elle est protégée.",
+          "🎯 Gérer ses ressources : Un Joker utilisé trop tôt peut coûter la partie."
+        ]
+      },
+      "defense-summary": {
+        "title": "Résumé rapide",
+        "content": [
+          "🃏 Joker = défense universelle contre tout sauf Révolution.",
+          "7️⃣ 7 de chance = défense locale sur sa colonne.",
+          "🚫 Aucune carte ne bloque la Révolution."
+        ]
+      }
+    },
+    "chapter6": {
+      "title": "Le Mélange Stratégique – Reconstituer son deck",
+      "subtitle": "Chapitre 6 • Le Mélange Stratégique",
+      "melange-intro": {
+        "title": "Le Mélange Stratégique – Reconstituer son deck",
+        "content": [
+          "Dans UNIT, il est parfois nécessaire de mélanger les cartes de la fosse avec le deck pour continuer à jouer.",
+          "Cette action, appelée mélange stratégique, peut servir à récupérer des cartes clés ou à éviter de rester bloqué."
+        ]
+      },
+      "quand-melanger": {
+        "title": "Quand faire un mélange stratégique ?",
+        "content": [
+          "Un mélange stratégique peut être effectué avant toute autre action de votre tour lorsque :",
+          "",
+          "• Vous voulez réintroduire des cartes importantes dans votre deck.",
+          "• Vous êtes bloqué dans votre progression.",
+          "• Votre deck n'est pas encore vide mais vous voulez réinitialiser la distribution."
+        ]
+      },
+      "regles-melange": {
+        "title": "Règles du mélange stratégique",
+        "content": [
+          "📅 Moment :",
+          "• Doit être fait au début de votre tour, avant la défausse ou la pioche.",
+          "",
+          "🔄 Procédure :",
+          "• Vous défaussez toutes les cartes de votre main.",
+          "• Les 2 cartes en réserve restent en place.",
+          "• Vous mélangez votre deck et votre fosse pour former un nouveau deck.",
+          "",
+          "🥇 Première fois :",
+          "• Lors du premier mélange stratégique de la partie, vous pouvez jouer normalement après le mélange.",
+          "",
+          "🔁 Fois suivantes :",
+          "• Tous les mélanges stratégiques après le premier vous obligent à passer votre tour après le mélange (aucune action possible)."
+        ]
+      },
+      "limitations-melange": {
+        "title": "Limitations après les mélanges suivants",
+        "content": [
+          "Si vous faites un mélange stratégique après le premier :",
+          "",
+          "❌ Vous ne pouvez pas attaquer ce tour-là.",
+          "❌ Vous ne pouvez pas utiliser un Joker pour vous défendre au tour adverse qui suit.",
+          "✅ Un 7 de chance déjà actif sur le terrain conserve toutefois sa défense."
+        ]
+      },
+      "cas-particuliers": {
+        "title": "Cas particuliers",
+        "content": [
+          "🗂️ Deck vide :",
+          "• Si votre deck est vide au moment de piocher, vous mélangez automatiquement la fosse avec le deck, sans perdre votre tour.",
+          "• Ce cas n'est pas considéré comme un mélange stratégique.",
+          "",
+          "⚠️ Stratégie risquée :",
+          "• Multiplier les mélanges stratégiques augmente l'aléatoire et peut retarder vos plans.",
+          "• Mieux vaut garder cette option comme un outil ponctuel, pas un automatisme."
+        ]
+      },
+      "astuce-strategique": {
+        "title": "Astuce stratégique",
+        "content": [
+          "Le mélange stratégique est une arme à double tranchant :",
+          "",
+          "✅ Il peut débloquer une situation…",
+          "❌ …mais il vous coûte souvent du tempo.",
+          "",
+          "💡 Utilisez-le avec un objectif clair, pas par habitude."
+        ],
+        "highlight": "🎯 Conseil : Planifiez votre mélange stratégique en fonction de cartes spécifiques que vous voulez récupérer, pas juste pour 'voir ce qui arrive'."
+      }
+    },
+    "chapter7": {
+      "title": "Le Sacrifice – Jouer une tête de jeu",
+      "subtitle": "Chapitre 7 • Le Sacrifice",
+      "sacrifice-intro": {
+        "title": "Le Sacrifice – Jouer une tête de jeu",
+        "content": [
+          "Dans UNIT, pour jouer certaines cartes spéciales appelées têtes de jeu (Roi, Dame, Valet), il est possible d'utiliser la mécanique du sacrifice.",
+          "Cette action consiste à retirer des cartes déjà posées sur le terrain pour payer le coût d'invocation."
+        ]
+      },
+      "principe-sacrifice": {
+        "title": "Principe du sacrifice",
+        "content": [
+          "🎯 Objectif : Retirer un certain nombre de cartes du terrain pour invoquer une tête de jeu.",
+          "🪦 Destination : Les cartes sacrifiées vont dans la fosse après utilisation.",
+          "📏 Règle clé : On commence toujours par la carte la plus haute de chaque colonne choisie."
+        ]
+      },
+      "cartes-non-sacrifiables": {
+        "title": "Cartes impossibles à sacrifier",
+        "content": [
+          "❌ As",
+          "❌ 7 de chance posé dans la colonne",
+          "❌ 10 de Révolution",
+          "❌ Toute carte située sous un As, un 7 posé ou un 10 : ces cartes sont bloquées et non sacrifiables."
+        ]
+      },
+      "regles-selection": {
+        "title": "Règles de sélection",
+        "content": [
+          "🔝 Toujours commencer par la carte la plus haute d'une colonne.",
+          "• Exemple : si la plus haute carte en Pique est un 6♠, vous pouvez la sacrifier.",
+          "",
+          "🔄 Compléter avec d'autres cartes les plus hautes d'autres colonnes si nécessaire.",
+          "• Exemple : 6♠ + 8♥ + 2♦ pour un Roi.",
+          "",
+          "🌈 Mélange des couleurs autorisé tant que chaque carte choisie est la plus haute de sa colonne.",
+          "",
+          "⛓️ Sacrifice en chaîne dans une colonne :",
+          "• Vous pouvez descendre de la plus haute vers le bas tant qu'aucune carte bloquante n'est rencontrée.",
+          "• Exemple : 6♠, 5♠, 4♠ dans la même colonne."
+        ]
+      },
+      "couts-invocation": {
+        "title": "Coûts d'invocation par sacrifice",
+        "content": [
+          "👑 Roi : 3 cartes",
+          "👸 Dame : 2 cartes",
+          "🃏 Valet : 1 carte (8 ou 9 seulement)"
+        ]
+      },
+      "attaque-immediate-valet": {
+        "title": "Cas spécial – Attaque immédiate avec Valet",
+        "content": [
+          "Si un Valet est invoqué par :",
+          "• Sacrifice",
+          "• Ou Joker",
+          "",
+          "➡️ Il peut attaquer immédiatement dans le même tour.",
+          "",
+          "(Sinon, il devient passif et ne pourra attaquer qu'au tour suivant.)"
+        ]
+      },
+      "astuce-sacrifice": {
+        "title": "Astuce stratégique",
+        "content": [
+          "Le sacrifice est un choix tactique fort :",
+          "",
+          "❌ Vous perdez des cartes déjà posées...",
+          "✅ ...mais vous gagnez une pièce maîtresse.",
+          "",
+          "💡 Utilisez-le pour briser un tempo adverse ou surprendre avec un effet immédiat."
+        ],
+        "highlight": "⚔️ Le sacrifice transforme vos ressources présentes en pouvoir immédiat. Timing crucial !"
+      }
+    },
+    "chapter8": {
+      "title": "Le Roi – Bouclier suprême",
+      "subtitle": "Chapitre 8 • Le Roi",
+      "roi-intro": {
+        "title": "Le Roi – Bouclier suprême",
+        "content": [
+          "Le Roi est la pièce défensive ultime dans UNIT.",
+          "Lorsqu'il est en jeu, il protège entièrement vos points de vie contre les attaques des unités de la même couleur, et force l'adversaire à trouver une réponse spécifique."
+        ]
+      },
+      "effet-roi": {
+        "title": "Effet du Roi",
+        "content": [
+          "Tant qu'un Roi est présent pour une couleur donnée :",
+          "",
+          "🛡️ Aucune unité de cette couleur inférieure à 8 ne peut attaquer vos points de vie.",
+          "🛡️ Ces unités ne peuvent pas non plus détruire le Roi.",
+          "",
+          "Seules certaines attaques peuvent passer outre le Roi :",
+          "⚔️ 8 ou 9 de la même couleur → battent le Roi et le détruisent.",
+          "🃏 Joker → détruit un Roi de n'importe quelle couleur.",
+          "💥 Révolution (10) → détruit le Roi et inflige 10 dégâts directs."
+        ]
+      },
+      "conditions-roi": {
+        "title": "Conditions pour jouer un Roi",
+        "content": [
+          "Trois méthodes possibles :",
+          "",
+          "⚔️ Sacrifice :",
+          "• Sacrifier 3 cartes, chacune étant la plus haute de sa colonne (hors As, 7, 10).",
+          "",
+          "🃏 Joker :",
+          "• Jouer un Joker, qui part ensuite dans la fosse.",
+          "",
+          "7️⃣ 7 de chance :",
+          "• Jouer un 7 de chance, qui part ensuite dans la fosse."
+        ]
+      },
+      "positionnement-roi": {
+        "title": "Positionnement",
+        "content": [
+          "👑 Le Roi est placé sur l'emplacement \"Roi\" de sa couleur sur le plateau.",
+          "🔒 Une fois posé, il reste jusqu'à être détruit par une attaque valide."
+        ]
+      },
+      "perte-roi": {
+        "title": "Perte du Roi",
+        "content": [
+          "Si le Roi est battu par un 8, 9, Joker ou Révolution :",
+          "",
+          "🪦 Il est envoyé dans la fosse immédiatement.",
+          "❌ La protection qu'il offrait disparaît instantanément."
+        ]
+      },
+      "strategie-roi": {
+        "title": "Stratégie avec le Roi",
+        "content": [
+          "🛡️ Défensive : Bloquer une couleur avancée chez l'adversaire pour gagner du temps.",
+          "⏰ Temporaire : Forcer l'adversaire à gaspiller un 8, 9 ou Joker pour libérer la voie.",
+          "🚧 Préventive : Placer un Roi tôt peut brider une catégorie entière de l'adversaire."
+        ]
+      },
+      "resume-roi": {
+        "title": "À retenir",
+        "content": [
+          "Le Roi ne fait pas gagner la partie, mais il peut empêcher l'adversaire de vous la prendre.",
+          "Bien joué, il devient un véritable mur dans le tempo adverse."
+        ],
+        "highlight": "👑 Le Roi transforme la défense passive en contrôle actif du terrain. Un placement stratégique peut changer le cours d'une partie !"
+      }
+    },
+    "chapter9": {
+      "title": "La Dame – Honneur aux Dames",
+      "subtitle": "Chapitre 9 • La Dame",
+      "dame-intro": {
+        "title": "La Dame – Honneur aux Dames",
+        "content": [
+          "La Dame est la seule carte totalement inattaquable de UNIT.",
+          "Elle ne peut jamais être détruite ni empêchée d'accomplir son effet.",
+          "Son rôle principal : soigner vos points de vie."
+        ]
+      },
+      "immunite-dame": {
+        "title": "Immunité absolue",
+        "content": [
+          "La Dame ne peut jamais être attaquée par aucune carte ou effet :",
+          "",
+          "✅ Insensible au Joker",
+          "✅ Insensible au Valet",
+          "✅ Insensible aux unités classiques",
+          "",
+          "Son effet se déclenche quoi qu'il arrive."
+        ]
+      },
+      "effet-soin": {
+        "title": "Effet principal – Soin",
+        "content": [
+          "Selon la méthode utilisée pour la jouer, la Dame soigne immédiatement :",
+          "",
+          "⚔️ Sacrifice (2 cartes, chacune la plus haute de sa colonne) :",
+          "• +2 PV → Dame va en fosse",
+          "",
+          "7️⃣ Jouée avec un 7 de chance :",
+          "• +2 PV → Dame et 7 vont en fosse",
+          "",
+          "🃏 Jouée avec un Joker :",
+          "• +4 PV → Dame et Joker vont en fosse"
+        ]
+      },
+      "defi-dame": {
+        "title": "Cas spécial – Défi de la Dame (uniquement avec un Joker)",
+        "content": [
+          "Lorsque la Dame est jouée avec un Joker, le joueur peut lancer le Défi de la Dame :",
+          "",
+          "🎭 La Dame est posée face cachée (Cœur, Carreau, Trèfle ou Pique).",
+          "🤔 L'adversaire doit deviner sa couleur.",
+          "",
+          "Résultat :",
+          "❌ Mauvaise réponse → +5 PV pour le joueur qui a lancé le défi.",
+          "✅ Bonne réponse → +1 PV pour le joueur qui a lancé le défi.",
+          "",
+          "➡️ Quelle que soit l'issue, la Dame et le Joker partent dans la fosse après le défi."
+        ]
+      },
+      "regles-pose-dame": {
+        "title": "Règles de pose",
+        "content": [
+          "Trois méthodes :",
+          "",
+          "⚔️ Sacrifice : 2 cartes les plus hautes de colonne (hors As, 7, 10) → +2 PV.",
+          "7️⃣ 7 de chance : placé en fosse après utilisation → +2 PV.",
+          "🃏 Joker : placé en fosse après utilisation → +4 PV ou Défi de la Dame."
+        ]
+      },
+      "strategie-dame": {
+        "title": "Stratégie avec la Dame",
+        "content": [
+          "🔒 Sécurité : Aucun risque de perdre la Dame avant qu'elle n'agisse.",
+          "💊 Renfort : Idéale pour remonter en PV lors d'un moment critique.",
+          "🎭 Pression psychologique : Avec le Défi de la Dame, on force l'adversaire à deviner, créant une tension."
+        ]
+      },
+      "resume-dame": {
+        "title": "À retenir",
+        "content": [
+          "La Dame est la carte de soin ultime dans UNIT, protégée par le statut Honneur aux Dames.",
+          "Bien utilisée, elle peut inverser une partie en un seul coup."
+        ],
+        "highlight": "👸 La Dame combine sécurité absolue et potentiel de récupération. Le Défi de la Dame ajoute une dimension psychologique unique au jeu !"
+      }
+    },
+    "chapter10": {
+      "title": "Le Valet – L'Arme d'Élimination",
+      "subtitle": "Chapitre 10 • Le Valet",
+      "valet-intro": {
+        "title": "Le Valet – L'Arme d'Élimination",
+        "content": [
+          "Le Valet est une carte offensive dans UNIT.",
+          "C'est l'un des moyens les plus puissants pour détruire les colonnes adverses et mettre la pression, mais il a un coût : il est toujours sacrifié après utilisation."
+        ]
+      },
+      "role-valet": {
+        "title": "Rôle principal",
+        "content": [
+          "Le Valet est un attaquant spécialisé :",
+          "",
+          "⚔️ Il peut détruire une unité adverse de la même couleur.",
+          "💥 Contre des petites unités, il est capable de balayer une colonne entière.",
+          "🪦 Il est cependant consommé dès qu'il attaque."
+        ]
+      },
+      "invocation-valet": {
+        "title": "Invocation du Valet",
+        "content": [
+          "Trois façons de le mettre en jeu :",
+          "",
+          "⚔️ Sacrifice :",
+          "• Sacrifier un 8 ou un 9 (carte la plus haute d'une colonne)",
+          "• État : Actif immédiatement",
+          "",
+          "🃏 Joker :",
+          "• Jouer un Joker (qui part en fosse)",
+          "• État : Actif immédiatement",
+          "",
+          "7️⃣ 7 de chance :",
+          "• Jouer un 7 de chance (qui part en fosse)",
+          "• État : Posé passif → attaque disponible seulement au tour suivant"
+        ]
+      },
+      "cycle-fonctionnement": {
+        "title": "Cycle de fonctionnement",
+        "content": [
+          "⚡ Actif :",
+          "• Peut attaquer immédiatement une unité adverse de la même couleur.",
+          "• Après son attaque, le Valet est envoyé dans la fosse.",
+          "",
+          "😴 Passif :",
+          "• Si posé via un 7 de chance, le Valet ne peut pas attaquer ce tour-ci.",
+          "• Il devient actif au début du tour suivant."
+        ]
+      },
+      "cibles-autorisees": {
+        "title": "Cibles autorisées",
+        "content": [
+          "Le Valet peut attaquer :",
+          "",
+          "✅ Une unité de valeur ≤ 6 → toute la colonne adverse est détruite (colonne envoyée en fosse + Valet en fosse).",
+          "⚠️ Une unité de 8 ou 9 → combat direct, résultat dépendant des règles (risque de perdre le Valet).",
+          "",
+          "Le Valet ne peut pas attaquer :",
+          "",
+          "❌ Une Dame (protégée par Honneur aux Dames).",
+          "❌ Un Roi.",
+          "❌ Un autre Joker."
+        ]
+      },
+      "exemples-actions": {
+        "title": "Exemple d'actions",
+        "content": [
+          "🎯 Valet actif → attaque un 5♠ → toute la colonne Pique adverse est détruite, le Valet va aussi en fosse.",
+          "",
+          "⚠️ Valet actif → attaque un 8♥ → combat risqué, le Valet peut être contré.",
+          "",
+          "⚠️ Valet actif → attaque un 9♦ → idem, possible contre."
+        ]
+      },
+      "strategie-valet": {
+        "title": "Stratégie avec le Valet",
+        "content": [
+          "💥 Arme de rupture : détruire une colonne avancée de l'adversaire pour casser son tempo.",
+          "⚖️ Sacrifice calculé : perdre un Valet pour forcer l'adversaire à reconstruire toute une colonne peut valoir la peine.",
+          "⚡ Combo immédiat : invoquer un Valet via un Joker ou sacrifice permet d'attaquer directement et surprendre l'adversaire.",
+          "⏰ Timing : attendre que l'adversaire investisse beaucoup dans une colonne avant de la détruire maximise la valeur du Valet."
+        ]
+      },
+      "resume-valet": {
+        "title": "À retenir",
+        "content": [
+          "Le Valet est une épée à double tranchant : il détruit, mais se détruit avec.",
+          "Bien joué, il peut retourner une partie en une seule action."
+        ],
+        "highlight": "🗡️ Le Valet incarne le sacrifice tactique : perdre pour mieux gagner. Son timing d'utilisation peut déterminer l'issue d'une partie !"
+      }
+    },
+    "chapter11": {
+      "title": "Le Joker – La Carte Légendaire",
+      "subtitle": "Chapitre 11 • Le Joker",
+      "joker-intro": {
+        "title": "Le Joker – La Carte Légendaire",
+        "content": [
+          "Le Joker est la carte la plus puissante et polyvalente de UNIT.",
+          "C'est une carte unique, capable d'intervenir dans presque toutes les phases du jeu : attaque, défense, activation, soin, ou même remplacement temporaire.",
+          "Mais attention : chaque utilisation du Joker est à usage unique et a toujours une conséquence importante."
+        ]
+      },
+      "roles-joker": {
+        "title": "Les rôles du Joker",
+        "content": [
+          "Le Joker peut être utilisé de 5 façons principales :",
+          "",
+          "⚔️ Attaquer (détruire des unités ou des têtes de jeu)",
+          "🛡️ Défendre (bloquer une attaque)",
+          "🔄 Remplacer (tenir temporairement la place d'une carte manquante)",
+          "💊 Soigner (+3 points de vie)",
+          "🔧 Activer une colonne ou une tête de jeu (comme un 7 de chance)"
+        ]
+      },
+      "utilisation-offensive": {
+        "title": "Utilisation offensive – Attaque",
+        "content": [
+          "Le Joker peut détruire n'importe quelle unité dans une colonne adverse, même si elle n'est pas la plus haute.",
+          "",
+          "Effets :",
+          "• La carte détruite est envoyée dans la fosse.",
+          "• Toutes les cartes au-dessus deviennent inutilisables tant que la colonne n'est pas reconstruite.",
+          "",
+          "Exemple : si un Joker détruit un 6♣, alors les 7♣, 8♣, 9♣ et 10♣ ne pourront plus être joués tant que la chaîne n'est pas réparée.",
+          "",
+          "Le Joker peut aussi :",
+          "✅ Détruire un Roi (quelle que soit la couleur)",
+          "✅ Détruire un Valet (quelle que soit la couleur)",
+          "",
+          "🚫 Limites :",
+          "❌ Ne peut pas attaquer un As",
+          "❌ Ne peut pas attaquer un 7 de chance",
+          "❌ Ne peut pas attaquer un 10 de Révolution"
+        ]
+      },
+      "utilisation-defensive": {
+        "title": "Utilisation défensive – Blocage",
+        "content": [
+          "Le Joker peut être joué depuis la main ou la réserve pendant le tour adverse.",
+          "",
+          "✅ Effet : il bloque n'importe quelle attaque (unité, Valet, Joker adverse, etc.).",
+          "🚫 Seule exception : il ne peut pas bloquer une Révolution.",
+          "",
+          "Après usage, il va dans la fosse."
+        ]
+      },
+      "utilisation-remplacement": {
+        "title": "Utilisation comme remplacement (substitution)",
+        "content": [
+          "Le Joker peut être posé sur le terrain pour remplacer temporairement une carte manquante dans une colonne.",
+          "Cela permet de continuer à construire la colonne sans attendre la vraie carte.",
+          "",
+          "⚠️ Conséquences importantes :",
+          "Tant que le Joker remplace une carte :",
+          "• La catégorie d'unités correspondante est désactivée (ne peut plus attaquer).",
+          "• Exemple : un Joker remplace un 4♠ → la catégorie 4–5–6♠ ne peut pas attaquer.",
+          "• Les unités de la catégorie sont protégées : elles ne peuvent pas être détruites par un Valet ou un Joker adverse.",
+          "• Une Révolution est impossible si un Joker est présent dans la colonne.",
+          "",
+          "📌 Échange possible :",
+          "• Le joueur peut échanger le Joker contre la vraie carte (s'il la pioche).",
+          "• Le Joker retourne alors en main ou réserve.",
+          "• Cet échange compte comme une action."
+        ]
+      },
+      "utilisation-soin": {
+        "title": "Utilisation en soin",
+        "content": [
+          "Joué directement depuis la main ou la réserve, le Joker peut :",
+          "",
+          "💊 Redonner immédiatement +3 points de vie au joueur.",
+          "🪦 Après usage, il part en fosse."
+        ]
+      },
+      "utilisation-activateur": {
+        "title": "Utilisation comme activateur",
+        "content": [
+          "Le Joker peut remplacer un 7 de chance comme activateur de colonne.",
+          "Il peut donc être placé en réserveSuitColonne pour permettre de passer du 6 au 8.",
+          "Il peut aussi être sacrifié pour invoquer un Roi, une Dame, ou un Valet, exactement comme un 7.",
+          "",
+          "⚠️ Attention : un Joker utilisé ainsi est immédiatement envoyé dans la fosse."
+        ]
+      },
+      "interaction-speciale": {
+        "title": "Interaction spéciale – Joker vs 7 de chance",
+        "content": [
+          "Si un Joker attaque une unité d'une colonne où un 7 de chance est actif, alors :",
+          "",
+          "🛡️ L'attaque est bloquée par le 7.",
+          "🪦 Le Joker est envoyé dans la fosse.",
+          "😴 Le 7 est ensuite désactivé (il reste posé mais ne protège plus)."
+        ]
+      },
+      "strategie-joker": {
+        "title": "Stratégie avec le Joker",
+        "content": [
+          "🔄 Polymorphe : il peut tout faire, mais chaque choix est définitif.",
+          "🛡️ Arme défensive : souvent plus rentable utilisé en blocage qu'en attaque.",
+          "🚫 Frein à la Révolution : placer un Joker dans une colonne vous fait progresser… mais bloque l'accès à la Révolution.",
+          "💎 Ressource rare : chaque Joker est précieux, mieux vaut l'utiliser dans un moment clé."
+        ]
+      },
+      "resume-joker": {
+        "title": "Résumé rapide",
+        "content": [
+          "📊 Usage → Effet principal → Limite :",
+          "",
+          "⚔️ Attaque → Détruit Roi, Valet ou unité → Pas As, 7, 10",
+          "🛡️ Défense → Bloque toute attaque → Pas Révolution",
+          "🔄 Remplacement → Remplace carte manquante → Désactive la catégorie / bloque Révolution",
+          "💊 Soin → +3 PV immédiats → Usage unique",
+          "🔧 Activateur → Remplace un 7 pour colonne ou tête de jeu → Va en fosse"
+        ]
+      },
+      "conclusion-joker": {
+        "title": "À retenir",
+        "content": [
+          "Le Joker est la carte la plus flexible et la plus dangereuse de UNIT.",
+          "Mal utilisée, elle peut bloquer vos propres stratégies (notamment la Révolution).",
+          "Bien utilisée, elle peut sauver une partie ou détruire le plan adverse au moment décisif."
+        ],
+        "highlight": "🃏 Le Joker est l'incarnation de la polyvalence tactique : une carte, cinq usages, mille possibilités. Maîtriser son timing, c'est maîtriser UNIT !"
+      }
+    }
+  },
+  "matomo": {
+    "examples": {
+      "title": "Exemples d'utilisation Matomo",
+      "buttons": {
+        "startGame": "Démarrer une partie (Track Event)",
+        "playCard": "Jouer un Joker (Track Card)",
+        "userLogin": "Connexion utilisateur (Set User ID)",
+        "gameWin": "Victoire (Track Goal)"
+      }
+    }
+  },
   "nav": {
     "home": "Accueil",
     "play": "Jouer",
@@ -6,9 +1114,19 @@
     "ranking": "Classement",
     "community": "Communauté",
     "shop": "Boutique",
+    "lore": "Lore",
     "search": "Rechercher",
     "menu": "Menu",
     "assistant": "Assistant IA"
+  },
+  "settings": {
+    "theme": {
+      "light": "Passer en mode jour",
+      "dark": "Passer en mode nuit"
+    },
+    "language": {
+      "change": "Changer la langue"
+    }
   },
   "rules": {
     "title": "Règles du jeu",

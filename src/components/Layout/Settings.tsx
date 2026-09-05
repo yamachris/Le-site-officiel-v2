@@ -1,17 +1,15 @@
 import React from 'react';
-import { IconButton, Menu, MenuItem, Box, Tooltip } from '@mui/material';
+import { IconButton, Menu, MenuItem, Box, Tooltip, Typography } from '@mui/material';
 import { Brightness4, Brightness7, Language } from '@mui/icons-material';
 import { useSettings } from '../../contexts/SettingsContext';
-
-const languages = [
-  { code: 'fr', label: 'Français' },
-  { code: 'en', label: 'English' },
-  { code: 'es', label: 'Español' },
-];
+import { supportedLanguages } from '../../i18n/languages';
+import { t } from '../../i18n/translate';
 
 export const Settings = () => {
   const { mode, toggleMode, language, setLanguage } = useSettings();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const currentLanguage =
+    supportedLanguages.find((item) => item.code === language) ?? supportedLanguages[0];
 
   const handleLanguageClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -28,17 +26,18 @@ export const Settings = () => {
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-      <Tooltip title={mode === 'dark' ? 'Mode clair' : 'Mode sombre'}>
+      <Tooltip title={mode === 'dark' ? t('settings.theme.light') : t('settings.theme.dark')}>
         <IconButton onClick={toggleMode} color="inherit" size="large">
           {mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
         </IconButton>
       </Tooltip>
 
-      <Tooltip title="Changer la langue">
+      <Tooltip title={`${t('settings.language.change')} (${currentLanguage.label})`}>
         <IconButton
           onClick={handleLanguageClick}
           color="inherit"
           size="large"
+          aria-label={t('settings.language.change')}
         >
           <Language />
         </IconButton>
@@ -56,14 +55,29 @@ export const Settings = () => {
           vertical: 'top',
           horizontal: 'right',
         }}
+        PaperProps={{
+          sx: {
+            maxHeight: 420,
+            minWidth: 220,
+          },
+        }}
       >
-        {languages.map((lang) => (
+        {supportedLanguages.map((lang) => (
           <MenuItem
             key={lang.code}
             onClick={() => handleLanguageSelect(lang.code)}
             selected={language === lang.code}
+            sx={{ gap: 1.5 }}
           >
-            {lang.label}
+            <Box component="span" sx={{ width: 28, fontSize: '1.15rem' }}>
+              {lang.flag}
+            </Box>
+            <Box component="span" sx={{ flex: 1 }}>
+              {lang.label}
+            </Box>
+            <Typography variant="caption" color="text.secondary">
+              {lang.shortLabel}
+            </Typography>
           </MenuItem>
         ))}
       </Menu>

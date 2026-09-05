@@ -1,0 +1,1135 @@
+{
+  "game": {
+    "turn": "Turno {{number}}",
+    "discard": "Descarte",
+    "draw": "Comprar",
+    "play": "Jogar",
+    "yourTurn": "Sua Vez",
+    "opponentTurn": "Vez do Adversário",
+    "waitingForPlayers": "Aguardando outros jogadores...",
+    "timeRunningOut": "O tempo está acabando!",
+    "messages": {
+      "discardPhase": "Descarte uma carta para continuar",
+      "drawPhase": "Compre uma carta",
+      "actionPhase": "Jogue suas cartas ou passe o turno",
+      "canEndTurn": "Você pode terminar seu turno",
+      "strategicShuffleFirst": "Primeira Embaralhada Estratégica! ⚠️ O próximo uso fará você perder sua vez.",
+      "strategicShuffleNext": "Embaralhada estratégica concluída - Fim da sua vez",
+      "blockWithJokerSuccess": "Ataque bloqueado com um Curinga!",
+      "blockWithSevenSuccess": "Ataque bloqueado com um Sete!",
+      "reserveSuitOccupied": "Esta coluna já tem um ativador (7 ou Curinga)",
+      "faceCardPlaced": "{{value}} colocado com um ativador",
+      "wrongSuit": "Esta carta deve ser colocada na sua coluna de naipe",
+      "slotOccupied": "Este espaço já está ocupado",
+      "queenHealing": "A Dama te cura em {{amount}} PV!",
+      "queenChallengeResult": "Desafio {{result}}! Você ganha {{amount}} PV ❤️",
+      "queenChallengeStart": "Desafio da Boa Dama iniciado!",
+      "cardExchanged": "Cartas trocadas",
+      "valetAttack": "O Valete destruiu {{count}} cartas da coluna {{suit}}!",
+      "valetCannotAttack": "O Valete não pode atacar agora",
+      "valetPassive": "Valete passivo - Não pode atacar este turno",
+      "valetActive": "Clique para atacar com o Valete"
+    },
+    "gameOver": {
+      "title": "Fim de Jogo",
+      "surrendered": "Você desistiu",
+      "finalScore": "Pontuação Final",
+      "newGame": "Novo Jogo"
+    },
+    "setup": {
+      "title": "Fase de Preparação",
+      "welcome": "Bem-vindo ao UNIT Card Game! Por favor, selecione 2 cartas para sua reserva",
+      "reserve": "Reserva",
+      "yourHand": "Sua mão",
+      "handCount": "cartas",
+      "selectCards": "Selecione 2 cartas para a reserva",
+      "startGame": "Iniciar Jogo",
+      "timeLeft": "Tempo Restante",
+      "timeExpired": "Partida cancelada - Tempo de preparação expirado"
+    },
+    "cards": {
+      "deck": "Baralho",
+      "discard": "Descarte",
+      "hand": "Mão",
+      "reserve": "Reserva",
+      "total": "Total",
+      "slot": "Espaço",
+      "jack": "Valete",
+      "king": "Rei",
+      "as": "Ás",
+      "revolution": "revolução",
+      "of": "de",
+      "suits": {
+        "hearts": "Copas",
+        "diamonds": "Ouros",
+        "clubs": "Paus",
+        "spades": "Espadas"
+      }
+    },
+    "actions": {
+      "exchange": "Trocar",
+      "surrender": "Desistir",
+      "skipAction": "Pular Ação",
+      "endTurn": "Finalizar Turno",
+      "turnPassed": "Turno Passado",
+      "strategicShuffle": {
+        "button": "Embaralhamento Estratégico",
+        "tooltip": "Embaralhar cartas estrategicamente"
+      },
+      "placeSeven": "Colocar",
+      "confirmSurrender": "Tem certeza de que quer desistir da partida?",
+      "nextPhase": "Próxima Fase",
+      "startTurn": "Iniciar Turno",
+      "block": {
+        "action": "Bloquear",
+        "tooltip": "Bloquear um ataque adversário",
+        "success": "Bloqueio ativado! Você está protegido contra o próximo ataque."
+      },
+      "sacrifice": {
+        "button": "Sacrifício",
+        "tooltip": "Sacrificar uma carta especial"
+      }
+    },
+    "ui": {
+      "startMessage": "Selecione sua primeira carta para descartar",
+      "cardCount": "cartas",
+      "strategicShuffle": "Embaralhamento Estratégico",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "opponentCards": "Cartas do Oponente"
+    },
+    "attack": {
+      "chooseAttack": "Escolha seu ataque",
+      "selectTarget": "Selecione o alvo",
+      "noValidTargets": "Nenhum alvo válido disponível",
+      "healthTarget": "pontos de vida",
+      "warnings": {
+        "invalidTarget": "Alvo inválido",
+        "unitAlreadyAttacked": "Esta unidade já atacou",
+        "protectedByKing": "Protegido pelo Rei",
+        "cardNotAvailable": "Carta não disponível na mão",
+        "invalidHealthAttackCard": "Esta carta não pode ser usada para ataques de vida"
+      }
+    },
+    "block": {
+      "title": "Bloquear com Curinga ou Sete da sorte?",
+      "description": "O jogador {{player}} está atacando seu {{target}} com {{card}}. Você pode bloquear este ataque com um Curinga ou Sete da sorte.",
+      "selectJoker": "Selecione um Curinga para usar:",
+      "selectCard": "Selecione uma carta:",
+      "inHand": "Na Mão",
+      "inReserve": "Na Reserva",
+      "inColumn": "Na coluna",
+      "block": "Bloquear Ataque",
+      "decline": "Permitir Ataque",
+      "noJokers": "Você não tem nenhum Curinga para bloquear."
+    }
+  },
+  "home": {
+    "subtitle": "Jogo de Cartas",
+    "tagline": "Estratégia e sorte se encontram neste jogo de cartas rápido. Desafie a IA ou enfrente jogadores reais online!",
+    "discover": {
+      "title": "Descubra o UNIT",
+      "subtitle": "Um jogo de cartas estratégico explosivo"
+    },
+    "tutorial": {
+      "button": "Abrir tutorial completo"
+    },
+    "profile": {
+      "title": "Perfil do Jogador",
+      "nicknameLabel": "Seu Apelido:",
+      "nicknamePlaceholder": "Insira seu apelido",
+      "statsTitle": "Estatísticas do Jogador",
+      "gamesPlayed": "Partidas Jogadas",
+      "winRate": "Taxa de Vitória"
+    },
+    "solo": {
+      "title": "Modo Solo",
+      "description": "Desafie a IA em um duelo estratégico frente a frente. Perfeito para aperfeiçoar suas habilidades!",
+      "button": "Jogar contra o Computador"
+    },
+    "online": {
+      "title": "Modo Online",
+      "description": "Enfrente adversários reais online e prove suas habilidades. O matchmaking encontrará o adversário perfeito!",
+      "button": "Encontrar Partida Online"
+    },
+    "errors": {
+      "enterNickname": "Por favor insira seu apelido",
+      "soloFailed": "Falha ao iniciar o jogo solo. Por favor tente novamente.",
+      "matchFailed": "Não foi possível encontrar uma partida. Por favor tente novamente."
+    },
+    "presentation": {
+      "line1": "🎙️ « Bem-vindo ao UNIT – um explosivo jogo de cartas estratégico onde cada jogador constrói exércitos para desencadear... uma Revolução. »",
+      "line2": "🎙️ « Com um simples baralho de 54 cartas, você monta colunas de unidades – do Ás ao 10 – para atacar, defender e manipular o campo de batalha. »",
+      "line3": "🎙️ « Cuidado: cartas especiais como Reis, Valetes ou Coringas podem virar tudo de cabeça para baixo. »",
+      "line4": "🎙️ « O objetivo? Reduzir os pontos de vida do seu adversário a zero… ou desencadear uma Revolução que causa 10 de dano de uma só vez. »",
+      "line5": "🎙️ « Simples de entender, profundo de dominar… e cada partida é única. »",
+      "line6": "🎙️ « Pronto para mudar o curso da História? É hora de entrar no UNIT. »"
+    }
+  },
+  "matchmaking": {
+    "title": "Procurando Oponente",
+    "searching": "Procurando",
+    "regions": "Procurando em todas as regiões...",
+    "cancel": "Cancelar"
+  },
+  "loading": {
+    "game": "Carregando o jogo..."
+  },
+  "tutorial": {
+    "nav": {
+      "chapters": "Capítulos",
+      "close": "Fechar",
+      "prev": "← Capítulo anterior",
+      "next": "Próximo capítulo →"
+    },
+    "mainTitle": "📖 Regras completas do jogo UNIT",
+    "chapter1": {
+      "title": "Compreendendo o fluxo de um turno no UNIT",
+      "subtitle": "Capítulo 1 • As bases do gameplay",
+      "debut-partie": {
+        "title": "Início da Partida",
+        "content": [
+          "Cada jogador começa com um baralho pessoal de 54 cartas.",
+          "Ele compra 7 cartas no início da partida.",
+          "Entre essas 7 cartas, 2 cartas de sua escolha são colocadas viradas para baixo na reserva, no campo.",
+          "O jogador mantém então 5 cartas na mão e 2 cartas na reserva."
+        ],
+        "highlight": "🧠 Lembrete importante: A reserva é uma extensão estratégica da mão, permanece virada para baixo e acessível durante a partida."
+      },
+      "structure-tour": {
+        "title": "Estrutura de um Turno",
+        "content": [
+          "Cada turno sempre segue a mesma sequência."
+        ]
+      },
+      "cas-1": {
+        "title": "Caso 1: O jogador começa seu turno com 7 cartas",
+        "subtitle": "(5 na mão + 2 na reserva)",
+        "content": [
+          "Descarte obrigatório: O jogador deve descartar 1 carta da mão (ele escolhe qual).",
+          "Compra: Em seguida, ele compra 1 carta para voltar a um total de 7 cartas.",
+          "Fase de ação: Ele pode então:",
+          "• Colocar cartas para construir unidades,",
+          "• Usar uma carta especial (Valete, Rei, etc.),",
+          "• Atacar ou ativar um efeito.",
+          "Fim do turno: Uma vez concluídas suas ações, o jogador anuncia o fim do seu turno."
+        ],
+        "warning": "🛑 Se o jogador não puder ou não quiser realizar nenhuma ação, ele deve obrigatoriamente indicar o fim do seu turno."
+      },
+      "cas-2": {
+        "title": "Caso 2: O jogador tem menos de 7 cartas no início do turno",
+        "subtitle": "(porque jogou cartas anteriormente)",
+        "content": [
+          "O jogador compra imediatamente o número de cartas necessário para voltar a 7 cartas (mão + reserva).",
+          "Em seguida, entra na fase de ação: pode jogar, atacar, ativar um efeito...",
+          "Fim do turno: ele termina seu turno normalmente."
+        ]
+      },
+      "rappel-general": {
+        "title": "Lembrete geral",
+        "content": [
+          "Os jogadores nunca podem ultrapassar 7 cartas (5 na mão + 2 na reserva).",
+          "Se está em 7 no início do turno: deve descartar 1 carta antes de comprar.",
+          "Se jogou cartas: compra diretamente, sem descarte.",
+          "A cada turno, um jogador pode agir ou passar, mas deve indicá-lo."
+        ]
+      }
+    },
+    "chapter2": {
+      "title": "A Fase de Ação",
+      "subtitle": "Capítulo 2 • Ações e estratégias",
+      "introduction-phase": {
+        "title": "A Fase de Ação",
+        "content": [
+          "Durante seu turno, após a compra, o jogador entra na sua fase de ação.",
+          "Ele pode realizar vários tipos de ações, na ordem que desejar, desde que respeite os seguintes limites:"
+        ]
+      },
+      "actions-disponibles": {
+        "title": "As ações disponíveis",
+        "content": [
+          "Cada ação custa 1 ação, exceto casos especiais.",
+          "Aqui está a lista das principais ações que um jogador pode realizar durante seu turno:"
+        ]
+      },
+      "action-construire": {
+        "title": "1. Jogar uma carta para construir uma unidade",
+        "content": [
+          "O jogador coloca uma carta na coluna correspondente (por naipe).",
+          "As unidades devem ser colocadas em ordem crescente, do Ás até o 10."
+        ],
+        "highlight": "➡️ ✅ Esta ação permite avançar em direção a um ataque ou uma Revolução."
+      },
+      "action-speciale": {
+        "title": "2. Jogar uma carta especial (Valete, Rei, Dama)",
+        "content": [
+          "O jogador pode invocar uma carta especial por:",
+          "• Sacrifício (cartas já colocadas),",
+          "• Uso de um Coringa,",
+          "• Ou um 7 da sorte.",
+          "A invocação conta como uma ação."
+        ],
+        "highlight": "💡 Exceção: Se um Valete é invocado por Coringa ou sacrifício, ele pode atacar imediatamente no mesmo turno. (Caso contrário, ele é passivo até o próximo turno.)"
+      },
+      "action-attaquer": {
+        "title": "3. Atacar com uma unidade",
+        "content": [
+          "Uma unidade pode atacar apenas uma vez na sua categoria.",
+          "Este ataque custa 1 ação."
+        ],
+        "warning": "⚠️ Após um ataque, toda a categoria de unidades é desativada, mesmo que o ataque seja bloqueado."
+      },
+      "action-echanger": {
+        "title": "4. Trocar uma carta com um Coringa já colocado",
+        "content": [
+          "Se um Coringa está colocado no campo para substituir uma carta, o jogador pode substituí-lo pela carta real (mesmo naipe e valor).",
+          "O Coringa retorna para a mão ou reserva de acordo com sua origem."
+        ],
+        "highlight": "➡️ ✅ Esta troca conta como uma ação."
+      },
+      "defense": {
+        "title": "5. Defesa durante o turno adversário",
+        "content": [
+          "Embora a defesa não ocorra durante a fase de ação do jogador, é importante conhecê-la.",
+          "Um jogador pode bloquear um ataque adversário:",
+          "• Se possui um CORINGA (na mão ou na reserva) → ele o joga imediatamente, bloqueando o ataque.",
+          "• Se um 7 da sorte está presente na coluna atacada, na posição correta (após o 6), então:",
+          "  - Ele bloqueia um único ataque.",
+          "  - Ele é então desativado até que a coluna seja destruída e reconstruída."
+        ],
+        "highlight": "🧠 Para lembrar: Um Coringa pode bloquear qualquer ataque (exceto Revolução). Um Coringa pode bloquear qualquer ataque, independente da coluna, exceto uma Revolução. Cada defesa é válida uma vez, depois a carta vai para a vala ou se torna inativa."
+      },
+      "limites-action": {
+        "title": "Limites de ação",
+        "content": [
+          "O jogador pode fazer tantas ações quanto desejar no seu turno, desde que tenha cartas para isso.",
+          "Porém:",
+          "• Ele pode fazer apenas uma troca de Coringa por turno.",
+          "• Ele pode atacar apenas uma vez por categoria de unidade.",
+          "• Certas cartas (Valete) não atacam imediatamente, exceto em casos especiais."
+        ]
+      },
+      "fin-tour": {
+        "title": "Fim do Turno",
+        "content": [
+          "Uma vez concluídas todas as ações, o jogador anuncia o fim do seu turno.",
+          "Se não fizer nenhuma ação, ele ainda deve declarar o fim do seu turno."
+        ]
+      }
+    },
+    "chapter3": {
+      "title": "Os Ativadores: 7 da Sorte & Coringa",
+      "subtitle": "Capítulo 3 • Mecânicas de ativação",
+      "introduction-activateurs": {
+        "title": "Os Ativadores: 7 da Sorte & Coringa",
+        "content": [
+          "No UNIT, para construir uma coluna de unidade, não basta colocar as cartas em ordem. É preciso ativar a coluna com uma carta especial chamada ativador.",
+          "Existem dois tipos de ativadores:",
+          "• 🟦 O 7 da sorte",
+          "• 🃏 O Coringa"
+        ]
+      },
+      "comment-activer": {
+        "title": "Como ativar uma coluna?",
+        "content": [
+          "Para iniciar uma coluna, é preciso colocar um Ás, depois subir progressivamente até o 6.",
+          "Este ativador é colocado em uma zona especial da coluna, chamada reservaSuitColuna."
+        ],
+        "highlight": "🧠 Mas para poder ir além do 6 (e jogar o 8, 9, 10), é obrigatório ter um ativador no lugar."
+      },
+      "fonctionnement-activateur": {
+        "title": "Funcionamento de um ativador",
+        "content": [
+          "Quando um 7 da sorte ou um Coringa é jogado como ativador:",
+          "• Ele é colocado ao lado da coluna, na reservaSuitColuna.",
+          "• Ele permite desbloquear a subida para o 8, 9, 10.",
+          "• Ele permanece ativo enquanto a coluna não for destruída."
+        ]
+      },
+      "exemple-activation": {
+        "title": "Exemplo",
+        "content": [
+          "Você tem as cartas do Ás ao 6 em Ouros.",
+          "Você coloca um 7 da sorte de Ouros na reservaSuitColuna.",
+          "Agora você pode colocar o 8, 9, 10 de Ouros."
+        ]
+      },
+      "conditions-importantes": {
+        "title": "Atenção às condições!",
+        "content": [
+          "Um Coringa ou qualquer 7 da sorte pode ser jogado no início da partida para abrir o jogo, mesmo que não corresponda ao naipe."
+        ],
+        "highlight": "✅ Isso permite avançar e adaptar sua estratégia.",
+        "warning": "❌ Mas para passar da carta 6 para o 8 em uma coluna, é obrigatório ter o 7 da sorte do mesmo naipe que a coluna."
+      },
+      "echange-activateur": {
+        "title": "A troca de ativador",
+        "content": [
+          "Se você colocou o 7 errado ou um Coringa na reservaSuitColuna, não entre em pânico:",
+          "• Você pode trocar o ativador pelo 7 da sorte correto do naipe da coluna se o encontrar na sua mão ou reserva.",
+          "• O Coringa ou 7 anterior retorna à sua posição de origem.",
+          "• Esta troca custa uma ação.",
+          "• Ela permite desbloquear a progressão em direção ao topo da coluna (e eventualmente preparar uma Revolução)."
+        ]
+      },
+      "attaque-activateur": {
+        "title": "O que acontece em caso de ataque?",
+        "content": [
+          "Se um Valete ataca uma coluna ativada com um 7 ou um Coringa:",
+          "• Todas as cartas da coluna, incluindo o ativador, vão para a vala.",
+          "• Isso cancela a progressão da coluna.",
+          "• Será necessário recomeçar do Ás."
+        ]
+      },
+      "activateurs-cartes-speciales": {
+        "title": "Os ativadores e as cartas especiais (Figuras)",
+        "content": [
+          "Os 7 da sorte e Coringas também podem servir para invocar as figuras:",
+          "• Rei → 7 ou Coringa → Vala",
+          "• Dama → 7 ou Coringa → Vala",
+          "• Valete → 7 ou Coringa → Vala"
+        ],
+        "warning": "❗ Assim que um 7 ou um Coringa é usado para jogar uma carta especial, ele é imediatamente enviado para a vala."
+      },
+      "resume-activateurs": {
+        "title": "Resumo a lembrar",
+        "content": [
+          "▶️ Ativar uma coluna = Ás + 7 ou Coringa na reservaSuitColuna.",
+          "🔒 Para colocar um 8, é necessário o 7 da sorte do mesmo naipe.",
+          "🔁 Pode-se trocar o ativador se necessário (ação única).",
+          "💥 Em caso de ataque por Valete, a coluna + o ativador são destruídos.",
+          "👑 Os ativadores também podem servir para jogar um Rei, uma Dama ou um Valete, mas vão para a vala."
+        ]
+      }
+    },
+    "chapter4": {
+      "title": "A Revolução - O ataque supremo",
+      "subtitle": "Capítulo 4 • O objetivo final do jogo",
+      "revolution-intro": {
+        "title": "A Revolução – O ataque supremo",
+        "content": [
+          "A Revolução é o objetivo estratégico supremo no UNIT.",
+          "É o ataque mais poderoso do jogo, aquele que pode virar uma partida inteira se bem preparado.",
+          "Ela simboliza o resultado perfeito de uma coluna completa e a execução de um plano sem falhas."
+        ]
+      },
+      "revolution-conditions": {
+        "title": "Condições obrigatórias para desencadear uma Revolução",
+        "content": [
+          "Para lançar uma Revolução, é preciso reunir todas essas condições:",
+          "",
+          "✅ Ter colocado as 10 cartas do mesmo naipe em ordem, do Ás ao 10",
+          "✅ Não ter usado Coringa na coluna (nenhuma substituição)",
+          "✅ Ter ativado a coluna corretamente com o 7 da sorte correto do naipe",
+          "✅ Ter colocado o 10 (este último desencadeia a Revolução automaticamente)"
+        ]
+      },
+      "revolution-effects": {
+        "title": "Efeitos imediatos da Revolução",
+        "content": [
+          "💥 O Rei adversário do mesmo naipe é destruído, mesmo que ainda esteja em jogo.",
+          "💥 O adversário sofre 10 pontos de dano diretos, sem defesa possível.",
+          "🪦 Toda a coluna (Ás ao 10) é enviada para a vala após o ataque.",
+          "❗ Nenhum Coringa, 7 da sorte, Valete ou outro efeito pode bloquear uma Revolução."
+        ]
+      },
+      "revolution-unstoppable": {
+        "title": "Por que a Revolução é imparável",
+        "content": [
+          "A Revolução é o único ataque totalmente imparável do jogo.",
+          "Ela ignora todos os mecanismos de defesa:",
+          "",
+          "✅ Ignora os Reis",
+          "✅ Ignora os Coringas",
+          "✅ Ignora os 7 da sorte",
+          "✅ Ignora as cartas na reserva",
+          "✅ Ignora qualquer ação de contra",
+          "",
+          "Ela representa um evento raro, mas devastador, que recompensa os jogadores rigorosos e pacientes."
+        ]
+      },
+      "revolution-joker-case": {
+        "title": "Caso especial: Coringa na coluna",
+        "content": [
+          "Se um único Coringa substitui uma carta na coluna:",
+          "",
+          "❌ A Revolução é bloqueada.",
+          "",
+          "A coluna é considerada incompleta, mesmo que pareça visualmente terminada.",
+          "Será necessário trocar o Coringa pela carta real (com uma ação) para desbloquear a Revolução."
+        ]
+      },
+      "revolution-strategy": {
+        "title": "Reflexão estratégica",
+        "content": [
+          "O Coringa é uma carta útil, mas perigosa para colocar em uma coluna se você visa a Revolução.",
+          "Às vezes, é melhor atrasar uma ação do que sacrificar a possibilidade de uma Revolução.",
+          "Manter a coluna pura garante um resultado brutal e espetacular."
+        ]
+      },
+      "revolution-perfect": {
+        "title": "A Revolução perfeita",
+        "content": [
+          "Uma Revolução perfeita ocorre quando o jogador desencadeia uma Revolução sem ter realizado nenhum outro ataque com suas unidades durante a partida.",
+          "",
+          "🎖️ Ela demonstra um controle absoluto do tempo, paciência e um estilo de jogo puro.",
+          "Ela pode surpreender um adversário agressivo demais, eliminando-o em um único golpe."
+        ]
+      },
+      "revolution-summary": {
+        "title": "Resumo rápido",
+        "content": [
+          "🎯 Cartas necessárias: Ás ao 10, mesmo naipe, sem Coringa",
+          "🔧 Ativação obrigatória: Sim, com 7 da sorte correspondente",
+          "⚡ Desencadeamento: Colocação do 10",
+          "💥 Efeitos: Destruição do Rei + 10 danos diretos",
+          "🛡️ Bloqueável?: Não, impossível",
+          "🪦 Consequências: Coluna inteira enviada para a vala",
+          "🏆 Bônus estratégico: Revolução perfeita se nenhum outro ataque foi feito"
+        ]
+      }
+    },
+    "chapter5": {
+      "title": "A Defesa - Proteger seus pontos de vida",
+      "subtitle": "Capítulo 5 • Mecanismos defensivos",
+      "defense-intro": {
+        "title": "A Defesa – Proteger seus pontos de vida e unidades",
+        "content": [
+          "No UNIT, a defesa é tão importante quanto o ataque.",
+          "Certas cartas e posições permitem anular ou limitar o impacto de uma ação adversária."
+        ]
+      },
+      "defense-objectives": {
+        "title": "Objetivo da defesa",
+        "content": [
+          "Impedir o adversário:",
+          "",
+          "• De infligir danos diretos aos seus pontos de vida.",
+          "• De destruir suas unidades ou cartas especiais com muita facilidade.",
+          "• De quebrar sua estratégia (ex: impedir que um Valete limpe uma coluna)."
+        ]
+      },
+      "joker-defense": {
+        "title": "O Coringa – Defensor universal",
+        "content": [
+          "🔹 Efeito: O Coringa pode bloquear qualquer ataque, independentemente da coluna ou da carta atacante.",
+          "🔹 Limite: Ele não pode bloquear uma Revolução.",
+          "",
+          "📋 Utilização:",
+          "• Jogado da mão ou da reserva durante o turno do adversário.",
+          "• Após o uso, ele vai imediatamente para a vala.",
+          "",
+          "💡 Dica: Manter um Coringa na mão geralmente é mais seguro do que usá-lo no ataque."
+        ]
+      },
+      "seven-defense": {
+        "title": "O 7 da sorte – Escudo de coluna",
+        "content": [
+          "🔹 Efeito: Um 7 da sorte colocado em uma coluna, em sua posição normal (após o 6), pode bloquear um único ataque visando essa coluna.",
+          "",
+          "📋 Condições:",
+          "• O 7 deve ser do mesmo naipe que a coluna.",
+          "• Ele protege apenas a coluna onde está colocado.",
+          "",
+          "⚡ Após o uso:",
+          "• O 7 é desativado até que a coluna seja destruída e reconstruída.",
+          "• Ele permanece fisicamente em jogo, mas não bloqueia mais.",
+          "",
+          "💡 Dica: Um 7 bem posicionado pode forçar o adversário a desperdiçar um ataque ou um Coringa."
+        ]
+      },
+      "defense-interactions": {
+        "title": "Interações importantes",
+        "content": [
+          "🔸 Unidade clássica (1–6): Bloqueada por Coringa ✅ | Bloqueada por 7 da sorte ✅",
+          "🔸 8 ou 9: Bloqueada por Coringa ✅ | Bloqueada por 7 da sorte ✅",
+          "🔸 Valete: Bloqueado por Coringa ✅ | Bloqueado por 7 da sorte ✅",
+          "🔸 Rei: Bloqueado por Coringa ❌ | Bloqueado por 7 da sorte ❌",
+          "🔸 Coringa: Bloqueado por Coringa ✅ | Bloqueado por 7 da sorte ✅",
+          "🔸 Revolução (10): Bloqueada por Coringa ❌ | Bloqueada por 7 da sorte ❌"
+        ]
+      },
+      "defense-strategy": {
+        "title": "Estratégia defensiva",
+        "content": [
+          "🎯 Antecipar: Manter pelo menos um meio de defesa ativo a cada turno.",
+          "🎯 Proteger colunas-chave: Colocar um 7 da sorte na coluna mais avançada.",
+          "🎯 Forçar escolhas adversárias: Fazer acreditar que uma coluna está vulnerável quando está protegida.",
+          "🎯 Gerenciar recursos: Um Coringa usado cedo demais pode custar a partida."
+        ]
+      },
+      "defense-summary": {
+        "title": "Resumo rápido",
+        "content": [
+          "🃏 Coringa = defesa universal contra tudo exceto Revolução.",
+          "7️⃣ 7 da sorte = defesa local na sua coluna.",
+          "🚫 Nenhuma carta bloqueia a Revolução."
+        ]
+      }
+    },
+    "chapter6": {
+      "title": "A Mistura Estratégica – Reconstituir seu baralho",
+      "subtitle": "Capítulo 6 • A Mistura Estratégica",
+      "melange-intro": {
+        "title": "A Mistura Estratégica – Reconstituir seu baralho",
+        "content": [
+          "No UNIT, às vezes é necessário misturar as cartas da vala com o baralho para continuar jogando.",
+          "Esta ação, chamada mistura estratégica, pode servir para recuperar cartas-chave ou evitar ficar bloqueado."
+        ]
+      },
+      "quand-melanger": {
+        "title": "Quando fazer uma mistura estratégica?",
+        "content": [
+          "Uma mistura estratégica pode ser realizada antes de qualquer outra ação do seu turno quando:",
+          "",
+          "• Você quer reintroduzir cartas importantes no seu baralho.",
+          "• Você está bloqueado na sua progressão.",
+          "• Seu baralho não está vazio ainda, mas você quer reinicializar a distribuição."
+        ]
+      },
+      "regles-melange": {
+        "title": "Regras da mistura estratégica",
+        "content": [
+          "📅 Momento:",
+          "• Deve ser feita no início do seu turno, antes do descarte ou compra.",
+          "",
+          "🔄 Procedimento:",
+          "• Você descarta todas as cartas da sua mão.",
+          "• As 2 cartas na reserva permanecem no lugar.",
+          "• Você mistura seu baralho e sua vala para formar um novo baralho.",
+          "",
+          "🥇 Primeira vez:",
+          "• Na primeira mistura estratégica da partida, você pode jogar normalmente após a mistura.",
+          "",
+          "🔁 Vezes seguintes:",
+          "• Todas as misturas estratégicas após a primeira obrigam você a passar o turno após a mistura (nenhuma ação possível)."
+        ]
+      },
+      "limitations-melange": {
+        "title": "Limitações após as misturas seguintes",
+        "content": [
+          "Se você fizer uma mistura estratégica após a primeira:",
+          "",
+          "❌ Você não pode atacar nesse turno.",
+          "❌ Você não pode usar um Coringa para se defender no turno adversário seguinte.",
+          "✅ Um 7 da sorte já ativo no campo mantém, no entanto, sua defesa."
+        ]
+      },
+      "cas-particuliers": {
+        "title": "Casos especiais",
+        "content": [
+          "🗂️ Baralho vazio:",
+          "• Se seu baralho estiver vazio no momento de comprar, você mistura automaticamente a vala com o baralho, sem perder seu turno.",
+          "• Este caso não é considerado uma mistura estratégica.",
+          "",
+          "⚠️ Estratégia arriscada:",
+          "• Multiplicar as misturas estratégicas aumenta o aleatório e pode atrasar seus planos.",
+          "• É melhor guardar esta opção como uma ferramenta pontual, não um automatismo."
+        ]
+      },
+      "astuce-strategique": {
+        "title": "Dica estratégica",
+        "content": [
+          "A mistura estratégica é uma arma de dois gumes:",
+          "",
+          "✅ Ela pode desbloquear uma situação…",
+          "❌ …mas geralmente custa tempo.",
+          "",
+          "💡 Use-a com um objetivo claro, não por hábito."
+        ],
+        "highlight": "🎯 Conselho: Planeje sua mistura estratégica em função de cartas específicas que você quer recuperar, não apenas para 'ver o que acontece'."
+      }
+    },
+    "chapter7": {
+      "title": "O Sacrifício – Jogar uma figura",
+      "subtitle": "Capítulo 7 • O Sacrifício",
+      "sacrifice-intro": {
+        "title": "O Sacrifício – Jogar uma figura",
+        "content": [
+          "No UNIT, para jogar certas cartas especiais chamadas figuras (Rei, Dama, Valete), é possível usar a mecânica do sacrifício.",
+          "Esta ação consiste em remover cartas já colocadas no campo para pagar o custo de invocação."
+        ]
+      },
+      "principe-sacrifice": {
+        "title": "Princípio do sacrifício",
+        "content": [
+          "🎯 Objetivo: Remover um certo número de cartas do campo para invocar uma figura.",
+          "🪦 Destino: As cartas sacrificadas vão para a vala após o uso.",
+          "📏 Regra-chave: Sempre se começa pela carta mais alta de cada coluna escolhida."
+        ]
+      },
+      "cartes-non-sacrifiables": {
+        "title": "Cartas impossíveis de sacrificar",
+        "content": [
+          "❌ Ás",
+          "❌ 7 da sorte colocado na coluna",
+          "❌ 10 de Revolução",
+          "❌ Qualquer carta situada abaixo de um Ás, um 7 colocado ou um 10: essas cartas estão bloqueadas e não podem ser sacrificadas."
+        ]
+      },
+      "regles-selection": {
+        "title": "Regras de seleção",
+        "content": [
+          "🔝 Sempre começar pela carta mais alta de uma coluna.",
+          "• Exemplo: se a carta mais alta em Espadas é um 6♠, você pode sacrificá-la.",
+          "",
+          "🔄 Completar com outras cartas mais altas de outras colunas se necessário.",
+          "• Exemplo: 6♠ + 8♥ + 2♦ para um Rei.",
+          "",
+          "🌈 Mistura de naipes permitida desde que cada carta escolhida seja a mais alta de sua coluna.",
+          "",
+          "⛓️ Sacrifício em cadeia em uma coluna:",
+          "• Você pode descer da mais alta para a mais baixa enquanto nenhuma carta bloqueante for encontrada.",
+          "• Exemplo: 6♠, 5♠, 4♠ na mesma coluna."
+        ]
+      },
+      "couts-invocation": {
+        "title": "Custos de invocação por sacrifício",
+        "content": [
+          "👑 Rei: 3 cartas",
+          "👸 Dama: 2 cartas",
+          "🃏 Valete: 1 carta (8 ou 9 apenas)"
+        ]
+      },
+      "attaque-immediate-valet": {
+        "title": "Caso especial – Ataque imediato com Valete",
+        "content": [
+          "Se um Valete é invocado por:",
+          "• Sacrifício",
+          "• Ou Coringa",
+          "",
+          "➡️ Ele pode atacar imediatamente no mesmo turno.",
+          "",
+          "(Caso contrário, ele se torna passivo e só poderá atacar no próximo turno.)"
+        ]
+      },
+      "astuce-sacrifice": {
+        "title": "Dica estratégica",
+        "content": [
+          "O sacrifício é uma escolha tática forte:",
+          "",
+          "❌ Você perde cartas já colocadas...",
+          "✅ ...mas ganha uma peça-chave.",
+          "",
+          "💡 Use-o para quebrar o ritmo adversário ou surpreender com um efeito imediato."
+        ],
+        "highlight": "⚔️ O sacrifício transforma seus recursos presentes em poder imediato. Timing crucial!"
+      }
+    },
+    "chapter8": {
+      "title": "O Rei – Escudo supremo",
+      "subtitle": "Capítulo 8 • O Rei",
+      "roi-intro": {
+        "title": "O Rei – Escudo supremo",
+        "content": [
+          "O Rei é a peça defensiva definitiva no UNIT.",
+          "Quando está em jogo, ele protege totalmente seus pontos de vida contra os ataques das unidades do mesmo naipe, e força o adversário a encontrar uma resposta específica."
+        ]
+      },
+      "effet-roi": {
+        "title": "Efeito do Rei",
+        "content": [
+          "Enquanto um Rei estiver presente para um determinado naipe:",
+          "",
+          "🛡️ Nenhuma unidade desse naipe inferior a 8 pode atacar seus pontos de vida.",
+          "🛡️ Essas unidades também não podem destruir o Rei.",
+          "",
+          "Apenas certos ataques podem ultrapassar o Rei:",
+          "⚔️ 8 ou 9 do mesmo naipe → vencem o Rei e o destroem.",
+          "🃏 Coringa → destrói um Rei de qualquer naipe.",
+          "💥 Revolução (10) → destrói o Rei e inflige 10 danos diretos."
+        ]
+      },
+      "conditions-roi": {
+        "title": "Condições para jogar um Rei",
+        "content": [
+          "Três métodos possíveis:",
+          "",
+          "⚔️ Sacrifício:",
+          "• Sacrificar 3 cartas, cada uma sendo a mais alta de sua coluna (exceto Ás, 7, 10).",
+          "",
+          "🃏 Coringa:",
+          "• Jogar um Coringa, que vai para a vala em seguida.",
+          "",
+          "7️⃣ 7 da sorte:",
+          "• Jogar um 7 da sorte, que vai para a vala em seguida."
+        ]
+      },
+      "positionnement-roi": {
+        "title": "Posicionamento",
+        "content": [
+          "👑 O Rei é colocado no espaço 'Rei' de seu naipe no tabuleiro.",
+          "🔒 Uma vez colocado, ele permanece até ser destruído por um ataque válido."
+        ]
+      },
+      "perte-roi": {
+        "title": "Perda do Rei",
+        "content": [
+          "Se o Rei for vencido por um 8, 9, Coringa ou Revolução:",
+          "",
+          "🪦 Ele é enviado para a vala imediatamente.",
+          "❌ A proteção que ele oferecia desaparece instantaneamente."
+        ]
+      },
+      "strategie-roi": {
+        "title": "Estratégia com o Rei",
+        "content": [
+          "🛡️ Defensiva: Bloquear um naipe avançado do adversário para ganhar tempo.",
+          "⏰ Temporária: Forçar o adversário a desperdiçar um 8, 9 ou Coringa para liberar o caminho.",
+          "🚧 Preventiva: Colocar um Rei cedo pode restringir uma categoria inteira do adversário."
+        ]
+      },
+      "resume-roi": {
+        "title": "Para lembrar",
+        "content": [
+          "O Rei não faz ganhar a partida, mas pode impedir o adversário de tomá-la de você.",
+          "Bem jogado, ele se torna um verdadeiro muro no ritmo adversário."
+        ],
+        "highlight": "👑 O Rei transforma a defesa passiva em controle ativo do campo. Um posicionamento estratégico pode mudar o curso de uma partida!"
+      }
+    },
+    "chapter9": {
+      "title": "A Dama – Honra às Damas",
+      "subtitle": "Capítulo 9 • A Dama",
+      "dame-intro": {
+        "title": "A Dama – Honra às Damas",
+        "content": [
+          "A Dama é a única carta totalmente inatingível do UNIT.",
+          "Ela nunca pode ser destruída nem impedida de cumprir seu efeito.",
+          "Seu papel principal: curar seus pontos de vida."
+        ]
+      },
+      "immunite-dame": {
+        "title": "Imunidade absoluta",
+        "content": [
+          "A Dama nunca pode ser atacada por nenhuma carta ou efeito:",
+          "",
+          "✅ Insensível ao Coringa",
+          "✅ Insensível ao Valete",
+          "✅ Insensível às unidades clássicas",
+          "",
+          "Seu efeito se desencadeia aconteça o que acontecer."
+        ]
+      },
+      "effet-soin": {
+        "title": "Efeito principal – Cura",
+        "content": [
+          "Dependendo do método usado para jogá-la, a Dama cura imediatamente:",
+          "",
+          "⚔️ Sacrifício (2 cartas, cada uma a mais alta de sua coluna):",
+          "• +2 PV → Dama vai para a vala",
+          "",
+          "7️⃣ Jogada com um 7 da sorte:",
+          "• +2 PV → Dama e 7 vão para a vala",
+          "",
+          "🃏 Jogada com um Coringa:",
+          "• +4 PV → Dama e Coringa vão para a vala"
+        ]
+      },
+      "defi-dame": {
+        "title": "Caso especial – Desafio da Dama (apenas com um Coringa)",
+        "content": [
+          "Quando a Dama é jogada com um Coringa, o jogador pode lançar o Desafio da Dama:",
+          "",
+          "🎭 A Dama é colocada virada para baixo (Copas, Ouros, Paus ou Espadas).",
+          "🤔 O adversário deve adivinhar seu naipe.",
+          "",
+          "Resultado:",
+          "❌ Resposta errada → +5 PV para o jogador que lançou o desafio.",
+          "✅ Resposta certa → +1 PV para o jogador que lançou o desafio.",
+          "",
+          "➡️ Independentemente do resultado, a Dama e o Coringa vão para a vala após o desafio."
+        ]
+      },
+      "regles-pose-dame": {
+        "title": "Regras de colocação",
+        "content": [
+          "Três métodos:",
+          "",
+          "⚔️ Sacrifício: 2 cartas mais altas de coluna (exceto Ás, 7, 10) → +2 PV.",
+          "7️⃣ 7 da sorte: colocado na vala após o uso → +2 PV.",
+          "🃏 Coringa: colocado na vala após o uso → +4 PV ou Desafio da Dama."
+        ]
+      },
+      "strategie-dame": {
+        "title": "Estratégia com a Dama",
+        "content": [
+          "🔒 Segurança: Nenhum risco de perder a Dama antes de ela agir.",
+          "💊 Reforço: Ideal para recuperar PV em um momento crítico.",
+          "🎭 Pressão psicológica: Com o Desafio da Dama, força o adversário a adivinhar, criando tensão."
+        ]
+      },
+      "resume-dame": {
+        "title": "Para lembrar",
+        "content": [
+          "A Dama é a carta de cura definitiva no UNIT, protegida pelo status Honra às Damas.",
+          "Bem usada, ela pode inverter uma partida em um único golpe."
+        ],
+        "highlight": "👸 A Dama combina segurança absoluta e potencial de recuperação. O Desafio da Dama adiciona uma dimensão psicológica única ao jogo!"
+      }
+    },
+    "chapter10": {
+      "title": "O Valete – A Arma de Eliminação",
+      "subtitle": "Capítulo 10 • O Valete",
+      "valet-intro": {
+        "title": "O Valete – A Arma de Eliminação",
+        "content": [
+          "O Valete é uma carta ofensiva no UNIT.",
+          "É um dos meios mais poderosos para destruir colunas adversárias e criar pressão, mas tem um custo: ele é sempre sacrificado após o uso."
+        ]
+      },
+      "role-valet": {
+        "title": "Papel principal",
+        "content": [
+          "O Valete é um atacante especializado:",
+          "",
+          "⚔️ Ele pode destruir uma unidade adversária do mesmo naipe.",
+          "💥 Contra pequenas unidades, ele é capaz de varrer uma coluna inteira.",
+          "🪦 Porém ele é consumido assim que ataca."
+        ]
+      },
+      "invocation-valet": {
+        "title": "Invocação do Valete",
+        "content": [
+          "Três formas de colocá-lo em jogo:",
+          "",
+          "⚔️ Sacrifício:",
+          "• Sacrificar um 8 ou um 9 (carta mais alta de uma coluna)",
+          "• Estado: Ativo imediatamente",
+          "",
+          "🃏 Coringa:",
+          "• Jogar um Coringa (que vai para a vala)",
+          "• Estado: Ativo imediatamente",
+          "",
+          "7️⃣ 7 da sorte:",
+          "• Jogar um 7 da sorte (que vai para a vala)",
+          "• Estado: Colocado passivo → ataque disponível apenas no próximo turno"
+        ]
+      },
+      "cycle-fonctionnement": {
+        "title": "Ciclo de funcionamento",
+        "content": [
+          "⚡ Ativo:",
+          "• Pode atacar imediatamente uma unidade adversária do mesmo naipe.",
+          "• Após seu ataque, o Valete é enviado para a vala.",
+          "",
+          "😴 Passivo:",
+          "• Se colocado via um 7 da sorte, o Valete não pode atacar nesse turno.",
+          "• Ele se torna ativo no início do próximo turno."
+        ]
+      },
+      "cibles-autorisees": {
+        "title": "Alvos permitidos",
+        "content": [
+          "O Valete pode atacar:",
+          "",
+          "✅ Uma unidade de valor ≤ 6 → toda a coluna adversária é destruída (coluna enviada para a vala + Valete na vala).",
+          "⚠️ Uma unidade de 8 ou 9 → combate direto, resultado dependendo das regras (risco de perder o Valete).",
+          "",
+          "O Valete não pode atacar:",
+          "",
+          "❌ Uma Dama (protegida por Honra às Damas).",
+          "❌ Um Rei.",
+          "❌ Outro Coringa."
+        ]
+      },
+      "exemples-actions": {
+        "title": "Exemplo de ações",
+        "content": [
+          "🎯 Valete ativo → ataca um 5♠ → toda a coluna Espadas adversária é destruída, o Valete também vai para a vala.",
+          "",
+          "⚠️ Valete ativo → ataca um 8♥ → combate arriscado, o Valete pode ser contrado.",
+          "",
+          "⚠️ Valete ativo → ataca um 9♦ → idem, possível contra."
+        ]
+      },
+      "strategie-valet": {
+        "title": "Estratégia com o Valete",
+        "content": [
+          "💥 Arma de ruptura: destruir uma coluna avançada do adversário para quebrar seu ritmo.",
+          "⚖️ Sacrifício calculado: perder um Valete para forçar o adversário a reconstruir toda uma coluna pode valer a pena.",
+          "⚡ Combo imediato: invocar um Valete via Coringa ou sacrifício permite atacar diretamente e surpreender o adversário.",
+          "⏰ Timing: esperar que o adversário invista muito em uma coluna antes de destruí-la maximiza o valor do Valete."
+        ]
+      },
+      "resume-valet": {
+        "title": "Para lembrar",
+        "content": [
+          "O Valete é uma espada de dois gumes: ele destrói, mas se destrói com ela.",
+          "Bem jogado, ele pode virar uma partida em uma única ação."
+        ],
+        "highlight": "🗡️ O Valete incorpora o sacrifício tático: perder para ganhar melhor. Seu timing de uso pode determinar o resultado de uma partida!"
+      }
+    },
+    "chapter11": {
+      "title": "O Coringa – A Carta Lendária",
+      "subtitle": "Capítulo 11 • O Coringa",
+      "joker-intro": {
+        "title": "O Coringa – A Carta Lendária",
+        "content": [
+          "O Coringa é a carta mais poderosa e versátil do UNIT.",
+          "É uma carta única, capaz de intervir em quase todas as fases do jogo: ataque, defesa, ativação, cura ou mesmo substituição temporária.",
+          "Mas atenção: cada uso do Coringa é de uso único e sempre tem uma consequência importante."
+        ]
+      },
+      "roles-joker": {
+        "title": "Os papéis do Coringa",
+        "content": [
+          "O Coringa pode ser usado de 5 formas principais:",
+          "",
+          "⚔️ Atacar (destruir unidades ou figuras)",
+          "🛡️ Defender (bloquear um ataque)",
+          "🔄 Substituir (ocupar temporariamente o lugar de uma carta faltante)",
+          "💊 Curar (+3 pontos de vida)",
+          "🔧 Ativar uma coluna ou uma figura (como um 7 da sorte)"
+        ]
+      },
+      "utilisation-offensive": {
+        "title": "Uso ofensivo – Ataque",
+        "content": [
+          "O Coringa pode destruir qualquer unidade em uma coluna adversária, mesmo que não seja a mais alta.",
+          "",
+          "Efeitos:",
+          "• A carta destruída é enviada para a vala.",
+          "• Todas as cartas acima se tornam inutilizáveis enquanto a coluna não for reconstruída.",
+          "",
+          "Exemplo: se um Coringa destrói um 6♣, então o 7♣, 8♣, 9♣ e 10♣ não poderão mais ser jogados enquanto a cadeia não for reparada.",
+          "",
+          "O Coringa também pode:",
+          "✅ Destruir um Rei (qualquer naipe)",
+          "✅ Destruir um Valete (qualquer naipe)",
+          "",
+          "🚫 Limites:",
+          "❌ Não pode atacar um Ás",
+          "❌ Não pode atacar um 7 da sorte",
+          "❌ Não pode atacar um 10 de Revolução"
+        ]
+      },
+      "utilisation-defensive": {
+        "title": "Uso defensivo – Bloqueio",
+        "content": [
+          "O Coringa pode ser jogado da mão ou da reserva durante o turno adversário.",
+          "",
+          "✅ Efeito: ele bloqueia qualquer ataque (unidade, Valete, Coringa adversário, etc.).",
+          "🚫 Única exceção: ele não pode bloquear uma Revolução.",
+          "",
+          "Após o uso, ele vai para a vala."
+        ]
+      },
+      "utilisation-remplacement": {
+        "title": "Uso como substituição",
+        "content": [
+          "O Coringa pode ser colocado no campo para substituir temporariamente uma carta faltante em uma coluna.",
+          "Isso permite continuar construindo a coluna sem esperar pela carta real.",
+          "",
+          "⚠️ Consequências importantes:",
+          "Enquanto o Coringa substitui uma carta:",
+          "• A categoria de unidades correspondente é desativada (não pode mais atacar).",
+          "• Exemplo: um Coringa substitui um 4♠ → a categoria 4–5–6♠ não pode atacar.",
+          "• As unidades da categoria são protegidas: elas não podem ser destruídas por um Valete ou Coringa adversário.",
+          "• Uma Revolução é impossível se um Coringa estiver presente na coluna.",
+          "",
+          "📌 Troca possível:",
+          "• O jogador pode trocar o Coringa pela carta real (se a comprar).",
+          "• O Coringa retorna para a mão ou reserva.",
+          "• Esta troca conta como uma ação."
+        ]
+      },
+      "utilisation-soin": {
+        "title": "Uso em cura",
+        "content": [
+          "Jogado diretamente da mão ou da reserva, o Coringa pode:",
+          "",
+          "💊 Devolver imediatamente +3 pontos de vida ao jogador.",
+          "🪦 Após o uso, ele vai para a vala."
+        ]
+      },
+      "utilisation-activateur": {
+        "title": "Uso como ativador",
+        "content": [
+          "O Coringa pode substituir um 7 da sorte como ativador de coluna.",
+          "Ele pode portanto ser colocado na reservaSuitColuna para permitir passar do 6 ao 8.",
+          "Ele também pode ser sacrificado para invocar um Rei, uma Dama ou um Valete, exatamente como um 7.",
+          "",
+          "⚠️ Atenção: um Coringa usado assim é imediatamente enviado para a vala."
+        ]
+      },
+      "interaction-speciale": {
+        "title": "Interação especial – Coringa vs 7 da sorte",
+        "content": [
+          "Se um Coringa ataca uma unidade de uma coluna onde um 7 da sorte está ativo, então:",
+          "",
+          "🛡️ O ataque é bloqueado pelo 7.",
+          "🪦 O Coringa é enviado para a vala.",
+          "😴 O 7 é então desativado (ele permanece colocado mas não protege mais)."
+        ]
+      },
+      "strategie-joker": {
+        "title": "Estratégia com o Coringa",
+        "content": [
+          "🔄 Polimórfico: ele pode fazer tudo, mas cada escolha é definitiva.",
+          "🛡️ Arma defensiva: geralmente mais rentável usado em bloqueio do que em ataque.",
+          "🚫 Freio à Revolução: colocar um Coringa em uma coluna faz você avançar… mas bloqueia o acesso à Revolução.",
+          "💎 Recurso raro: cada Coringa é precioso, melhor usá-lo em um momento-chave."
+        ]
+      },
+      "resume-joker": {
+        "title": "Resumo rápido",
+        "content": [
+          "📊 Uso → Efeito principal → Limite:",
+          "",
+          "⚔️ Ataque → Destrói Rei, Valete ou unidade → Não Ás, 7, 10",
+          "🛡️ Defesa → Bloqueia qualquer ataque → Não Revolução",
+          "🔄 Substituição → Substitui carta faltante → Desativa categoria / bloqueia Revolução",
+          "💊 Cura → +3 PV imediatos → Uso único",
+          "🔧 Ativador → Substitui um 7 para coluna ou figura → Vai para a vala"
+        ]
+      },
+      "conclusion-joker": {
+        "title": "Para lembrar",
+        "content": [
+          "O Coringa é a carta mais flexível e mais perigosa do UNIT.",
+          "Mal utilizada, ela pode bloquear suas próprias estratégias (especialmente a Revolução).",
+          "Bem utilizada, ela pode salvar uma partida ou destruir o plano adversário no momento decisivo."
+        ],
+        "highlight": "🃏 O Coringa é a encarnação da versatilidade tática: uma carta, cinco usos, mil possibilidades. Dominar seu timing é dominar o UNIT!"
+      }
+    }
+  },
+  "matomo": {
+    "examples": {
+      "title": "Exemplos de uso do Matomo",
+      "buttons": {
+        "startGame": "Iniciar partida (Rastrear evento)",
+        "playCard": "Jogar Curinga (Rastrear carta)",
+        "userLogin": "Login do usuário (Definir ID do usuário)",
+        "gameWin": "Vitória (Rastrear objetivo)"
+      }
+    }
+  },
+  "nav": {
+    "home": "Início",
+    "play": "Jogar",
+    "rules": "Regras do jogo",
+    "ranking": "Classificação",
+    "community": "Comunidade",
+    "shop": "Loja",
+    "lore": "História",
+    "search": "Pesquisar",
+    "menu": "Menu",
+    "assistant": "Assistente IA"
+  },
+  "settings": {
+    "theme": {
+      "light": "Mudar para modo claro",
+      "dark": "Mudar para modo noturno"
+    },
+    "language": {
+      "change": "Alterar idioma"
+    }
+  },
+  "auth": {
+    "login": "Entrar",
+    "register": "Registar"
+  }
+}

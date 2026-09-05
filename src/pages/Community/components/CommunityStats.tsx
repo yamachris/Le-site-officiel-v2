@@ -9,19 +9,19 @@ const stats = [
     icon: <FaUsers size={32} />,
     label: 'Joueurs en ligne',
     value: '152',
-    color: '#4CAF50',
+    color: 'var(--unit-accent-success)',
   },
   {
     icon: <FaGamepad size={32} />,
     label: 'Parties jouées',
     value: '120,000+',
-    color: '#2196F3',
+    color: 'var(--unit-accent-blue)',
   },
   {
     icon: <FaTrophy size={32} />,
     label: 'Prochain tournoi',
     value: 'Dans 3 jours',
-    color: '#FFC107',
+    color: 'var(--unit-accent-warning)',
   },
 ];
 
@@ -70,7 +70,7 @@ const CommunityStats: React.FC = () => {
                 component="div"
                 gutterBottom
                 sx={{
-                  fontFamily: 'Orbitron',
+                  fontFamily: 'var(--unit-font-display)',
                   fontWeight: 'bold',
                   color: stat.color,
                 }}

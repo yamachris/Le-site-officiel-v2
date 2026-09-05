@@ -80,11 +80,11 @@ const RankingTable: React.FC = () => {
   const getRankIcon = (rank: number) => {
     switch (rank) {
       case 1:
-        return <FaTrophy style={{ color: '#FFD700' }} />;
+        return <FaTrophy style={{ color: 'var(--unit-accent-gold)' }} />;
       case 2:
-        return <FaMedal style={{ color: '#C0C0C0' }} />;
+        return <FaMedal style={{ color: 'var(--unit-rank-silver)' }} />;
       case 3:
-        return <FaMedal style={{ color: '#CD7F32' }} />;
+        return <FaMedal style={{ color: 'var(--unit-rank-bronze)' }} />;
       default:
         return rank;
     }
@@ -104,7 +104,7 @@ const RankingTable: React.FC = () => {
       }}
     >
       <Box sx={{ mb: 3 }}>
-        <Typography variant="h5" gutterBottom sx={{ fontFamily: 'Orbitron' }}>
+        <Typography variant="h5" gutterBottom sx={{ fontFamily: 'var(--unit-font-display)' }}>
           Classement des joueurs
         </Typography>
 
@@ -184,7 +184,7 @@ const RankingTable: React.FC = () => {
                     <Typography
                       sx={{
                         fontWeight: player.rank <= 3 ? 'bold' : 'normal',
-                        color: player.rank === 1 ? '#FFD700' : 'inherit',
+                        color: player.rank === 1 ? 'var(--unit-accent-gold)' : 'inherit',
                       }}
                     >
                       {player.name}

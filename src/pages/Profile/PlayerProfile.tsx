@@ -1,56 +1,19 @@
 import React, { useState } from 'react';
 import {
-  Box,
-  Container,
-  Grid,
-  Paper,
-  Typography,
-  Avatar,
-  Button,
-  Divider,
-  IconButton,
-  Card,
-  CardContent,
-  LinearProgress,
-  Chip,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  TextField,
-} from '@mui/material';
-import {
   Edit as EditIcon,
-  EmojiEvents as TrophyIcon,
-  Timeline as TimelineIcon,
   Star as StarIcon,
   Lock as LockIcon,
   PhotoCamera as CameraIcon,
 } from '@mui/icons-material';
 import { Line } from 'react-chartjs-2';
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
+  Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement,
+  Title, Tooltip, Legend,
 } from 'chart.js';
+import { CinePage, CineContainer, CineCard, CineBadge } from '../../components/cine';
 
-// Enregistrer les composants Chart.js
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-// Types pour les données du joueur
 interface PlayerStats {
   elo: number;
   rank: string;
@@ -60,12 +23,6 @@ interface PlayerStats {
   winRate: number;
 }
 
-interface EloHistory {
-  date: string;
-  elo: number;
-}
-
-// Données mockées
 const mockPlayerStats: PlayerStats = {
   elo: 2350,
   rank: 'A',
@@ -75,7 +32,7 @@ const mockPlayerStats: PlayerStats = {
   winRate: 61,
 };
 
-const mockEloHistory: EloHistory[] = [
+const mockEloHistory = [
   { date: '2024-01-01', elo: 2200 },
   { date: '2024-01-08', elo: 2250 },
   { date: '2024-01-15', elo: 2280 },
@@ -83,282 +40,235 @@ const mockEloHistory: EloHistory[] = [
   { date: '2024-01-29', elo: 2350 },
 ];
 
-// Configuration du graphique Elo
-const eloChartOptions = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: false,
-    },
-    title: {
-      display: true,
-      text: 'Progression Elo',
-    },
-  },
-  scales: {
-    y: {
-      min: 1800,
-      max: 2600,
-    },
-  },
+const RANK_COLOR: Record<string, string> = {
+  SSS: 'var(--cine-accent-3)',
+  SS:  'var(--cine-ink-soft)',
+  S:   'var(--cine-warning)',
+  A:   'var(--cine-accent)',
+  B:   'var(--cine-accent-2)',
+  C:   'var(--cine-success)',
+  D:   'var(--cine-ink-dim)',
 };
 
 const eloChartData = {
-  labels: mockEloHistory.map(entry => entry.date),
-  datasets: [
-    {
-      label: 'Score Elo',
-      data: mockEloHistory.map(entry => entry.elo),
-      borderColor: 'rgb(75, 192, 192)',
-      tension: 0.1,
-    },
-  ],
+  labels: mockEloHistory.map((e) => e.date.slice(5)),
+  datasets: [{
+    label: 'ELO',
+    data: mockEloHistory.map((e) => e.elo),
+    borderColor: '#ff3d6e',
+    backgroundColor: 'rgba(255, 61, 110, 0.12)',
+    tension: 0.3,
+    pointBackgroundColor: '#ff3d6e',
+    pointBorderColor: '#fff',
+  }],
 };
 
+const eloChartOptions = {
+  responsive: true,
+  plugins: { legend: { display: false }, title: { display: false } },
+  scales: {
+    y: {
+      min: 1800, max: 2600,
+      grid: { color: 'rgba(255,255,255,0.05)' },
+      ticks: { color: '#7a7a85', font: { family: 'JetBrains Mono, monospace', size: 10 } },
+    },
+    x: {
+      grid: { color: 'rgba(255,255,255,0.05)' },
+      ticks: { color: '#7a7a85', font: { family: 'JetBrains Mono, monospace', size: 10 } },
+    },
+  },
+};
+
+const Modal: React.FC<{ title: string; onClose: () => void; children: React.ReactNode }> = ({ title, onClose, children }) => (
+  <div
+    role="dialog" aria-modal="true"
+    style={{
+      position: 'fixed', inset: 0, zIndex: 2000,
+      background: 'rgba(2,2,3,0.78)', backdropFilter: 'blur(16px)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem',
+    }}
+    onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+  >
+    <div style={{
+      width: '100%', maxWidth: 480, maxHeight: '90vh', overflow: 'auto',
+      background: 'var(--cine-bg-soft)', border: '1px solid var(--cine-line)',
+      borderRadius: 'var(--cine-radius-lg)', padding: '2rem',
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.4rem' }}>
+        <h2 style={{ margin: 0, fontFamily: 'var(--cine-font-display)', fontSize: '1.4rem', fontWeight: 500, letterSpacing: 0 }}>{title}</h2>
+        <button type="button" onClick={onClose} className="cine-button cine-button--ghost cine-button--mono" style={{ padding: '0.5rem 0.9rem' }}>✕</button>
+      </div>
+      {children}
+    </div>
+  </div>
+);
+
 const PlayerProfile: React.FC = () => {
-  const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
   const [username, setUsername] = useState('PlayerOne');
   const [avatarUrl, setAvatarUrl] = useState('/default-avatar.png');
 
-  const getRankColor = (rank: string) => {
-    switch (rank) {
-      case 'SSS':
-        return '#FFD700';
-      case 'SS':
-        return '#C0C0C0';
-      case 'S':
-        return '#CD7F32';
-      case 'A':
-        return '#FF4081';
-      case 'B':
-        return '#2196F3';
-      case 'C':
-        return '#4CAF50';
-      case 'D':
-        return '#9E9E9E';
-      default:
-        return '#9E9E9E';
-    }
-  };
-
   const getNextRankProgress = () => {
-    const currentElo = mockPlayerStats.elo;
-    let progress = 0;
-    let nextRank = '';
-
-    if (currentElo < 1400) {
-      progress = (currentElo - 1000) / 4;
-      nextRank = 'C';
-    } else if (currentElo < 1800) {
-      progress = (currentElo - 1400) / 4;
-      nextRank = 'B';
-    } else if (currentElo < 2200) {
-      progress = (currentElo - 1800) / 4;
-      nextRank = 'A';
-    } else if (currentElo < 2600) {
-      progress = (currentElo - 2200) / 4;
-      nextRank = 'S';
-    } else if (currentElo < 2900) {
-      progress = (currentElo - 2600) / 3;
-      nextRank = 'SS';
-    } else {
-      progress = (currentElo - 2900) / 3;
-      nextRank = 'SSS';
-    }
-
-    return { progress, nextRank };
+    const elo = mockPlayerStats.elo;
+    if (elo < 1400) return { progress: (elo - 1000) / 4, nextRank: 'C' };
+    if (elo < 1800) return { progress: (elo - 1400) / 4, nextRank: 'B' };
+    if (elo < 2200) return { progress: (elo - 1800) / 4, nextRank: 'A' };
+    if (elo < 2600) return { progress: (elo - 2200) / 4, nextRank: 'S' };
+    if (elo < 2900) return { progress: (elo - 2600) / 3, nextRank: 'SS' };
+    return { progress: (elo - 2900) / 3, nextRank: 'SSS' };
   };
+
+  const { progress, nextRank } = getNextRankProgress();
+  const rankColor = RANK_COLOR[mockPlayerStats.rank] || 'var(--cine-ink-soft)';
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      {/* En-tête du profil */}
-      <Paper sx={{ p: 3, mb: 3 }}>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item>
-            <Box sx={{ position: 'relative' }}>
-              <Avatar
-                src={avatarUrl}
-                sx={{ width: 120, height: 120 }}
-              />
-              <IconButton
-                sx={{
-                  position: 'absolute',
-                  bottom: 0,
-                  right: 0,
-                  backgroundColor: 'background.paper',
+    <CinePage>
+      <CineContainer>
+        <div style={{ paddingTop: 'clamp(48px, 8vh, 96px)', paddingBottom: '6rem' }}>
+          {/* En-tête */}
+          <CineCard style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '1.5rem', alignItems: 'center', padding: '2rem' }}>
+            <div style={{ position: 'relative' }}>
+              <div style={{
+                width: 120, height: 120, borderRadius: '50%',
+                background: `url(${avatarUrl}) center/cover, linear-gradient(135deg, var(--cine-accent), var(--cine-accent-3))`,
+                border: '2px solid var(--cine-line-hi)',
+              }} />
+              <button type="button" aria-label="Changer la photo"
+                style={{
+                  position: 'absolute', bottom: -4, right: -4, width: 36, height: 36,
+                  borderRadius: '50%', background: 'var(--cine-accent)', color: '#fff',
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  border: '2px solid var(--cine-bg)', cursor: 'pointer',
                 }}
-                size="small"
               >
-                <CameraIcon />
-              </IconButton>
-            </Box>
-          </Grid>
-          <Grid item xs>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
-              <Typography variant="h4">{username}</Typography>
-              <IconButton onClick={() => setOpenEditDialog(true)}>
-                <EditIcon />
-              </IconButton>
-              <Chip
-                label={mockPlayerStats.rank}
-                sx={{
-                  backgroundColor: getRankColor(mockPlayerStats.rank),
-                  color: 'white',
-                  fontWeight: 'bold',
-                }}
-              />
-            </Box>
-            <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-              Score Elo : {mockPlayerStats.elo}
-            </Typography>
-            <Box sx={{ mt: 2 }}>
-              <Typography variant="body2" gutterBottom>
-                Progression vers le rang {getNextRankProgress().nextRank}
-              </Typography>
-              <LinearProgress
-                variant="determinate"
-                value={getNextRankProgress().progress}
-                sx={{ height: 8, borderRadius: 4 }}
-              />
-            </Box>
-          </Grid>
-        </Grid>
-      </Paper>
+                <CameraIcon sx={{ fontSize: 18 }} />
+              </button>
+            </div>
 
-      <Grid container spacing={3}>
-        {/* Statistiques */}
-        <Grid item xs={12} md={4}>
-          <Card>
-            <CardContent>
-              <Typography variant="h6" gutterBottom>
-                Statistiques
-              </Typography>
-              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <Box>
-                  <Typography variant="subtitle2" color="text.secondary">
-                    Parties jouées
-                  </Typography>
-                  <Typography variant="h5">
-                    {mockPlayerStats.gamesPlayed}
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography variant="subtitle2" color="text.secondary">
-                    Victoires
-                  </Typography>
-                  <Typography variant="h5" color="success.main">
-                    {mockPlayerStats.wins}
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography variant="subtitle2" color="text.secondary">
-                    Défaites
-                  </Typography>
-                  <Typography variant="h5" color="error.main">
-                    {mockPlayerStats.losses}
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography variant="subtitle2" color="text.secondary">
-                    Taux de victoire
-                  </Typography>
-                  <Typography variant="h5">
-                    {mockPlayerStats.winRate}%
-                  </Typography>
-                </Box>
-              </Box>
-            </CardContent>
-          </Card>
-        </Grid>
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', flexWrap: 'wrap' }}>
+                <h1 style={{ margin: 0, fontFamily: 'var(--cine-font-display)', fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 500, letterSpacing: 0 }}>
+                  {username}
+                </h1>
+                <button type="button" onClick={() => setOpenEdit(true)} className="cine-button cine-button--ghost cine-button--mono" style={{ padding: '0.4rem 0.8rem' }}>
+                  <EditIcon sx={{ fontSize: 14 }} /> Éditer
+                </button>
+                <span className="cine-badge" style={{ borderColor: `${rankColor}66`, color: rankColor }}>
+                  Rang {mockPlayerStats.rank}
+                </span>
+              </div>
+              <div className="cine-mono" style={{ marginTop: '0.6rem' }}>
+                Score ELO : <span style={{ color: 'var(--cine-ink)' }}>{mockPlayerStats.elo}</span>
+              </div>
+              <div style={{ marginTop: '1.2rem' }}>
+                <div className="cine-mono" style={{ marginBottom: '0.4rem' }}>Progression vers {nextRank}</div>
+                <div style={{ height: 4, borderRadius: 4, background: 'var(--cine-line)', overflow: 'hidden' }}>
+                  <div style={{
+                    width: `${progress}%`, height: '100%',
+                    background: 'linear-gradient(90deg, var(--cine-accent), var(--cine-accent-3))',
+                    transition: 'width 0.6s ease',
+                  }} />
+                </div>
+              </div>
+            </div>
+          </CineCard>
 
-        {/* Graphique Elo */}
-        <Grid item xs={12} md={8}>
-          <Card>
-            <CardContent>
-              <Line options={eloChartOptions} data={eloChartData} />
-            </CardContent>
-          </Card>
-        </Grid>
-
-        {/* Section Premium */}
-        <Grid item xs={12}>
-          <Card sx={{ position: 'relative', overflow: 'hidden' }}>
-            <Box
-              sx={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                bgcolor: 'rgba(0, 0, 0, 0.7)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                gap: 2,
-                zIndex: 1,
-              }}
-            >
-              <LockIcon sx={{ fontSize: 48, color: 'white' }} />
-              <Typography variant="h6" color="white" align="center">
-                Accédez aux statistiques avancées avec l'abonnement Premium
-              </Typography>
-              <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                startIcon={<StarIcon />}
-              >
-                Devenir Premium
-              </Button>
-            </Box>
-            <CardContent sx={{ height: 200, filter: 'blur(4px)' }}>
-              {/* Contenu flouté */}
-              <Typography variant="h6">Statistiques Avancées</Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
-
-      {/* Dialog de modification du profil */}
-      <Dialog open={openEditDialog} onClose={() => setOpenEditDialog(false)}>
-        <DialogTitle>Modifier le profil</DialogTitle>
-        <DialogContent>
-          <Box sx={{ pt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <TextField
-              label="Nom d'utilisateur"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              fullWidth
-            />
-            <Button
-              variant="outlined"
-              component="label"
-              startIcon={<CameraIcon />}
-            >
-              Changer l'avatar
-              <input
-                type="file"
-                hidden
-                accept="image/*"
-                onChange={(e) => {
-                  // Logique pour changer l'avatar
-                }}
-              />
-            </Button>
-          </Box>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenEditDialog(false)}>Annuler</Button>
-          <Button
-            variant="contained"
-            onClick={() => setOpenEditDialog(false)}
+          {/* Stats + chart */}
+          <div
+            style={{
+              marginTop: '2rem',
+              display: 'grid',
+              gridTemplateColumns: '1fr 2fr',
+              gap: '1.5rem',
+            }}
+            className="cine-pp-grid"
           >
-            Sauvegarder
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Container>
+            <CineCard>
+              <span className="cine-mono">Statistiques</span>
+              <div style={{ marginTop: '1.2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {[
+                  { label: 'Parties jouées', value: mockPlayerStats.gamesPlayed, color: 'var(--cine-ink)' },
+                  { label: 'Victoires',      value: mockPlayerStats.wins,        color: 'var(--cine-success)' },
+                  { label: 'Défaites',       value: mockPlayerStats.losses,      color: 'var(--cine-danger)' },
+                  { label: 'Taux victoire',  value: `${mockPlayerStats.winRate}%`, color: 'var(--cine-ink)' },
+                ].map((s) => (
+                  <div key={s.label}>
+                    <div className="cine-mono" style={{ fontSize: '0.66rem' }}>{s.label}</div>
+                    <div style={{ fontFamily: 'var(--cine-font-display)', fontSize: '1.6rem', fontWeight: 600, letterSpacing: 0, color: s.color }}>
+                      {s.value}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CineCard>
+
+            <CineCard>
+              <span className="cine-mono">Progression ELO</span>
+              <div style={{ marginTop: '1rem' }}>
+                <Line data={eloChartData} options={eloChartOptions as any} />
+              </div>
+            </CineCard>
+          </div>
+
+          {/* Section Premium teaser */}
+          <div style={{ marginTop: '2rem' }}>
+            <CineCard variant="accent" style={{ position: 'relative', overflow: 'hidden', minHeight: 200 }}>
+              <div style={{ filter: 'blur(3px)', opacity: 0.4 }}>
+                <span className="cine-section-eyebrow">Statistiques avancées</span>
+                <h2 className="cine-section-title">Analyse approfondie</h2>
+                <p className="cine-prose">Heatmaps de jeu, courbes de matchups, MMR cible, tendances long-terme…</p>
+              </div>
+              <div style={{
+                position: 'absolute', inset: 0,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexDirection: 'column', gap: '1rem',
+                background: 'rgba(2,2,3,0.6)', backdropFilter: 'blur(2px)',
+              }}>
+                <LockIcon sx={{ fontSize: 40, color: 'var(--cine-ink-soft)' }} />
+                <p style={{ color: 'var(--cine-ink-soft)', textAlign: 'center', maxWidth: 400, margin: 0 }}>
+                  Accédez aux statistiques avancées avec l'abonnement Premium
+                </p>
+                <button type="button" className="cine-button cine-button--primary">
+                  <StarIcon fontSize="small" /> Devenir Premium
+                </button>
+              </div>
+            </CineCard>
+          </div>
+        </div>
+
+        <style>{`
+          @media (max-width: 800px) {
+            .cine-pp-grid { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
+      </CineContainer>
+
+      {openEdit && (
+        <Modal title="Modifier le profil" onClose={() => setOpenEdit(false)}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+            <label className="cine-field">
+              <span className="cine-label">Nom d'utilisateur</span>
+              <input className="cine-input" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+            </label>
+            <label className="cine-button cine-button--ghost cine-button--mono" style={{ cursor: 'pointer' }}>
+              <CameraIcon fontSize="small" /> Changer l'avatar
+              <input type="file" accept="image/*" hidden onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const r = new FileReader();
+                  r.onloadend = () => setAvatarUrl(r.result as string);
+                  r.readAsDataURL(file);
+                }
+              }} />
+            </label>
+            <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'flex-end', marginTop: '0.5rem' }}>
+              <button type="button" className="cine-button cine-button--ghost cine-button--mono" onClick={() => setOpenEdit(false)}>Annuler</button>
+              <button type="button" className="cine-button cine-button--primary cine-button--mono" onClick={() => setOpenEdit(false)}>Sauvegarder</button>
+            </div>
+          </div>
+        </Modal>
+      )}
+    </CinePage>
   );
 };
 

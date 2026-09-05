@@ -1,21 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
-  Box,
-  Paper,
-  Typography,
-  TextField,
-  Button,
-  Alert,
-  Container,
-  IconButton,
-  InputAdornment,
-} from '@mui/material';
-import {
-  Visibility,
-  VisibilityOff,
+  Visibility, VisibilityOff,
   AdminPanelSettings as AdminIcon,
 } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+import { CinePage, CineContainer } from '../../components/cine';
 
 const AdminLogin: React.FC = () => {
   const navigate = useNavigate();
@@ -26,10 +15,7 @@ const AdminLogin: React.FC = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Vérification simple des identifiants (à remplacer par une vraie authentification)
     if (username === 'yamachris' && password === 'salut') {
-      // Stocker le token d'authentification (à implémenter avec un vrai système)
       localStorage.setItem('adminAuth', 'true');
       navigate('/admin/dashboard');
     } else {
@@ -38,95 +24,116 @@ const AdminLogin: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Box
-        sx={{
-          minHeight: '100vh',
+    <CinePage>
+      <div
+        style={{
+          minHeight: 'calc(100vh - 64px)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          padding: 'clamp(40px, 8vh, 80px) 0',
         }}
       >
-        <Paper 
-          elevation={3}
-          sx={{
-            p: 4,
-            width: '100%',
-            maxWidth: 400,
-          }}
-        >
-          <Box sx={{ textAlign: 'center', mb: 3 }}>
-            <AdminIcon sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
-            <Typography variant="h5" component="h1" gutterBottom>
-              Administration UNIT
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Connectez-vous pour accéder au panneau d'administration
-            </Typography>
-          </Box>
+        <CineContainer variant="narrow">
+          <div style={{ maxWidth: 420, margin: '0 auto' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+              <div
+                style={{
+                  width: 64, height: 64,
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  borderRadius: 'var(--cine-radius-md)',
+                  border: '1px solid var(--cine-line)',
+                  background: 'var(--cine-surface)',
+                  margin: '0 auto 1.4rem',
+                }}
+              >
+                <AdminIcon sx={{ fontSize: 32, color: 'var(--cine-accent)' }} />
+              </div>
+              <span className="cine-page-eyebrow" style={{ marginBottom: '0.6rem' }}>Restricted</span>
+              <h1 className="cine-page-title" style={{ fontSize: 'clamp(1.6rem, 4vw, 2.4rem)' }}>
+                Administration <em>UNIT.</em>
+              </h1>
+              <p className="cine-page-lede">Accès réservé aux administrateurs.</p>
+            </div>
 
-          {error && (
-            <Alert severity="error" sx={{ mb: 2 }}>
-              {error}
-            </Alert>
-          )}
+            {error && (
+              <div
+                role="alert"
+                style={{
+                  marginBottom: '1.5rem',
+                  padding: '0.9rem 1.1rem',
+                  border: '1px solid rgba(248,113,113,0.4)',
+                  borderRadius: 'var(--cine-radius-md)',
+                  background: 'rgba(248,113,113,0.08)',
+                  color: 'var(--cine-danger)',
+                  fontFamily: 'var(--cine-font-mono)',
+                  fontSize: '0.85rem',
+                }}
+              >
+                {error}
+              </div>
+            )}
 
-          <form onSubmit={handleLogin}>
-            <TextField
-              fullWidth
-              label="Nom d'utilisateur"
-              variant="outlined"
-              margin="normal"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              autoComplete="username"
-            />
+            <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
+              <label className="cine-field">
+                <span className="cine-label">Nom d'utilisateur</span>
+                <input
+                  className="cine-input"
+                  type="text"
+                  required
+                  autoFocus
+                  autoComplete="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </label>
 
-            <TextField
-              fullWidth
-              label="Mot de passe"
-              type={showPassword ? 'text' : 'password'}
-              variant="outlined"
-              margin="normal"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              autoComplete="current-password"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => setShowPassword(!showPassword)}
-                      edge="end"
-                    >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-            />
+              <label className="cine-field">
+                <span className="cine-label">Mot de passe</span>
+                <div style={{ position: 'relative' }}>
+                  <input
+                    className="cine-input"
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    autoComplete="current-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    style={{ paddingRight: '3rem' }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((v) => !v)}
+                    aria-label={showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'}
+                    style={{
+                      position: 'absolute',
+                      right: '0.6rem',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      background: 'transparent',
+                      border: 'none',
+                      color: 'var(--cine-ink-soft)',
+                      cursor: 'pointer',
+                      padding: '0.4rem',
+                      display: 'inline-flex',
+                    }}
+                  >
+                    {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+                  </button>
+                </div>
+              </label>
 
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              size="large"
-              sx={{ mt: 3 }}
-            >
-              Se connecter
-            </Button>
-          </form>
-
-          <Typography 
-            variant="body2" 
-            color="text.secondary" 
-            align="center"
-            sx={{ mt: 3 }}
-          >
-            Accès réservé aux administrateurs
-          </Typography>
-        </Paper>
-      </Box>
-    </Container>
+              <button
+                type="submit"
+                className="cine-button cine-button--primary"
+                style={{ marginTop: '0.5rem', justifyContent: 'center' }}
+              >
+                Se connecter
+              </button>
+            </form>
+          </div>
+        </CineContainer>
+      </div>
+    </CinePage>
   );
 };
 

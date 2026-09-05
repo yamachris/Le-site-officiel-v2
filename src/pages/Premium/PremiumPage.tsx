@@ -1,15 +1,6 @@
 import React from 'react';
-import {
-  Box,
-  Container,
-  Typography,
-  Button,
-  Grid,
-  Card,
-  CardContent,
-  CardActions,
-  useTheme,
-} from '@mui/material';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import {
   WorkspacePremium as PremiumIcon,
   Diamond as DiamondIcon,
@@ -17,140 +8,95 @@ import {
   LocalOffer as TagIcon,
   EmojiEvents as TrophyIcon,
 } from '@mui/icons-material';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { CinePage, CineContainer, CinePageHeader, CineCard, CineKpiStrip } from '../../components/cine';
+
+const FEATURES = [
+  { title: 'Skins Exclusifs',       description: 'Accédez à des skins uniques et personnalisez vos cartes comme jamais auparavant.', icon: <DiamondIcon />,   color: 'var(--cine-accent-3)' },
+  { title: 'Bonus Unitos',          description: 'Recevez 500 Unitos chaque mois pour acheter des cartes et des skins.',             icon: <TagIcon />,       color: 'var(--cine-accent)'   },
+  { title: 'Statistiques Avancées', description: 'Analysez vos performances en détail avec des statistiques approfondies.',           icon: <AnalyticsIcon />, color: 'var(--cine-accent-2)' },
+  { title: 'Tournois Premium',      description: 'Participez à des tournois exclusifs avec des récompenses spéciales.',               icon: <TrophyIcon />,    color: 'var(--cine-accent-4)' },
+];
+
+const PREMIUM_KPIS = [
+  { value: '500', label: 'Unitos / mois', tone: 'gold' as const },
+  { value: '4', label: 'avantages actifs', tone: 'accent' as const },
+  { value: '24h', label: 'tournois prioritaires', tone: 'cyan' as const },
+];
 
 const PremiumPage: React.FC = () => {
-  const theme = useTheme();
   const navigate = useNavigate();
-
-  const premiumFeatures = [
-    {
-      title: 'Skins Exclusifs',
-      description: 'Accédez à des skins uniques et personnalisez vos cartes comme jamais auparavant.',
-      icon: <DiamondIcon sx={{ fontSize: 40, color: '#FFD700' }} />,
-    },
-    {
-      title: 'Bonus Unitos',
-      description: 'Recevez 500 Unitos chaque mois pour acheter des cartes et des skins.',
-      icon: <TagIcon sx={{ fontSize: 40, color: '#FFD700' }} />,
-    },
-    {
-      title: 'Statistiques Avancées',
-      description: 'Analysez vos performances en détail avec des statistiques approfondies.',
-      icon: <AnalyticsIcon sx={{ fontSize: 40, color: '#FFD700' }} />,
-    },
-    {
-      title: 'Tournois Premium',
-      description: 'Participez à des tournois exclusifs avec des récompenses spéciales.',
-      icon: <TrophyIcon sx={{ fontSize: 40, color: '#FFD700' }} />,
-    },
-  ];
-
   return (
-    <Container maxWidth="lg">
-      {/* Hero Section */}
-      <Box sx={{ textAlign: 'center', my: 8 }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Typography
-            variant="h2"
-            component="h1"
-            sx={{
-              fontFamily: 'Orbitron',
-              fontWeight: 700,
-              mb: 2,
-              background: 'linear-gradient(45deg, #FFD700, #FFA500)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 2,
-            }}
-          >
-            <PremiumIcon sx={{ fontSize: 50, color: '#FFD700' }} />
-            UNIT Premium
-          </Typography>
-          <Typography variant="h5" color="text.secondary" sx={{ mb: 4 }}>
-            Débloquez tout le potentiel de UNIT Card Game
-          </Typography>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{
-              background: 'linear-gradient(45deg, #FFD700, #FFA500)',
-              color: 'black',
-              '&:hover': {
-                background: 'linear-gradient(45deg, #FFA500, #FFD700)',
-              },
-            }}
-            onClick={() => navigate('/profile')}
-          >
-            Devenir Premium
-          </Button>
-        </motion.div>
-      </Box>
+    <CinePage>
+      <CinePageHeader
+        eyebrow={<><PremiumIcon style={{ fontSize: 14 }} /> Premium</>}
+        title={<>Débloquez tout le <em>potentiel.</em></>}
+        lede="UNIT Premium — skins exclusifs, bonus mensuels, analyses approfondies, tournois prioritaires."
+      >
+        <button type="button" className="cine-button cine-button--primary" onClick={() => navigate('/profile')}>
+          Devenir Premium
+        </button>
+      </CinePageHeader>
 
-      {/* Features Grid */}
-      <Grid container spacing={4} sx={{ mb: 8 }}>
-        {premiumFeatures.map((feature, index) => (
-          <Grid item xs={12} sm={6} key={index}>
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <Card sx={{ 
-                height: '100%',
-                background: 'linear-gradient(45deg, rgba(255,215,0,0.1), rgba(255,165,0,0.1))',
-                borderRadius: 4,
-                '&:hover': {
-                  transform: 'scale(1.02)',
-                  transition: 'transform 0.2s ease-in-out',
-                },
-              }}>
-                <CardContent>
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    {feature.icon}
-                    <Typography variant="h6" sx={{ ml: 2 }}>
-                      {feature.title}
-                    </Typography>
-                  </Box>
-                  <Typography color="text.secondary">
-                    {feature.description}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </Grid>
-        ))}
-      </Grid>
+      <CineContainer>
+        <CineKpiStrip items={PREMIUM_KPIS} style={{ marginBottom: '2rem' }} />
 
-      {/* Call to Action */}
-      <Box sx={{ textAlign: 'center', mb: 8 }}>
-        <Typography variant="h4" sx={{ mb: 4 }}>
-          Prêt à passer au niveau supérieur ?
-        </Typography>
-        <Button
-          variant="contained"
-          size="large"
-          sx={{
-            background: 'linear-gradient(45deg, #FFD700, #FFA500)',
-            color: 'black',
-            '&:hover': {
-              background: 'linear-gradient(45deg, #FFA500, #FFD700)',
-            },
+        <div className="cine-shell-grid" style={{ paddingBottom: '4rem' }}>
+          <div className="cine-grid cine-grid--2">
+            {FEATURES.map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+              >
+                <CineCard variant="accent" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', height: '100%' }}>
+                  <div style={{ display: 'inline-flex', width: 48, height: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 'var(--cine-radius-md)', background: `${f.color}1A`, color: f.color }}>
+                    {f.icon}
+                  </div>
+                  <h3 style={{ fontFamily: 'var(--cine-font-display)', fontSize: '1.4rem', fontWeight: 500, letterSpacing: 0, margin: 0, color: 'var(--cine-ink)' }}>
+                    {f.title}
+                  </h3>
+                  <p style={{ color: 'var(--cine-ink-soft)', lineHeight: 1.5, margin: 0 }}>{f.description}</p>
+                </CineCard>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="cine-command-card" style={{ padding: 'clamp(24px, 4vw, 42px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <span className="cine-mono" style={{ color: 'var(--cine-accent-3)' }}>Pass premium</span>
+            <h2 style={{ fontFamily: 'var(--cine-font-display)', fontSize: 'clamp(2rem, 4vw, 3.4rem)', lineHeight: 1, margin: '0.8rem 0 1rem' }}>
+              Un statut visible sur toute la table.
+            </h2>
+            <p style={{ color: 'var(--cine-ink-soft)', lineHeight: 1.6, margin: 0 }}>
+              Bonus mensuels, cosmétiques exclusifs, tournois prioritaires et outils d'analyse sont regroupés dans une expérience Premium unique.
+            </p>
+            <button type="button" className="cine-button cine-button--primary" onClick={() => navigate('/profile')} style={{ marginTop: '1.5rem', alignSelf: 'flex-start' }}>
+              Activer maintenant
+            </button>
+          </div>
+        </div>
+
+        <div
+          style={{
+            textAlign: 'center',
+            paddingBottom: '6rem',
+            borderTop: '1px solid var(--cine-line)',
+            paddingTop: '4rem',
           }}
-          onClick={() => navigate('/profile')}
         >
-          Rejoignez UNIT Premium
-        </Button>
-      </Box>
-    </Container>
+          <h2 style={{ fontFamily: 'var(--cine-font-display)', fontSize: 'clamp(1.6rem, 3.5vw, 2.6rem)', fontWeight: 500, letterSpacing: 0, margin: 0, color: 'var(--cine-ink)' }}>
+            Prêt à passer au niveau supérieur ?
+          </h2>
+          <p style={{ color: 'var(--cine-ink-soft)', maxWidth: 540, margin: '1rem auto 2rem' }}>
+            Activez Premium en un clic depuis votre profil.
+          </p>
+          <button type="button" className="cine-button cine-button--primary" onClick={() => navigate('/profile')}>
+            Rejoindre UNIT Premium
+          </button>
+        </div>
+      </CineContainer>
+    </CinePage>
   );
 };
 

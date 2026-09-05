@@ -1,8 +1,8 @@
 .ranking-page {
   min-height: 100vh;
   padding: 80px 20px;
-  background: linear-gradient(135deg, #0a1929 0%, #1a2a3a 100%);
-  color: white;
+  background: var(--unit-page-bg);
+  color: var(--unit-text);
 }
 
 .ranking-header {
@@ -13,8 +13,8 @@
 .ranking-header h1 {
   font-size: 3rem;
   margin-bottom: 30px;
-  font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(45deg, #ffd700, #ffa500);
+  font-family: var(--unit-font-display);
+  background: var(--unit-gradient-gold);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -29,27 +29,27 @@
 }
 
 .filter-icon {
-  color: #ffd700;
+  color: var(--unit-accent-gold);
   margin-right: 10px;
 }
 
 .filter-button {
   padding: 8px 20px;
-  border: 2px solid rgba(255, 215, 0, 0.3);
+  border: 2px solid rgba(var(--unit-accent-gold-rgb), 0.3);
   border-radius: 20px;
   background: transparent;
-  color: white;
+  color: var(--unit-action-on-primary);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .filter-button:hover {
-  border-color: #ffd700;
+  border-color: var(--unit-accent-gold);
   transform: translateY(-2px);
 }
 
 .filter-button.active {
-  background: linear-gradient(45deg, #ffd700, #ffa500);
+  background: var(--unit-gradient-gold);
   border-color: transparent;
 }
 
@@ -69,7 +69,7 @@
   background: rgba(255, 255, 255, 0.1);
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0;
 }
 
 .table-row {
@@ -96,15 +96,15 @@
 }
 
 .rank-icon.gold {
-  color: #ffd700;
+  color: var(--unit-accent-gold);
 }
 
 .rank-icon.silver {
-  color: #c0c0c0;
+  color: var(--unit-rank-silver);
 }
 
 .rank-icon.bronze {
-  color: #cd7f32;
+  color: var(--unit-rank-bronze);
 }
 
 .player-cell {
@@ -123,7 +123,7 @@
 .avatar-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #2196F3, #21CBF3);
+  background: linear-gradient(45deg, var(--unit-accent-blue), var(--unit-accent-gold));
   border-radius: 50%;
 }
 
@@ -132,7 +132,7 @@
 }
 
 .player-name.top-player {
-  background: linear-gradient(45deg, #ffd700, #ffa500);
+  background: var(--unit-gradient-gold);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

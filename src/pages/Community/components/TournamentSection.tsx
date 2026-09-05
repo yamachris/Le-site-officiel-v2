@@ -84,14 +84,14 @@ const TournamentSection: React.FC = () => {
         variant="h5"
         gutterBottom
         sx={{
-          fontFamily: 'Orbitron',
+          fontFamily: 'var(--unit-font-display)',
           display: 'flex',
           alignItems: 'center',
           gap: 1,
           mb: 3,
         }}
       >
-        <FaTrophy style={{ color: '#FFD700' }} /> Tournois
+        <FaTrophy style={{ color: 'var(--unit-accent-gold)' }} /> Tournois
       </Typography>
 
       {/* Upcoming Tournaments */}
@@ -171,10 +171,10 @@ const TournamentSection: React.FC = () => {
                     sx={{
                       bgcolor:
                         winner.rank === 1
-                          ? '#FFD700'
+                          ? 'var(--unit-accent-gold)'
                           : winner.rank === 2
-                          ? '#C0C0C0'
-                          : '#CD7F32',
+                          ? 'var(--unit-rank-silver)'
+                          : 'var(--unit-rank-bronze)',
                     }}
                   >
                     <FaMedal />

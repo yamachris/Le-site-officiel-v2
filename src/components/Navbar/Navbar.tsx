@@ -17,6 +17,9 @@ import {
   Tooltip,
   MenuItem,
   Badge,
+  Zoom,
+  Switch,
+  styled
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
@@ -32,6 +35,54 @@ import { useSettings } from '../../contexts/SettingsContext';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 
+// Switch personnalisé pour le sélecteur de thème
+const ThemeSwitch = styled(Switch)(({ theme }) => ({
+  width: 62,
+  height: 34,
+  padding: 7,
+  '& .MuiSwitch-switchBase': {
+    margin: 1,
+    padding: 0,
+    transform: 'translateX(6px)',
+    '&.Mui-checked': {
+      color: 'var(--unit-action-on-primary)',
+      transform: 'translateX(22px)',
+      '& .MuiSwitch-thumb:before': {
+        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
+          'var(--unit-action-on-primary)',
+        )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
+      },
+      '& + .MuiSwitch-track': {
+        opacity: 1,
+        backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+      },
+    },
+  },
+  '& .MuiSwitch-thumb': {
+    backgroundColor: theme.palette.mode === 'dark' ? '#003892' : '#f57c00',
+    width: 32,
+    height: 32,
+    '&:before': {
+      content: "''",
+      position: 'absolute',
+      width: '100%',
+      height: '100%',
+      left: 0,
+      top: 0,
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
+        'var(--unit-action-on-primary)',
+      )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
+    },
+  },
+  '& .MuiSwitch-track': {
+    opacity: 1,
+    backgroundColor: theme.palette.mode === 'dark' ? '#8796A5' : '#aab4be',
+    borderRadius: 20 / 2,
+  },
+}));
+
 const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
@@ -39,6 +90,7 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated, user, logout } = useAuth();
+  const { mode, toggleMode } = useSettings();
 
   const navItems = [
     { text: 'Accueil', path: '/', icon: <HomeIcon /> },
@@ -69,7 +121,7 @@ const Navbar: React.FC = () => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2, fontFamily: 'Orbitron' }}>
+      <Typography variant="h6" sx={{ my: 2, fontFamily: 'var(--unit-font-display)' }}>
         UNIT
       </Typography>
       <List>
@@ -127,7 +179,7 @@ const Navbar: React.FC = () => {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'Orbitron',
+              fontFamily: 'var(--unit-font-display)',
               fontWeight: 700,
               color: 'text.primary',
               textDecoration: 'none',
@@ -159,6 +211,22 @@ const Navbar: React.FC = () => {
 
           {/* Actions utilisateur */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            {/* Sélecteur de thème */}
+            <Box sx={{ 
+              mr: 2, 
+              display: 'flex', 
+              alignItems: 'center',
+              transition: 'all 0.3s ease'
+            }}>
+              <Tooltip title={mode === 'dark' ? 'Passer en mode jour' : 'Passer en mode nuit'}>
+                <ThemeSwitch 
+                  checked={mode === 'dark'} 
+                  onChange={toggleMode} 
+                  aria-label="Changer de thème"
+                />
+              </Tooltip>
+            </Box>
+            
             {/* Icône Boutique */}
             <IconButton
               component={Link}
@@ -216,7 +284,7 @@ const Navbar: React.FC = () => {
                 to="/login"
                 variant="contained"
                 sx={{
-                  fontFamily: 'Orbitron',
+                  fontFamily: 'var(--unit-font-display)',
                 }}
               >
                 Connexion

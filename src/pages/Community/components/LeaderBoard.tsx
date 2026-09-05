@@ -69,13 +69,13 @@ const LeaderBoard: React.FC = () => {
           variant="h5"
           gutterBottom
           sx={{
-            fontFamily: 'Orbitron',
+            fontFamily: 'var(--unit-font-display)',
             display: 'flex',
             alignItems: 'center',
             gap: 1,
           }}
         >
-          <FaCrown style={{ color: '#FFD700' }} /> Meilleurs Joueurs
+          <FaCrown style={{ color: 'var(--unit-accent-gold)' }} /> Meilleurs Joueurs
         </Typography>
 
         <TableContainer>
@@ -104,11 +104,11 @@ const LeaderBoard: React.FC = () => {
                     sx={{
                       color:
                         player.rank === 1
-                          ? '#FFD700'
+                          ? 'var(--unit-accent-gold)'
                           : player.rank === 2
-                          ? '#C0C0C0'
+                          ? 'var(--unit-rank-silver)'
                           : player.rank === 3
-                          ? '#CD7F32'
+                          ? 'var(--unit-rank-bronze)'
                           : 'inherit',
                       fontWeight: player.rank <= 3 ? 'bold' : 'normal',
                     }}

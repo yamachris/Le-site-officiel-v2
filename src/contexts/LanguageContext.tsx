@@ -1,5 +1,5 @@
-import React, { createContext, useState, useContext } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { createContext, useContext } from 'react';
+import { useSettings } from './SettingsContext';
 
 interface LanguageContextType {
   language: string;
@@ -9,19 +9,13 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { i18n } = useTranslation();
-  const [language, setLanguage] = useState(i18n.language);
-
-  const handleSetLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
-    setLanguage(lang);
-  };
+  const { language, setLanguage } = useSettings();
 
   return (
     <LanguageContext.Provider
       value={{
         language,
-        setLanguage: handleSetLanguage,
+        setLanguage,
       }}
     >
       {children}

@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ../..
+      args:
+        REACT_APP_API_URL: ${REACT_APP_API_URL}
+        REACT_APP_GAME_PORTAL_URL: ${REACT_APP_GAME_PORTAL_URL}
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build: ../../backend
+    environment:
+      NODE_ENV: production
+      PORT: 4101
+      HOST: 0.0.0.0
+      DATABASE_URL: ${DATABASE_URL}
+      JWT_SECRET: ${JWT_SECRET}
+    ports:
+      - "4101:4101"
+    restart: unless-stopped
+
+  game-server:
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "npm ci && npm run build && npm run start:prod"
+    volumes:
+      - ../../prototype-master-claude/server:/app
+    environment:
+      NODE_ENV: production
+      PORT: 4107
+      ALLOWED_ORIGIN: ${GAME_ALLOWED_ORIGIN}
+    ports:
+      - "4107:4107"
+    restart: unless-stopped
+
+  game-client:
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "npm ci && npm run build && npm run start"
+    volumes:
+      - ../../prototype-master-claude/client:/app
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_GAME_API_URL}
+    ports:
+      - "4108:4108"
+    depends_on:
+      - game-server
+    restart: unless-stopped

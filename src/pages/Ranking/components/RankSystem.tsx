@@ -15,43 +15,43 @@ const rankTiers: RankTier[] = [
   {
     name: 'SSS',
     range: '3200+',
-    color: '#FF0000',
+    color: 'var(--unit-accent-danger)',
     description: 'Légende',
   },
   {
     name: 'SS',
     range: '2900-3199',
-    color: '#FF4D00',
+    color: 'var(--unit-rarity-unique)',
     description: 'Maître',
   },
   {
     name: 'S',
     range: '2600-2899',
-    color: '#FF9900',
+    color: 'var(--unit-accent-warning)',
     description: 'Élite',
   },
   {
     name: 'A',
     range: '2200-2599',
-    color: '#FFD700',
+    color: 'var(--unit-accent-gold)',
     description: 'Expert',
   },
   {
     name: 'B',
     range: '1800-2199',
-    color: '#00FF00',
+    color: 'var(--unit-accent-success)',
     description: 'Avancé',
   },
   {
     name: 'C',
     range: '1400-1799',
-    color: '#00FFFF',
+    color: 'var(--unit-accent-blue)',
     description: 'Intermédiaire',
   },
   {
     name: 'D',
     range: '1000-1399',
-    color: '#808080',
+    color: 'var(--unit-rarity-common)',
     description: 'Débutant',
   },
 ];
@@ -72,14 +72,14 @@ const RankSystem: React.FC = () => {
         variant="h5"
         gutterBottom
         sx={{
-          fontFamily: 'Orbitron',
+          fontFamily: 'var(--unit-font-display)',
           display: 'flex',
           alignItems: 'center',
           gap: 1,
           mb: 3,
         }}
       >
-        <FaCrown style={{ color: '#FFD700' }} /> Système de Rangs
+        <FaCrown style={{ color: 'var(--unit-accent-gold)' }} /> Système de Rangs
       </Typography>
 
       <Typography variant="body2" color="text.secondary" paragraph>
@@ -118,7 +118,7 @@ const RankSystem: React.FC = () => {
                 <Typography
                   variant="h6"
                   sx={{
-                    fontFamily: 'Orbitron',
+                    fontFamily: 'var(--unit-font-display)',
                     color: tier.color,
                     fontWeight: 'bold',
                   }}

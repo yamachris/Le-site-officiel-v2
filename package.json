@@ -37,8 +37,16 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=4100 react-scripts start",
+    "dev:web": "PORT=4100 react-scripts start",
+    "dev:api": "cd backend && PORT=4101 npm run start:dev",
+    "dev:game:client": "cd prototype-master-claude/client && npm run dev",
+    "dev:game:server": "cd prototype-master-claude/server && PORT=4107 npm run start:dev",
     "build": "react-scripts build",
+    "build:web": "react-scripts build",
+    "build:api": "cd backend && npm run build",
+    "build:game:client": "cd prototype-master-claude/client && npm run build",
+    "build:game:server": "cd prototype-master-claude/server && npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

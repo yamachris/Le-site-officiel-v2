@@ -1,21 +1,8 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  TextField,
-  Button,
-  Link,
-  Alert,
-  FormControl,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-  Checkbox,
-  FormHelperText,
-} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
+import { CinePage, CineContainer } from '../../components/cine';
+import { COUNTRY_OPTIONS } from './countries';
 
 const RegisterPage: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -23,342 +10,267 @@ const RegisterPage: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [gender, setGender] = useState('');
+  const [country, setCountry] = useState('');
   const [acceptTerms, setAcceptTerms] = useState(false);
   const [acceptPrivacy, setAcceptPrivacy] = useState(false);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { register } = useAuth();
 
-  const handleRegister = (e: React.FormEvent) => {
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
 
-    // Validation
     if (password !== confirmPassword) {
       setError('Les mots de passe ne correspondent pas');
       return;
     }
-
     if (!acceptTerms || !acceptPrivacy) {
       setError('Vous devez accepter les CGU et la politique de confidentialité');
       return;
     }
-
     if (username === 'new') {
-      setError('Ce nom d\'utilisateur est déjà pris');
+      setError("Ce nom d'utilisateur est déjà pris");
+      return;
+    }
+    if (!country) {
+      setError('Veuillez sélectionner votre pays');
       return;
     }
 
-    // Simuler une inscription réussie
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('username', username);
-    navigate('/profile');
-  };
-
-  const textFieldStyle = {
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#FFD700',
-      },
-      '&:hover fieldset': {
-        borderColor: '#FFA500',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#FFA500',
-      },
-    },
-    '& .MuiInputLabel-root': {
-      color: '#FFD700',
-      '&.Mui-focused': {
-        color: '#FFA500',
-      },
-    },
-    '& .MuiInputBase-input': {
-      color: 'white',
-    },
+    try {
+      setLoading(true);
+      await register(email, password, username);
+      localStorage.setItem('userCountry', country);
+      localStorage.setItem('userGender', gender);
+      const redirectPath = localStorage.getItem('postLoginRedirect') || '/profile';
+      localStorage.removeItem('postLoginRedirect');
+      navigate(redirectPath);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Échec de l'inscription");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        background: 'linear-gradient(180deg, rgba(10,25,41,0.95) 0%, rgba(19,47,76,0.95) 100%)',
-        position: 'relative',
-        overflow: 'hidden',
-        pt: { xs: 8, md: 0 },
-      }}
-    >
-      <Container maxWidth="sm">
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            position: 'relative',
-            zIndex: 1,
-          }}
-        >
-          <Paper
-            elevation={3}
-            sx={{
-              padding: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              width: '100%',
-              backgroundColor: 'rgba(10,25,41,0.9)',
-              border: '1px solid #FFD700',
-              borderRadius: '12px',
-            }}
-          >
-            <Typography 
-              component="h1" 
-              variant="h4" 
-              sx={{ 
-                mb: 3,
-                fontFamily: 'Orbitron',
-                color: '#FFD700',
-                textAlign: 'center',
-                fontWeight: 'bold',
-              }}
-            >
-              Inscription
-            </Typography>
+    <CinePage>
+      <div className="cine-auth-shell">
+        <CineContainer>
+          <div className="cine-auth-grid">
+            <aside className="cine-auth-visual">
+              <div>
+                <span className="cine-page-eyebrow" style={{ marginBottom: '1rem' }}>Compte</span>
+                <h1 className="cine-page-title" style={{ fontSize: 'clamp(2.2rem, 6vw, 4.8rem)' }}>
+                  Tirez votre <em>première carte.</em>
+                </h1>
+                <p className="cine-page-lede">
+                  Créez votre identité UNIT, choisissez votre pays, acceptez le Codex et entrez dans la saison.
+                </p>
+              </div>
+              <div className="cine-kpi-strip" style={{ marginTop: '2rem' }}>
+                <div className="cine-kpi cine-kpi--accent"><strong>01</strong><span>profil</span></div>
+                <div className="cine-kpi cine-kpi--cyan"><strong>∞</strong><span>duels</span></div>
+              </div>
+            </aside>
+
+            <div className="cine-auth-form">
 
             {error && (
-              <Alert severity="error" sx={{ width: '100%', mb: 2 }}>
+              <div
+                role="alert"
+                style={{
+                  marginTop: '1.5rem',
+                  padding: '0.9rem 1.1rem',
+                  border: '1px solid rgba(248, 113, 113, 0.4)',
+                  borderRadius: 'var(--cine-radius-md)',
+                  background: 'rgba(248, 113, 113, 0.08)',
+                  color: 'var(--cine-danger)',
+                  fontFamily: 'var(--cine-font-mono)',
+                  fontSize: '0.85rem',
+                }}
+              >
                 {error}
-              </Alert>
+              </div>
             )}
 
-            <Box component="form" onSubmit={handleRegister} sx={{ width: '100%' }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="username"
-                label="Nom d'utilisateur"
-                name="username"
-                autoComplete="username"
-                autoFocus
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                sx={textFieldStyle}
-              />
+            <form onSubmit={handleRegister} style={{ marginTop: error ? 0 : undefined, display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
+              <label className="cine-field">
+                <span className="cine-label">Nom d'utilisateur</span>
+                <input
+                  className="cine-input"
+                  type="text"
+                  required
+                  autoFocus
+                  autoComplete="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </label>
 
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email"
-                name="email"
-                autoComplete="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                sx={textFieldStyle}
-              />
+              <label className="cine-field">
+                <span className="cine-label">Email</span>
+                <input
+                  className="cine-input"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </label>
 
-              <FormControl 
-                component="fieldset" 
-                sx={{ 
-                  mt: 2, 
-                  width: '100%',
-                  '& .MuiFormLabel-root': {
-                    color: '#FFD700',
-                  },
+              <fieldset
+                style={{
+                  border: 0,
+                  padding: 0,
+                  margin: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '0.7rem',
                 }}
               >
-                <Typography
-                  sx={{
-                    color: '#FFD700',
-                    fontFamily: 'Orbitron',
-                    mb: 1,
+                <legend className="cine-label">Genre</legend>
+                <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+                  {(['homme', 'femme'] as const).map((g) => {
+                    const checked = gender === g;
+                    return (
+                      <label
+                        key={g}
+                        className={`cine-choice-pill ${checked ? 'is-active' : ''}`}
+                      >
+                        <input
+                          type="radio"
+                          name="gender"
+                          value={g}
+                          checked={checked}
+                          onChange={(e) => setGender(e.target.value)}
+                          style={{ display: 'none' }}
+                        />
+                        {g === 'homme' ? 'Homme' : 'Femme'}
+                      </label>
+                    );
+                  })}
+                </div>
+              </fieldset>
+
+              <label className="cine-field">
+                <span className="cine-label">Pays</span>
+                <select
+                  className="cine-input"
+                  required
+                  value={country}
+                  onChange={(e) => setCountry(e.target.value)}
+                  style={{ appearance: 'none', cursor: 'pointer' }}
+                >
+                  <option value="">— Sélectionner —</option>
+                  {COUNTRY_OPTIONS.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.flag} {c.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <label className="cine-field">
+                <span className="cine-label">Mot de passe</span>
+                <input
+                  className="cine-input"
+                  type="password"
+                  required
+                  autoComplete="new-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </label>
+
+              <label className="cine-field">
+                <span className="cine-label">Confirmer le mot de passe</span>
+                <input
+                  className="cine-input"
+                  type="password"
+                  required
+                  autoComplete="new-password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+              </label>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.7rem', marginTop: '0.5rem' }}>
+                <label
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '0.7rem',
+                    color: 'var(--cine-ink-soft)',
+                    fontSize: '0.9rem',
+                    cursor: 'pointer',
                   }}
                 >
-                  Sexe
-                </Typography>
-                <RadioGroup
-                  row
-                  value={gender}
-                  onChange={(e) => setGender(e.target.value)}
+                  <input
+                    type="checkbox"
+                    checked={acceptTerms}
+                    onChange={(e) => setAcceptTerms(e.target.checked)}
+                    style={{ accentColor: 'var(--cine-accent)', marginTop: 2 }}
+                  />
+                  <span>
+                    J'accepte les{' '}
+                    <RouterLink to="/terms" target="_blank" style={{ color: 'var(--cine-accent-2)' }}>
+                      conditions générales d'utilisation
+                    </RouterLink>
+                  </span>
+                </label>
+
+                <label
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '0.7rem',
+                    color: 'var(--cine-ink-soft)',
+                    fontSize: '0.9rem',
+                    cursor: 'pointer',
+                  }}
                 >
-                  <FormControlLabel
-                    value="homme"
-                    control={
-                      <Radio 
-                        sx={{
-                          color: '#FFD700',
-                          '&.Mui-checked': {
-                            color: '#FFA500',
-                          },
-                        }}
-                      />
-                    }
-                    label={
-                      <Typography sx={{ color: 'white' }}>
-                        Homme
-                      </Typography>
-                    }
+                  <input
+                    type="checkbox"
+                    checked={acceptPrivacy}
+                    onChange={(e) => setAcceptPrivacy(e.target.checked)}
+                    style={{ accentColor: 'var(--cine-accent)', marginTop: 2 }}
                   />
-                  <FormControlLabel
-                    value="femme"
-                    control={
-                      <Radio 
-                        sx={{
-                          color: '#FFD700',
-                          '&.Mui-checked': {
-                            color: '#FFA500',
-                          },
-                        }}
-                      />
-                    }
-                    label={
-                      <Typography sx={{ color: 'white' }}>
-                        Femme
-                      </Typography>
-                    }
-                  />
-                </RadioGroup>
-              </FormControl>
+                  <span>
+                    J'accepte la{' '}
+                    <RouterLink to="/privacy" target="_blank" style={{ color: 'var(--cine-accent-2)' }}>
+                      politique de confidentialité
+                    </RouterLink>
+                  </span>
+                </label>
+              </div>
 
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Mot de passe"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                sx={textFieldStyle}
-              />
-
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="confirmPassword"
-                label="Confirmer le mot de passe"
-                type="password"
-                id="confirmPassword"
-                autoComplete="new-password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                sx={textFieldStyle}
-              />
-
-              <Box sx={{ mt: 2 }}>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={acceptTerms}
-                      onChange={(e) => setAcceptTerms(e.target.checked)}
-                      sx={{
-                        color: '#FFD700',
-                        '&.Mui-checked': {
-                          color: '#FFA500',
-                        },
-                      }}
-                    />
-                  }
-                  label={
-                    <Typography sx={{ color: 'white' }}>
-                      J'accepte les{' '}
-                      <Link 
-                        href="/cgu" 
-                        target="_blank"
-                        sx={{
-                          color: '#FFD700',
-                          textDecoration: 'none',
-                          '&:hover': {
-                            color: '#FFA500',
-                          },
-                        }}
-                      >
-                        conditions générales d'utilisation
-                      </Link>
-                    </Typography>
-                  }
-                />
-
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={acceptPrivacy}
-                      onChange={(e) => setAcceptPrivacy(e.target.checked)}
-                      sx={{
-                        color: '#FFD700',
-                        '&.Mui-checked': {
-                          color: '#FFA500',
-                        },
-                      }}
-                    />
-                  }
-                  label={
-                    <Typography sx={{ color: 'white' }}>
-                      J'accepte la{' '}
-                      <Link 
-                        href="/privacy" 
-                        target="_blank"
-                        sx={{
-                          color: '#FFD700',
-                          textDecoration: 'none',
-                          '&:hover': {
-                            color: '#FFA500',
-                          },
-                        }}
-                      >
-                        politique de confidentialité
-                      </Link>
-                    </Typography>
-                  }
-                />
-              </Box>
-
-              <Button
+              <button
                 type="submit"
-                fullWidth
-                variant="contained"
-                sx={{
-                  mt: 3,
-                  mb: 2,
-                  bgcolor: '#FFD700',
-                  color: '#000',
-                  padding: '12px',
-                  fontFamily: 'Orbitron',
-                  fontWeight: 'bold',
-                  '&:hover': {
-                    bgcolor: '#FFA500',
-                  },
-                }}
+                className="cine-button cine-button--primary"
+                disabled={loading}
+                style={{ marginTop: '0.5rem', justifyContent: 'center', opacity: loading ? 0.6 : 1 }}
               >
-                S'inscrire
-              </Button>
+                {loading ? 'Inscription…' : "S'inscrire"}
+              </button>
 
-              <Box sx={{ textAlign: 'center' }}>
-                <Link 
-                  href="/login"
-                  sx={{
-                    color: '#FFD700',
-                    textDecoration: 'none',
-                    fontFamily: 'Orbitron',
-                    '&:hover': {
-                      color: '#FFA500',
-                    },
-                  }}
+              <div style={{ textAlign: 'center', marginTop: '0.5rem' }}>
+                <RouterLink
+                  to="/login"
+                  className="cine-link-subtle"
+                  style={{ color: 'var(--cine-accent-2)' }}
                 >
-                  Déjà un compte ? Se connecter
-                </Link>
-              </Box>
-            </Box>
-          </Paper>
-        </Box>
-      </Container>
-    </Box>
+                  Déjà un compte ? Se connecter →
+                </RouterLink>
+              </div>
+            </form>
+            </div>
+          </div>
+        </CineContainer>
+      </div>
+    </CinePage>
   );
 };
 

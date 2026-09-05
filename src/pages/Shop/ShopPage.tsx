@@ -1,24 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Box,
-  Container,
-  Typography,
-  Grid,
-  Card,
-  CardContent,
-  CardMedia,
-  Button,
-  Tabs,
-  Tab,
-  Chip,
-  Badge,
-  IconButton,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from '@mui/material';
-import {
   ShoppingCart as ShoppingCartIcon,
   Lock as LockIcon,
   Star as StarIcon,
@@ -28,6 +9,15 @@ import {
   EmojiEvents as TrophyIcon,
   LocalOffer as TagIcon,
 } from '@mui/icons-material';
+import {
+  CinePage,
+  CineContainer,
+  CinePageHeader,
+  CineCard,
+  CineBadge,
+  CineKpiStrip,
+  CineTabs,
+} from '../../components/cine';
 
 interface ShopItem {
   id: string;
@@ -40,7 +30,7 @@ interface ShopItem {
   isPremium: boolean;
 }
 
-const mockItems: ShopItem[] = [
+const MOCK_ITEMS: ShopItem[] = [
   {
     id: '1',
     name: 'Skin Dragon de Feu',
@@ -61,307 +51,355 @@ const mockItems: ShopItem[] = [
     category: 'boards',
     isPremium: true,
   },
-  // Ajoutez plus d'items ici
+  {
+    id: '3',
+    name: 'Effet Aurores',
+    description: 'Particules cinétiques sur chaque carte jouée',
+    price: 600,
+    image: '',
+    rarity: 'rare',
+    category: 'effects',
+    isPremium: false,
+  },
+  {
+    id: '4',
+    name: 'Titre — Maître des Élus',
+    description: 'Affichez votre prestige dans tout le ladder',
+    price: 1500,
+    image: '',
+    rarity: 'exclusive',
+    category: 'titles',
+    isPremium: false,
+  },
 ];
 
-const getRarityColor = (rarity: ShopItem['rarity']) => {
-  switch (rarity) {
-    case 'common':
-      return '#B0B0B0';
-    case 'uncommon':
-      return '#4CAF50';
-    case 'rare':
-      return '#2196F3';
-    case 'epic':
-      return '#9C27B0';
-    case 'exclusive':
-      return '#FF9800';
-    case 'legendary':
-      return '#FFD700';
-    case 'unique':
-      return '#FF4500';
-    default:
-      return '#B0B0B0';
-  }
+const RARITY_COLOR: Record<ShopItem['rarity'], string> = {
+  common:    'var(--cine-ink-dim)',
+  uncommon:  'var(--cine-success)',
+  rare:      'var(--cine-accent-2)',
+  epic:      'var(--cine-accent-4)',
+  exclusive: 'var(--cine-accent-3)',
+  legendary: 'var(--cine-accent-3)',
+  unique:    'var(--cine-accent)',
+};
+
+const CATEGORIES = [
+  { key: 'all',       label: 'Tout',      icon: <ShoppingCartIcon fontSize="small" /> },
+  { key: 'skins',     label: 'Skins',     icon: <PaletteIcon fontSize="small" /> },
+  { key: 'boards',    label: 'Plateaux',  icon: <CasinoIcon fontSize="small" /> },
+  { key: 'effects',   label: 'Effets',    icon: <StarIcon fontSize="small" /> },
+  { key: 'titles',    label: 'Titres',    icon: <TrophyIcon fontSize="small" /> },
+  { key: 'exclusive', label: 'Exclusif',  icon: <DiamondIcon fontSize="small" /> },
+];
+
+const SHOP_KPIS = [
+  { value: '4', label: 'collections', tone: 'accent' as const },
+  { value: '2 500', label: 'Unitos', tone: 'gold' as const },
+  { value: '15%', label: 'bonus max', tone: 'cyan' as const },
+];
+
+const ITEM_ICON: Record<ShopItem['category'], React.ReactNode> = {
+  skins:     <PaletteIcon sx={{ fontSize: 64 }} />,
+  boards:    <CasinoIcon sx={{ fontSize: 64 }} />,
+  effects:   <StarIcon sx={{ fontSize: 64 }} />,
+  titles:    <TrophyIcon sx={{ fontSize: 64 }} />,
+  exclusive: <DiamondIcon sx={{ fontSize: 64 }} />,
 };
 
 const ShopPage: React.FC = () => {
-  const [currentTab, setCurrentTab] = useState(0);
-  const [openBuyUnitos, setOpenBuyUnitos] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<ShopItem | null>(null);
-  const unitos = 2500; // À remplacer par la vraie valeur depuis le contexte ou l'API
+  const [activeCat, setActiveCat] = useState<string>('all');
+  const [buyOpen, setBuyOpen] = useState(false);
+  const [selected, setSelected] = useState<ShopItem | null>(null);
+  const unitos = 2500;
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setCurrentTab(newValue);
-  };
-
-  const handleItemClick = (item: ShopItem) => {
-    setSelectedItem(item);
-  };
-
-  const categories = [
-    { label: 'Tout', icon: <ShoppingCartIcon /> },
-    { label: 'Skins', icon: <PaletteIcon /> },
-    { label: 'Plateaux', icon: <CasinoIcon /> },
-    { label: 'Effets', icon: <StarIcon /> },
-    { label: 'Titres', icon: <TrophyIcon /> },
-    { label: 'Exclusif', icon: <DiamondIcon /> },
-  ];
+  const items = activeCat === 'all'
+    ? MOCK_ITEMS
+    : MOCK_ITEMS.filter((i) => i.category === activeCat);
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 8 }}>
-      <Box sx={{ mb: 6, textAlign: 'center', position: 'relative' }}>
-        <Box sx={{ 
-          position: 'absolute', 
-          top: 0, 
-          right: 0, 
-          display: 'flex', 
-          alignItems: 'center',
-          background: 'rgba(0, 0, 0, 0.1)',
-          padding: '8px 16px',
-          borderRadius: '20px',
-        }}>
-          <Typography 
-            variant="h6" 
-            sx={{ 
-              display: 'flex', 
-              alignItems: 'center',
-              color: '#FFD700',
-              fontWeight: 'bold'
-            }}
-          >
-            {unitos}
-            <TagIcon sx={{ ml: 1, color: '#FFD700' }} />
-          </Typography>
-        </Box>
-        <Typography 
-          variant="h2" 
-          component="h1" 
-          sx={{ 
-            fontFamily: 'Orbitron',
-            fontWeight: 700,
-            mb: 2,
-            background: 'linear-gradient(45deg, #FFD700, #FFA500)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-          }}
-        >
-          Boutique UNIT
-        </Typography>
-        <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 4 }}>
-          Personnalisez votre expérience avec des objets uniques
-        </Typography>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
-          <Button
-            variant="contained"
-            startIcon={<ShoppingCartIcon />}
-            onClick={() => setOpenBuyUnitos(true)}
-            sx={{
-              background: 'linear-gradient(45deg, #FFD700, #FFA500)',
-              color: 'black',
-              fontWeight: 'bold',
-              '&:hover': {
-                background: 'linear-gradient(45deg, #FFA500, #FFD700)',
-              },
-            }}
-          >
-            Acheter des Unitos
-          </Button>
-        </Box>
-      </Box>
-
-      {/* Tabs de catégories */}
-      <Tabs
-        value={currentTab}
-        onChange={handleTabChange}
-        variant="scrollable"
-        scrollButtons="auto"
-        sx={{ mb: 4 }}
+    <CinePage>
+      <CinePageHeader
+        eyebrow="La Boutique"
+        title={<>Personnalisez <em>votre table.</em></>}
+        lede="Skins, plateaux, effets, titres — donnez à vos parties votre signature visuelle."
       >
-        {categories.map((category, index) => (
-          <Tab
-            key={category.label}
-            icon={category.icon}
-            label={category.label}
-            sx={{ minWidth: 120 }}
-          />
-        ))}
-      </Tabs>
+        <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          <button type="button" className="cine-button cine-button--primary" onClick={() => setBuyOpen(true)}>
+            <DiamondIcon fontSize="small" /> Acheter des Unitos
+          </button>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.6rem 1rem',
+              border: '1px solid var(--cine-line)',
+              borderRadius: 'var(--cine-radius-pill)',
+              fontFamily: 'var(--cine-font-mono)',
+              fontSize: '0.8rem',
+              letterSpacing: '0.1em',
+              color: 'var(--cine-accent-3)',
+            }}
+          >
+            <TagIcon fontSize="small" />
+            {unitos.toLocaleString('fr-FR')} Unitos
+          </div>
+        </div>
+      </CinePageHeader>
 
-      {/* Grille des items */}
-      <Grid container spacing={3}>
-        {mockItems.map((item) => (
-          <Grid item xs={12} sm={6} md={4} key={item.id}>
-            <Card
-              sx={{
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                position: 'relative',
-                cursor: 'pointer',
-                '&:hover': {
-                  transform: 'translateY(-4px)',
-                  boxShadow: 6,
-                },
-                transition: 'transform 0.2s, box-shadow 0.2s',
-              }}
-              onClick={() => handleItemClick(item)}
+      <CineContainer>
+        <CineKpiStrip items={SHOP_KPIS} style={{ marginBottom: '2rem' }} />
+
+        <div className="cine-section-slab" style={{ marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'end', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.2rem' }}>
+            <div>
+              <span className="cine-mono" style={{ color: 'var(--cine-accent-3)' }}>Marché cosmétique</span>
+              <h2 className="cine-section-title" style={{ marginTop: '0.5rem' }}>Collections UNIT</h2>
+            </div>
+            <span className="cine-mono">{items.length} objets affichés</span>
+          </div>
+          <CineTabs
+            items={CATEGORIES.map((c) => ({ id: c.key, label: c.label, icon: c.icon }))}
+            active={activeCat}
+            onChange={setActiveCat}
+            ariaLabel="Catégories de la boutique"
+          />
+        </div>
+
+        <div className="cine-grid cine-grid--3" style={{ paddingBottom: '6rem' }}>
+          {items.map((item) => (
+            <CineCard
+              key={item.id}
+              interactive
+              onClick={() => setSelected(item)}
+              style={{ padding: 0, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}
             >
-              {item.isPremium && (
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: 16,
-                    right: 16,
-                    zIndex: 1,
+              {/* Visuel */}
+              <div
+                style={{
+                  position: 'relative',
+                  height: 200,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: RARITY_COLOR[item.rarity],
+                  background:
+                    `radial-gradient(circle at 30% 20%, ${RARITY_COLOR[item.rarity]}26, transparent 60%),` +
+                    'linear-gradient(135deg, var(--cine-bg-soft), var(--cine-surface))',
+                  borderBottom: '1px solid var(--cine-line)',
+                }}
+              >
+                {ITEM_ICON[item.category]}
+                {item.isPremium && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: 12,
+                      right: 12,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.3rem',
+                      padding: '0.3rem 0.7rem',
+                      background: 'var(--cine-accent)',
+                      color: '#fff',
+                      borderRadius: 'var(--cine-radius-pill)',
+                      fontFamily: 'var(--cine-font-mono)',
+                      fontSize: '0.65rem',
+                      letterSpacing: '0.16em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    <LockIcon sx={{ fontSize: 12 }} />
+                    Premium
+                  </div>
+                )}
+              </div>
+
+              {/* Contenu */}
+              <div style={{ padding: '1.4rem 1.6rem', flex: 1, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem' }}>
+                  <span
+                    className="cine-badge"
+                    style={{
+                      borderColor: `${RARITY_COLOR[item.rarity]}66`,
+                      color: RARITY_COLOR[item.rarity],
+                    }}
+                  >
+                    {item.rarity}
+                  </span>
+                </div>
+                <h3
+                  style={{
+                    fontFamily: 'var(--cine-font-display)',
+                    fontSize: '1.15rem',
+                    fontWeight: 500,
+                    letterSpacing: 0,
+                    margin: 0,
+                    color: 'var(--cine-ink)',
                   }}
                 >
-                  <Chip
-                    icon={<LockIcon />}
-                    label="Premium"
-                    color="primary"
-                    size="small"
-                  />
-                </Box>
-              )}
-              <CardMedia
-                component="img"
-                height="200"
-                image={item.image}
-                alt={item.name}
-                sx={{ objectFit: 'cover' }}
-              />
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h6" gutterBottom>
                   {item.name}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" paragraph>
+                </h3>
+                <p
+                  style={{
+                    color: 'var(--cine-ink-soft)',
+                    fontSize: '0.92rem',
+                    lineHeight: 1.5,
+                    margin: 0,
+                    flex: 1,
+                  }}
+                >
                   {item.description}
-                </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Chip
-                    label={item.rarity.toUpperCase()}
-                    sx={{
-                      bgcolor: getRarityColor(item.rarity),
-                      color: 'white',
-                    }}
-                  />
-                  <Typography variant="h6">
-                    {item.price} <TagIcon sx={{ verticalAlign: 'middle', fontSize: 20 }} />
-                  </Typography>
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-
-      {/* Dialog d'achat d'Unitos */}
-      <Dialog
-        open={openBuyUnitos}
-        onClose={() => setOpenBuyUnitos(false)}
-        maxWidth="sm"
-        fullWidth
-      >
-        <DialogTitle>Acheter des Unitos</DialogTitle>
-        <DialogContent>
-          <Grid container spacing={2} sx={{ mt: 1 }}>
-            {[
-              { amount: 500, price: 5, bonus: 0 },
-              { amount: 1000, price: 10, bonus: 0 },
-              { amount: 2000, price: 20, bonus: 10 },
-              { amount: 5000, price: 50, bonus: 15 },
-              { amount: 10000, price: 100, bonus: 20 },
-            ].map((pack) => (
-              <Grid item xs={12} key={pack.amount}>
-                <Card
-                  sx={{
+                </p>
+                <div
+                  style={{
                     display: 'flex',
                     alignItems: 'center',
-                    p: 2,
-                    cursor: 'pointer',
-                    '&:hover': { bgcolor: 'action.hover' },
+                    justifyContent: 'space-between',
+                    paddingTop: '0.8rem',
+                    borderTop: '1px solid var(--cine-line)',
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
-                    <DiamondIcon sx={{ fontSize: 40, mr: 2, color: 'primary.main' }} />
-                    <Box>
-                      <Typography variant="h6">
-                        {pack.amount} Unitos
-                        {pack.bonus > 0 && (
-                          <Chip
-                            label={`+${pack.bonus}%`}
-                            color="secondary"
-                            size="small"
-                            sx={{ ml: 1 }}
-                          />
-                        )}
-                      </Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        {pack.price} €
-                      </Typography>
-                    </Box>
-                  </Box>
-                  <Button variant="contained">Acheter</Button>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenBuyUnitos(false)}>Fermer</Button>
-        </DialogActions>
-      </Dialog>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem', color: 'var(--cine-accent-3)', fontFamily: 'var(--cine-font-mono)', fontSize: '0.95rem', letterSpacing: '0.04em' }}>
+                    <TagIcon sx={{ fontSize: 16 }} />
+                    {item.price.toLocaleString('fr-FR')}
+                  </span>
+                  <span className="cine-mono" style={{ color: 'var(--cine-accent-2)' }}>
+                    Voir →
+                  </span>
+                </div>
+              </div>
+            </CineCard>
+          ))}
+        </div>
+      </CineContainer>
 
-      {/* Dialog de détail d'item */}
-      <Dialog
-        open={Boolean(selectedItem)}
-        onClose={() => setSelectedItem(null)}
-        maxWidth="sm"
-        fullWidth
-      >
-        {selectedItem && (
-          <>
-            <DialogTitle>{selectedItem.name}</DialogTitle>
-            <DialogContent>
-              <Box sx={{ mb: 2 }}>
-                <img
-                  src={selectedItem.image}
-                  alt={selectedItem.name}
-                  style={{ width: '100%', borderRadius: 8 }}
-                />
-              </Box>
-              <Typography variant="body1" paragraph>
-                {selectedItem.description}
-              </Typography>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Chip
-                  label={selectedItem.rarity.toUpperCase()}
-                  sx={{
-                    bgcolor: getRarityColor(selectedItem.rarity),
-                    color: 'white',
-                  }}
-                />
-                <Typography variant="h6">
-                  {selectedItem.price} <TagIcon sx={{ verticalAlign: 'middle', fontSize: 20 }} />
-                </Typography>
-              </Box>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={() => setSelectedItem(null)}>Fermer</Button>
-              <Button
-                variant="contained"
-                color="primary"
-                disabled={unitos < selectedItem.price}
+      {/* Dialog : Acheter Unitos */}
+      {buyOpen && (
+        <Modal onClose={() => setBuyOpen(false)} title="Acheter des Unitos">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+            {[
+              { amount: 500,   price: 5,   bonus: 0  },
+              { amount: 1000,  price: 10,  bonus: 0  },
+              { amount: 2000,  price: 20,  bonus: 10 },
+              { amount: 5000,  price: 50,  bonus: 15 },
+              { amount: 10000, price: 100, bonus: 20 },
+            ].map((p) => (
+              <div
+                key={p.amount}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '1rem 1.2rem',
+                  border: '1px solid var(--cine-line)',
+                  borderRadius: 'var(--cine-radius-md)',
+                  background: 'var(--cine-surface)',
+                }}
               >
-                Acheter
-              </Button>
-            </DialogActions>
-          </>
-        )}
-      </Dialog>
-    </Container>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+                  <DiamondIcon sx={{ color: 'var(--cine-accent-3)' }} />
+                  <div>
+                    <div style={{ fontFamily: 'var(--cine-font-display)', fontSize: '1.1rem', color: 'var(--cine-ink)' }}>
+                      {p.amount.toLocaleString('fr-FR')} Unitos
+                      {p.bonus > 0 && (
+                        <span style={{ marginLeft: '0.6rem' }}>
+                          <CineBadge variant="success">+{p.bonus}%</CineBadge>
+                        </span>
+                      )}
+                    </div>
+                    <div className="cine-mono" style={{ marginTop: '0.2rem' }}>{p.price} €</div>
+                  </div>
+                </div>
+                <button type="button" className="cine-button cine-button--primary cine-button--mono">Acheter</button>
+              </div>
+            ))}
+          </div>
+        </Modal>
+      )}
+
+      {/* Dialog : détail item */}
+      {selected && (
+        <Modal onClose={() => setSelected(null)} title={selected.name}>
+          <div
+            style={{
+              height: 240,
+              borderRadius: 'var(--cine-radius-md)',
+              border: '1px solid var(--cine-line)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: RARITY_COLOR[selected.rarity],
+              background: `radial-gradient(circle at 50% 30%, ${RARITY_COLOR[selected.rarity]}26, transparent 70%), var(--cine-bg-soft)`,
+            }}
+          >
+            {ITEM_ICON[selected.category]}
+          </div>
+          <p style={{ color: 'var(--cine-ink-soft)', lineHeight: 1.6, marginTop: '1.2rem' }}>{selected.description}</p>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1.5rem' }}>
+            <span className="cine-badge" style={{ borderColor: `${RARITY_COLOR[selected.rarity]}66`, color: RARITY_COLOR[selected.rarity] }}>
+              {selected.rarity}
+            </span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: 'var(--cine-accent-3)', fontFamily: 'var(--cine-font-mono)', fontSize: '1.1rem' }}>
+              <TagIcon /> {selected.price.toLocaleString('fr-FR')}
+            </span>
+          </div>
+          <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'flex-end', marginTop: '1.8rem' }}>
+            <button type="button" className="cine-button cine-button--ghost cine-button--mono" onClick={() => setSelected(null)}>
+              Fermer
+            </button>
+            <button
+              type="button"
+              className="cine-button cine-button--primary cine-button--mono"
+              disabled={unitos < selected.price}
+              style={{ opacity: unitos < selected.price ? 0.5 : 1 }}
+            >
+              Acheter
+            </button>
+          </div>
+        </Modal>
+      )}
+    </CinePage>
   );
 };
+
+/* === Modal réutilisable === */
+const Modal: React.FC<{ title: string; onClose: () => void; children: React.ReactNode }> = ({ title, onClose, children }) => (
+  <div
+    role="dialog"
+    aria-modal="true"
+    style={{
+      position: 'fixed', inset: 0, zIndex: 2000,
+      background: 'rgba(2, 2, 3, 0.78)',
+      backdropFilter: 'blur(16px)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: '1.5rem',
+    }}
+    onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+  >
+    <div
+      style={{
+        width: '100%',
+        maxWidth: 540,
+        maxHeight: '90vh',
+        overflow: 'auto',
+        background: 'var(--cine-bg-soft)',
+        border: '1px solid var(--cine-line)',
+        borderRadius: 'var(--cine-radius-lg)',
+        padding: '2rem',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.4rem' }}>
+        <h2 style={{ margin: 0, fontFamily: 'var(--cine-font-display)', fontSize: '1.5rem', fontWeight: 500, letterSpacing: 0 }}>
+          {title}
+        </h2>
+        <button type="button" onClick={onClose} className="cine-button cine-button--ghost cine-button--mono" style={{ padding: '0.5rem 0.9rem' }}>
+          ✕
+        </button>
+      </div>
+      {children}
+    </div>
+  </div>
+);
 
 export default ShopPage;

@@ -56,7 +56,7 @@ const Overview: React.FC = () => {
             title="Utilisateurs Actifs"
             value={stats.activeUsers}
             icon={<People />}
-            color="#4CAF50"
+            color="var(--unit-accent-success)"
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
@@ -64,7 +64,7 @@ const Overview: React.FC = () => {
             title="Parties Jouées"
             value={stats.gamesPlayed}
             icon={<SportsEsports />}
-            color="#2196F3"
+            color="var(--unit-accent-blue)"
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
@@ -72,7 +72,7 @@ const Overview: React.FC = () => {
             title="Tournois Actifs"
             value={stats.activeTournaments}
             icon={<EmojiEvents />}
-            color="#FF9800"
+            color="var(--unit-accent-warning)"
           />
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
@@ -80,7 +80,7 @@ const Overview: React.FC = () => {
             title="Utilisateurs Signalés"
             value={stats.reportedUsers}
             icon={<Warning />}
-            color="#f44336"
+            color="var(--unit-accent-danger)"
           />
         </Grid>
 

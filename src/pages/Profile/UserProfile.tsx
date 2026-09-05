@@ -1,23 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  Avatar,
-  Grid,
-  Card,
-  CardContent,
-  LinearProgress,
-  Button,
-  Badge,
-  IconButton,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-} from '@mui/material';
-import {
   Person as PersonIcon,
   Stars as StarsIcon,
   EmojiEvents as TrophyIcon,
@@ -25,28 +7,17 @@ import {
   PhotoCamera as PhotoCameraIcon,
   Lock as LockIcon,
   CheckCircle as CheckCircleIcon,
+  WorkspacePremium as PremiumIcon,
 } from '@mui/icons-material';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-} from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement,
+  Title, Tooltip, Legend,
+} from 'chart.js';
+import * as CountryFlags from 'country-flag-icons/react/3x2';
+import { CinePage, CineContainer, CineCard, CineBadge } from '../../components/cine';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 interface UserStats {
   elo: number;
@@ -71,7 +42,7 @@ interface Achievement {
 
 const initialStats: UserStats = {
   elo: 1200,
-  rank: "Bronze",
+  rank: 'Bronze',
   gamesPlayed: 0,
   wins: 0,
   losses: 0,
@@ -80,41 +51,51 @@ const initialStats: UserStats = {
   isPremium: false,
 };
 
-const achievements: Achievement[] = [
-  {
-    id: 'first_win',
-    title: 'Première Victoire',
-    description: 'Gagnez votre première partie',
-    icon: '🏆',
-    unlocked: false,
-  },
-  {
-    id: 'win_streak',
-    title: 'Sur une lancée',
-    description: 'Gagnez 3 parties d\'affilée',
-    icon: '🔥',
-    unlocked: false,
-    progress: 0,
-    maxProgress: 3,
-  },
-  {
-    id: 'rank_up',
-    title: 'En progression',
-    description: 'Atteignez le rang Argent',
-    icon: '⭐',
-    unlocked: false,
-  },
-  {
-    id: 'collector',
-    title: 'Collectionneur',
-    description: 'Obtenez 50 cartes différentes',
-    icon: '📚',
-    unlocked: false,
-    progress: 23,
-    maxProgress: 50,
-  },
+const ACHIEVEMENTS: Achievement[] = [
+  { id: 'first_win',  title: 'Première Victoire', description: 'Gagnez votre première partie',          icon: '🏆', unlocked: false },
+  { id: 'win_streak', title: 'Sur une lancée',    description: "Gagnez 3 parties d'affilée",            icon: '🔥', unlocked: false, progress: 0,  maxProgress: 3  },
+  { id: 'rank_up',    title: 'En progression',    description: 'Atteignez le rang Argent',              icon: '⭐', unlocked: false },
+  { id: 'collector',  title: 'Collectionneur',    description: 'Obtenez 50 cartes différentes',         icon: '📚', unlocked: false, progress: 23, maxProgress: 50 },
 ];
 
+const RANKS = ['Bronze', 'Argent', 'Or', 'Platine', 'Diamant'];
+
+/* ============ Modal réutilisable ============ */
+const Modal: React.FC<{ title: string; onClose: () => void; children: React.ReactNode; maxWidth?: number }> = ({ title, onClose, children, maxWidth = 540 }) => (
+  <div
+    role="dialog" aria-modal="true"
+    style={{
+      position: 'fixed', inset: 0, zIndex: 2000,
+      background: 'rgba(2, 2, 3, 0.78)',
+      backdropFilter: 'blur(16px)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      padding: '1.5rem',
+    }}
+    onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+  >
+    <div
+      style={{
+        width: '100%', maxWidth, maxHeight: '90vh', overflow: 'auto',
+        background: 'var(--cine-bg-soft)',
+        border: '1px solid var(--cine-line)',
+        borderRadius: 'var(--cine-radius-lg)',
+        padding: '2rem',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.4rem' }}>
+        <h2 style={{ margin: 0, fontFamily: 'var(--cine-font-display)', fontSize: '1.5rem', fontWeight: 500, letterSpacing: 0 }}>
+          {title}
+        </h2>
+        <button type="button" onClick={onClose} className="cine-button cine-button--ghost cine-button--mono" style={{ padding: '0.5rem 0.9rem' }}>
+          ✕
+        </button>
+      </div>
+      {children}
+    </div>
+  </div>
+);
+
+/* ============ Page ============ */
 const UserProfile: React.FC = () => {
   const [stats, setStats] = useState<UserStats>(initialStats);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
@@ -122,13 +103,12 @@ const UserProfile: React.FC = () => {
   const [openPremium, setOpenPremium] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const username = localStorage.getItem('username') || 'New';
+  const userCountry = localStorage.getItem('userCountry') || 'FR';
+  const FlagComponent = (CountryFlags as any)[userCountry];
 
   useEffect(() => {
-    // Charger l'avatar sauvegardé
     const savedAvatar = localStorage.getItem('userAvatar');
-    if (savedAvatar) {
-      setAvatarUrl(savedAvatar);
-    }
+    if (savedAvatar) setAvatarUrl(savedAvatar);
   }, []);
 
   const handleAvatarChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -136,422 +116,345 @@ const UserProfile: React.FC = () => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        const base64String = reader.result as string;
-        setAvatarUrl(base64String);
-        localStorage.setItem('userAvatar', base64String);
+        const base64 = reader.result as string;
+        setAvatarUrl(base64);
+        localStorage.setItem('userAvatar', base64);
       };
       reader.readAsDataURL(file);
     }
   };
 
-  const handlePremiumPurchase = (plan: 'monthly' | 'yearly') => {
-    // Simuler l'achat premium
-    setStats(prev => ({ ...prev, isPremium: true }));
+  const handlePremiumPurchase = (_plan: 'monthly' | 'yearly') => {
+    setStats((prev) => ({ ...prev, isPremium: true }));
     localStorage.setItem('isPremium', 'true');
     setOpenPremium(false);
   };
 
   const getNextRank = () => {
-    const ranks = ["Bronze", "Argent", "Or", "Platine", "Diamant"];
-    const currentRankIndex = ranks.indexOf(stats.rank);
-    return currentRankIndex < ranks.length - 1 ? ranks[currentRankIndex + 1] : stats.rank;
+    const i = RANKS.indexOf(stats.rank);
+    return i < RANKS.length - 1 ? RANKS[i + 1] : stats.rank;
   };
-
-  const getProgressToNextRank = () => {
-    return ((stats.elo - 1200) % 300) / 3;
-  };
+  const getProgressToNextRank = () => ((stats.elo - 1200) % 300) / 3;
 
   const chartData = {
-    labels: ['J-6', 'J-5', 'J-4', 'J-3', 'J-2', 'J-1', 'Aujourd\'hui'],
-    datasets: [
-      {
-        label: 'ELO',
-        data: stats.eloHistory,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1,
-      },
-    ],
+    labels: ['J-6', 'J-5', 'J-4', 'J-3', 'J-2', 'J-1', "Auj."],
+    datasets: [{
+      label: 'ELO',
+      data: stats.eloHistory,
+      borderColor: '#ff3d6e',
+      backgroundColor: 'rgba(255, 61, 110, 0.12)',
+      tension: 0.3,
+      pointBackgroundColor: '#ff3d6e',
+      pointBorderColor: '#fff',
+    }],
   };
 
   const chartOptions = {
     responsive: true,
     plugins: {
-      legend: {
-        position: 'top' as const,
-      },
-      title: {
-        display: true,
-        text: 'Évolution ELO',
-      },
+      legend: { display: false },
+      title: { display: false },
     },
     scales: {
       y: {
         min: Math.min(...stats.eloHistory) - 50,
         max: Math.max(...stats.eloHistory) + 50,
+        grid: { color: 'rgba(255,255,255,0.05)' },
+        ticks: { color: '#7a7a85', font: { family: 'JetBrains Mono, monospace', size: 10 } },
+      },
+      x: {
+        grid: { color: 'rgba(255,255,255,0.05)' },
+        ticks: { color: '#7a7a85', font: { family: 'JetBrains Mono, monospace', size: 10 } },
       },
     },
   };
 
   return (
-    <Container maxWidth="lg">
-      <Box sx={{ py: 4 }}>
-        {/* En-tête du profil */}
-        <Paper elevation={3} sx={{ p: 3, mb: 4 }}>
-          <Grid container spacing={3} alignItems="center">
-            <Grid item>
-              <Badge
-                overlap="circular"
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                badgeContent={
-                  <IconButton
-                    size="small"
-                    sx={{
-                      bgcolor: 'primary.main',
-                      '&:hover': { bgcolor: 'primary.dark' },
-                    }}
-                    onClick={() => fileInputRef.current?.click()}
-                  >
-                    <PhotoCameraIcon sx={{ fontSize: 20, color: 'white' }} />
-                  </IconButton>
-                }
+    <CinePage>
+      <CineContainer>
+        <div style={{ paddingTop: 'clamp(48px, 8vh, 96px)' }}>
+          {/* En-tête profil */}
+          <CineCard
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'auto 1fr auto',
+              gap: '1.5rem',
+              alignItems: 'center',
+              padding: '2rem',
+            }}
+          >
+            <div style={{ position: 'relative' }}>
+              <div
+                style={{
+                  width: 100, height: 100,
+                  borderRadius: '50%',
+                  background: avatarUrl ? `url(${avatarUrl}) center/cover` : 'linear-gradient(135deg, var(--cine-accent), var(--cine-accent-3))',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  border: '2px solid var(--cine-line-hi)',
+                }}
               >
-                <Avatar
-                  src={avatarUrl || undefined}
-                  sx={{ width: 100, height: 100, bgcolor: 'primary.main' }}
-                >
-                  {!avatarUrl && <PersonIcon sx={{ fontSize: 60 }} />}
-                </Avatar>
-              </Badge>
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handleAvatarChange}
-                accept="image/*"
-                style={{ display: 'none' }}
-              />
-            </Grid>
-            <Grid item xs>
-              <Typography variant="h4" gutterBottom>
-                {username}
-              </Typography>
-              <Typography variant="subtitle1" color="textSecondary">
-                Membre depuis {new Date().toLocaleDateString()}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Button
-                variant="outlined"
-                startIcon={<TrophyIcon />}
-                onClick={() => setOpenAchievements(true)}
+                {!avatarUrl && <PersonIcon sx={{ fontSize: 56, color: '#fff' }} />}
+              </div>
+              <button
+                type="button"
+                onClick={() => fileInputRef.current?.click()}
+                aria-label="Changer la photo"
+                style={{
+                  position: 'absolute', bottom: -4, right: -4,
+                  width: 32, height: 32, borderRadius: '50%',
+                  background: 'var(--cine-accent)', color: '#fff',
+                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                  border: '2px solid var(--cine-bg)',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 12px rgba(255, 61, 110, 0.4)',
+                }}
               >
-                Succès
-              </Button>
-            </Grid>
-          </Grid>
-        </Paper>
+                <PhotoCameraIcon sx={{ fontSize: 16 }} />
+              </button>
+              <input ref={fileInputRef} type="file" accept="image/*" onChange={handleAvatarChange} style={{ display: 'none' }} />
+            </div>
 
-        {/* Statistiques */}
-        <Grid container spacing={3} sx={{ mb: 4 }}>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                  <StarsIcon color="primary" sx={{ mr: 1 }} />
-                  <Typography variant="h6">Classement</Typography>
-                </Box>
-                <Typography variant="h4" gutterBottom>{stats.elo} ELO</Typography>
-                <Typography variant="body2" color="textSecondary">
-                  Rang actuel : {stats.rank}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" gutterBottom>
-                  Prochain rang : {getNextRank()}
-                </Typography>
-                <LinearProgress 
-                  variant="determinate" 
-                  value={getProgressToNextRank()} 
-                  sx={{ mt: 1 }}
-                />
-              </CardContent>
-            </Card>
-          </Grid>
+            <div style={{ minWidth: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', flexWrap: 'wrap' }}>
+                <h1 style={{ margin: 0, fontFamily: 'var(--cine-font-display)', fontSize: 'clamp(1.6rem, 3vw, 2.4rem)', fontWeight: 500, letterSpacing: 0, color: 'var(--cine-ink)' }}>
+                  {username}
+                </h1>
+                {FlagComponent && (
+                  <span style={{ width: 28, height: 20, display: 'inline-block', borderRadius: 2, overflow: 'hidden' }}>
+                    <FlagComponent style={{ width: '100%', height: '100%' }} />
+                  </span>
+                )}
+                {stats.isPremium && <CineBadge variant="accent">Premium</CineBadge>}
+              </div>
+              <div className="cine-mono" style={{ marginTop: '0.5rem' }}>
+                Membre depuis {new Date().toLocaleDateString('fr-FR')}
+              </div>
+            </div>
 
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                  <TrophyIcon color="primary" sx={{ mr: 1 }} />
-                  <Typography variant="h6">Statistiques</Typography>
-                </Box>
-                <Grid container spacing={2}>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="textSecondary">
-                      Parties jouées
-                    </Typography>
-                    <Typography variant="h6">{stats.gamesPlayed}</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="textSecondary">
-                      Victoires
-                    </Typography>
-                    <Typography variant="h6">{stats.wins}</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="textSecondary">
-                      Défaites
-                    </Typography>
-                    <Typography variant="h6">{stats.losses}</Typography>
-                  </Grid>
-                  <Grid item xs={6}>
-                    <Typography variant="body2" color="textSecondary">
-                      Ratio V/D
-                    </Typography>
-                    <Typography variant="h6">{stats.winRate}%</Typography>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
+            <button type="button" className="cine-button cine-button--ghost" onClick={() => setOpenAchievements(true)}>
+              <TrophyIcon fontSize="small" /> Succès
+            </button>
+          </CineCard>
 
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                  <TimelineIcon color="primary" sx={{ mr: 1 }} />
-                  <Typography variant="h6">Progression</Typography>
-                </Box>
-                <Box sx={{ height: 200 }}>
-                  <Line data={chartData} options={chartOptions} />
-                </Box>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
+          {/* Stats grid */}
+          <div className="cine-grid cine-grid--3" style={{ marginTop: '2rem' }}>
+            {/* Classement */}
+            <CineCard>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <StarsIcon sx={{ color: 'var(--cine-accent-3)', fontSize: 20 }} />
+                <span className="cine-mono">Classement</span>
+              </div>
+              <div className="cine-stat-value" style={{ marginTop: '0.8rem' }}>{stats.elo}</div>
+              <div className="cine-stat-label">ELO</div>
+              <div style={{ marginTop: '1.4rem', display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: 'var(--cine-ink-soft)' }}>
+                <span>Rang : <strong style={{ color: 'var(--cine-ink)' }}>{stats.rank}</strong></span>
+                <span>→ {getNextRank()}</span>
+              </div>
+              <div style={{ marginTop: '0.6rem', height: 4, borderRadius: 4, background: 'var(--cine-line)', overflow: 'hidden' }}>
+                <div style={{
+                  width: `${getProgressToNextRank()}%`, height: '100%',
+                  background: 'linear-gradient(90deg, var(--cine-accent), var(--cine-accent-3))',
+                  transition: 'width 0.6s ease',
+                }} />
+              </div>
+            </CineCard>
 
-        {/* Section Premium */}
-        {!stats.isPremium ? (
-          <Paper elevation={3} sx={{ p: 3 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <StarsIcon color="primary" sx={{ mr: 1 }} />
-              <Typography variant="h5">Passez à la version Premium !</Typography>
-            </Box>
-            <Grid container spacing={4}>
-              <Grid item xs={12} md={8}>
-                <Typography variant="h6" gutterBottom>
-                  Avantages Premium :
-                </Typography>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                      <CheckCircleIcon color="primary" sx={{ mr: 1 }} />
-                      <Typography>Cartes exclusives</Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                      <CheckCircleIcon color="primary" sx={{ mr: 1 }} />
-                      <Typography>Statistiques détaillées</Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                      <CheckCircleIcon color="primary" sx={{ mr: 1 }} />
-                      <Typography>Avatars personnalisés</Typography>
-                    </Box>
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                      <CheckCircleIcon color="primary" sx={{ mr: 1 }} />
-                      <Typography>Tournois VIP</Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                      <CheckCircleIcon color="primary" sx={{ mr: 1 }} />
-                      <Typography>Chat exclusif</Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                      <CheckCircleIcon color="primary" sx={{ mr: 1 }} />
-                      <Typography>Récompenses bonus</Typography>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item xs={12} md={4} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                <Button
-                  variant="contained"
-                  size="large"
-                  onClick={() => setOpenPremium(true)}
-                  sx={{ mb: 2 }}
+            {/* Statistiques */}
+            <CineCard>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <TrophyIcon sx={{ color: 'var(--cine-accent-3)', fontSize: 20 }} />
+                <span className="cine-mono">Statistiques</span>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.2rem', marginTop: '1rem' }}>
+                <div>
+                  <div className="cine-stat-value" style={{ fontSize: '1.6rem' }}>{stats.gamesPlayed}</div>
+                  <div className="cine-stat-label">Parties</div>
+                </div>
+                <div>
+                  <div className="cine-stat-value" style={{ fontSize: '1.6rem', color: 'var(--cine-success)' }}>{stats.wins}</div>
+                  <div className="cine-stat-label">Victoires</div>
+                </div>
+                <div>
+                  <div className="cine-stat-value" style={{ fontSize: '1.6rem', color: 'var(--cine-danger)' }}>{stats.losses}</div>
+                  <div className="cine-stat-label">Défaites</div>
+                </div>
+                <div>
+                  <div className="cine-stat-value" style={{ fontSize: '1.6rem' }}>{stats.winRate}%</div>
+                  <div className="cine-stat-label">Win rate</div>
+                </div>
+              </div>
+            </CineCard>
+
+            {/* Progression */}
+            <CineCard>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <TimelineIcon sx={{ color: 'var(--cine-accent-3)', fontSize: 20 }} />
+                <span className="cine-mono">Progression</span>
+              </div>
+              <div style={{ height: 180, marginTop: '1rem' }}>
+                <Line data={chartData} options={chartOptions as any} />
+              </div>
+            </CineCard>
+          </div>
+
+          {/* Section Premium */}
+          <div style={{ marginTop: '3rem', paddingBottom: '6rem' }}>
+            {!stats.isPremium ? (
+              <CineCard variant="accent" style={{ padding: '2.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.8rem' }}>
+                  <PremiumIcon sx={{ color: 'var(--cine-accent)' }} />
+                  <span className="cine-mono" style={{ color: 'var(--cine-accent)' }}>Premium</span>
+                </div>
+                <h2 style={{ margin: 0, fontFamily: 'var(--cine-font-display)', fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', fontWeight: 500, letterSpacing: 0 }}>
+                  Passez à la version <em style={{ color: 'var(--cine-ink-soft)', fontWeight: 400 }}>Premium.</em>
+                </h2>
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                    gap: '0.8rem',
+                    marginTop: '1.8rem',
+                  }}
                 >
-                  Devenir Premium
-                </Button>
-                <Typography variant="body2" color="textSecondary" align="center">
-                  À partir de 4.99€/mois
-                </Typography>
-              </Grid>
-            </Grid>
-          </Paper>
-        ) : (
-          <Paper elevation={3} sx={{ p: 3, bgcolor: 'primary.main', color: 'white' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <StarsIcon sx={{ mr: 1 }} />
-              <Typography variant="h5">Compte Premium Actif</Typography>
-            </Box>
-            <Typography variant="body1" sx={{ mb: 2 }}>
-              Profitez de tous vos avantages premium !
-            </Typography>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => window.open('/profile/premium-benefits', '_blank')}
+                  {[
+                    'Cartes exclusives',
+                    'Statistiques détaillées',
+                    'Avatars personnalisés',
+                    'Tournois VIP',
+                    'Chat exclusif',
+                    'Récompenses bonus',
+                  ].map((b) => (
+                    <div key={b} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--cine-ink-soft)' }}>
+                      <CheckCircleIcon sx={{ fontSize: 16, color: 'var(--cine-accent-2)' }} />
+                      <span style={{ fontSize: '0.95rem' }}>{b}</span>
+                    </div>
+                  ))}
+                </div>
+                <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <button type="button" className="cine-button cine-button--primary" onClick={() => setOpenPremium(true)}>
+                    Devenir Premium
+                  </button>
+                  <span className="cine-mono">À partir de 4,99 € / mois</span>
+                </div>
+              </CineCard>
+            ) : (
+              <CineCard variant="accent">
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <PremiumIcon sx={{ color: 'var(--cine-accent)' }} />
+                  <h2 style={{ margin: 0, fontFamily: 'var(--cine-font-display)', fontSize: '1.5rem', fontWeight: 500 }}>
+                    Compte Premium Actif
+                  </h2>
+                </div>
+                <p style={{ color: 'var(--cine-ink-soft)', marginTop: '0.8rem' }}>Profitez de tous vos avantages premium.</p>
+                <button
+                  type="button"
+                  className="cine-button cine-button--ghost"
+                  style={{ marginTop: '1rem' }}
+                  onClick={() => window.open('/profile/premium-benefits', '_blank')}
+                >
+                  Voir mes avantages →
+                </button>
+              </CineCard>
+            )}
+          </div>
+        </div>
+      </CineContainer>
+
+      {/* Modal Premium */}
+      {openPremium && (
+        <Modal title="Choisissez votre formule Premium" onClose={() => setOpenPremium(false)} maxWidth={620}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => handlePremiumPurchase('monthly')}
+              style={{
+                padding: '1.8rem', border: '1px solid var(--cine-line)', borderRadius: 'var(--cine-radius-md)',
+                background: 'var(--cine-surface)', textAlign: 'center', cursor: 'pointer',
+                transition: 'border-color var(--cine-transition), background var(--cine-transition)',
+              }}
             >
-              Voir mes avantages
-            </Button>
-          </Paper>
-        )}
+              <div className="cine-mono">Mensuel</div>
+              <div style={{ fontFamily: 'var(--cine-font-display)', fontSize: '2.4rem', fontWeight: 600, marginTop: '0.4rem', letterSpacing: 0 }}>
+                4,99 <span style={{ fontSize: '1rem', color: 'var(--cine-ink-soft)' }}>€/mois</span>
+              </div>
+              <button type="button" className="cine-button cine-button--ghost cine-button--mono" style={{ marginTop: '1.2rem', width: '100%', justifyContent: 'center' }}>
+                Choisir
+              </button>
+            </div>
 
-        {/* Dialog Premium */}
-        <Dialog
-          open={openPremium}
-          onClose={() => setOpenPremium(false)}
-          maxWidth="sm"
-          fullWidth
-        >
-          <DialogTitle>Choisissez votre formule Premium</DialogTitle>
-          <DialogContent>
-            <Grid container spacing={3} sx={{ mt: 1 }}>
-              <Grid item xs={12} sm={6}>
-                <Paper
-                  elevation={3}
-                  sx={{
-                    p: 3,
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    cursor: 'pointer',
-                    '&:hover': { bgcolor: 'action.hover' },
-                  }}
-                  onClick={() => handlePremiumPurchase('monthly')}
-                >
-                  <Typography variant="h6" gutterBottom>
-                    Mensuel
-                  </Typography>
-                  <Typography variant="h4" gutterBottom>
-                    4.99€
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" align="center">
-                    par mois
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    fullWidth
-                    sx={{ mt: 2 }}
-                  >
-                    Choisir
-                  </Button>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Paper
-                  elevation={3}
-                  sx={{
-                    p: 3,
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    cursor: 'pointer',
-                    bgcolor: 'primary.main',
-                    color: 'white',
-                    '&:hover': { bgcolor: 'primary.dark' },
-                  }}
-                  onClick={() => handlePremiumPurchase('yearly')}
-                >
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      top: 10,
-                      right: -30,
-                      bgcolor: 'secondary.main',
-                      color: 'white',
-                      px: 2,
-                      py: 0.5,
-                      transform: 'rotate(45deg)',
-                    }}
-                  >
-                    <Typography variant="body2">-20%</Typography>
-                  </Box>
-                  <Typography variant="h6" gutterBottom>
-                    Annuel
-                  </Typography>
-                  <Typography variant="h4" gutterBottom>
-                    47.88€
-                  </Typography>
-                  <Typography variant="body2" sx={{ opacity: 0.9 }} align="center">
-                    soit 3.99€/mois
-                  </Typography>
-                  <Button
-                    variant="contained"
-                    color="secondary"
-                    fullWidth
-                    sx={{ mt: 2 }}
-                  >
-                    Choisir
-                  </Button>
-                </Paper>
-              </Grid>
-            </Grid>
-            <Typography variant="body2" color="textSecondary" sx={{ mt: 3, textAlign: 'center' }}>
-              Paiement sécurisé • Annulation à tout moment • Satisfait ou remboursé
-            </Typography>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setOpenPremium(false)}>Fermer</Button>
-          </DialogActions>
-        </Dialog>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => handlePremiumPurchase('yearly')}
+              style={{
+                position: 'relative',
+                padding: '1.8rem',
+                border: '1px solid var(--cine-accent)',
+                borderRadius: 'var(--cine-radius-md)',
+                background: 'linear-gradient(180deg, rgba(255,61,110,0.1), transparent)',
+                textAlign: 'center', cursor: 'pointer',
+              }}
+            >
+              <div style={{ position: 'absolute', top: 12, right: 12 }}>
+                <CineBadge variant="accent">-20%</CineBadge>
+              </div>
+              <div className="cine-mono" style={{ color: 'var(--cine-accent)' }}>Annuel</div>
+              <div style={{ fontFamily: 'var(--cine-font-display)', fontSize: '2.4rem', fontWeight: 600, marginTop: '0.4rem', letterSpacing: 0 }}>
+                47,88 <span style={{ fontSize: '1rem', color: 'var(--cine-ink-soft)' }}>€/an</span>
+              </div>
+              <div className="cine-mono" style={{ marginTop: '0.4rem', color: 'var(--cine-ink-soft)' }}>soit 3,99 € / mois</div>
+              <button type="button" className="cine-button cine-button--primary cine-button--mono" style={{ marginTop: '1.2rem', width: '100%', justifyContent: 'center' }}>
+                Choisir
+              </button>
+            </div>
+          </div>
+          <p className="cine-mono" style={{ textAlign: 'center', marginTop: '1.5rem', color: 'var(--cine-ink-dim)' }}>
+            Paiement sécurisé · Annulation à tout moment · Satisfait ou remboursé
+          </p>
+        </Modal>
+      )}
 
-        {/* Dialog des succès */}
-        <Dialog
-          open={openAchievements}
-          onClose={() => setOpenAchievements(false)}
-          maxWidth="sm"
-          fullWidth
-        >
-          <DialogTitle>Succès</DialogTitle>
-          <DialogContent>
-            <Grid container spacing={2}>
-              {achievements.map((achievement) => (
-                <Grid item xs={12} key={achievement.id}>
-                  <Paper
-                    sx={{
-                      p: 2,
-                      display: 'flex',
-                      alignItems: 'center',
-                      opacity: achievement.unlocked ? 1 : 0.7,
-                    }}
-                  >
-                    <Box sx={{ mr: 2, fontSize: '2rem' }}>
-                      {achievement.unlocked ? achievement.icon : <LockIcon />}
-                    </Box>
-                    <Box sx={{ flexGrow: 1 }}>
-                      <Typography variant="h6">{achievement.title}</Typography>
-                      <Typography variant="body2" color="textSecondary">
-                        {achievement.description}
-                      </Typography>
-                      {achievement.progress !== undefined && (
-                        <LinearProgress
-                          variant="determinate"
-                          value={(achievement.progress / (achievement.maxProgress || 1)) * 100}
-                          sx={{ mt: 1 }}
-                        />
-                      )}
-                    </Box>
-                  </Paper>
-                </Grid>
-              ))}
-            </Grid>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={() => setOpenAchievements(false)}>Fermer</Button>
-          </DialogActions>
-        </Dialog>
-      </Box>
-    </Container>
+      {/* Modal Succès */}
+      {openAchievements && (
+        <Modal title="Succès" onClose={() => setOpenAchievements(false)}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+            {ACHIEVEMENTS.map((a) => (
+              <div
+                key={a.id}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: '1rem',
+                  padding: '1rem 1.2rem',
+                  border: '1px solid var(--cine-line)',
+                  borderRadius: 'var(--cine-radius-md)',
+                  background: 'var(--cine-surface)',
+                  opacity: a.unlocked ? 1 : 0.6,
+                }}
+              >
+                <div style={{ fontSize: '1.6rem', flexShrink: 0 }}>
+                  {a.unlocked ? a.icon : <LockIcon sx={{ color: 'var(--cine-ink-dim)' }} />}
+                </div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontFamily: 'var(--cine-font-display)', fontSize: '1.05rem', color: 'var(--cine-ink)' }}>
+                    {a.title}
+                  </div>
+                  <div style={{ color: 'var(--cine-ink-soft)', fontSize: '0.9rem', marginTop: '0.2rem' }}>{a.description}</div>
+                  {a.progress !== undefined && (
+                    <div style={{ marginTop: '0.6rem', height: 3, borderRadius: 3, background: 'var(--cine-line)', overflow: 'hidden' }}>
+                      <div style={{
+                        width: `${(a.progress / (a.maxProgress || 1)) * 100}%`,
+                        height: '100%',
+                        background: 'var(--cine-accent)',
+                      }} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Modal>
+      )}
+    </CinePage>
   );
 };
 

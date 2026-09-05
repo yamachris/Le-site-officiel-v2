@@ -1,0 +1,1009 @@
+{
+  "game": {
+    "turn": "Turno {{number}}",
+    "discard": "Descartar",
+    "draw": "Robar",
+    "play": "Jugar",
+    "yourTurn": "Tu Turno",
+    "opponentTurn": "Turno del Adversario",
+    "waitingForPlayers": "Esperando a los demás jugadores...",
+    "timeRunningOut": "¡El tiempo se acaba!",
+    "messages": {
+      "discardPhase": "Descarta una carta para continuar",
+      "drawPhase": "Roba una carta",
+      "actionPhase": "Juega tus cartas o pasa tu turno",
+      "canEndTurn": "Puedes terminar tu turno",
+      "strategicShuffleFirst": "¡Primer Barajado Estratégico! ⚠️ El próximo uso hará que pierdas tu turno.",
+      "strategicShuffleNext": "Barajado estratégico realizado - Fin de tu turno",
+      "blockWithJokerSuccess": "¡Ataque bloqueado con un Comodín!",
+      "blockWithSevenSuccess": "¡Ataque bloqueado con un Siete!",
+      "reserveSuitOccupied": "Esta columna ya tiene un activador (7 o Comodín)",
+      "faceCardPlaced": "{{value}} colocado con un activador",
+      "wrongSuit": "Esta carta debe colocarse en su columna de color",
+      "slotOccupied": "Este espacio ya está ocupado",
+      "queenHealing": "¡La Reina te cura {{amount}} PV!",
+      "queenChallengeResult": "¡Desafío {{result}}! Ganas {{amount}} PV ❤️",
+      "queenChallengeStart": "¡Desafío de la Buena Reina iniciado!",
+      "cardExchanged": "Cartas intercambiadas",
+      "valetAttack": "¡La Sota destruyó {{count}} cartas de la columna {{suit}}!",
+      "valetCannotAttack": "La Sota no puede atacar ahora",
+      "valetPassive": "Sota pasiva - No puede atacar este turno",
+      "valetActive": "Haz clic para atacar con la Sota"
+    },
+    "gameOver": {
+      "title": "Fin del Juego",
+      "surrendered": "Te has rendido",
+      "finalScore": "Puntuación Final",
+      "newGame": "Nueva Partida"
+    },
+    "setup": {
+      "title": "Fase de Preparación",
+      "welcome": "¡Bienvenido a UNIT Card Game! Por favor, selecciona 2 cartas para tu reserva",
+      "reserve": "Reserva",
+      "yourHand": "Tu Mano",
+      "handCount": "cartas",
+      "selectCards": "Selecciona 2 cartas para la reserva",
+      "startGame": "Comenzar Partida",
+      "timeLeft": "Tiempo Restante",
+      "timeExpired": "Partida cancelada - Tiempo de preparación expirado"
+    },
+    "cards": {
+      "deck": "Mazo",
+      "discard": "Descarte",
+      "hand": "Mano",
+      "reserve": "Reserva",
+      "total": "Total",
+      "slot": "Espacio",
+      "jack": "Sota",
+      "king": "Rey",
+      "as": "As",
+      "revolution": "revolución",
+      "of": "de",
+      "suits": {
+        "hearts": "Corazones",
+        "diamonds": "Diamantes",
+        "clubs": "Tréboles",
+        "spades": "Picas"
+      }
+    },
+    "actions": {
+      "exchange": "Intercambiar",
+      "surrender": "Rendirse",
+      "skipAction": "Saltar Acción",
+      "endTurn": "Fin del Turno",
+      "turnPassed": "Turno Pasado",
+      "strategicShuffle": {
+        "button": "Barajado Estratégico",
+        "tooltip": "Barajar las cartas estratégicamente"
+      },
+      "placeSeven": "Colocar",
+      "confirmSurrender": "¿Estás seguro de que quieres rendirte?",
+      "nextPhase": "Siguiente Fase",
+      "startTurn": "Iniciar Turno",
+      "block": {
+        "action": "Bloquear",
+        "tooltip": "Bloquear un ataque adversario",
+        "success": "¡Bloqueo activado! Estás protegido contra el próximo ataque."
+      },
+      "sacrifice": {
+        "button": "Sacrificar",
+        "tooltip": "Sacrificar una carta especial"
+      }
+    },
+    "ui": {
+      "startMessage": "Selecciona tu primera carta para descartar",
+      "cardCount": "cartas",
+      "strategicShuffle": "Barajado Estratégico",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "opponentCards": "Cartas del Oponente"
+    },
+    "attack": {
+      "chooseAttack": "Elige tu ataque",
+      "selectTarget": "Selecciona objetivo",
+      "noValidTargets": "No hay objetivos válidos disponibles",
+      "healthTarget": "puntos de vida",
+      "warnings": {
+        "invalidTarget": "Objetivo inválido",
+        "unitAlreadyAttacked": "Esta unidad ya ha atacado",
+        "protectedByKing": "Protegido por el Rey",
+        "cardNotAvailable": "Carta no disponible en mano",
+        "invalidHealthAttackCard": "Esta carta no puede ser usada para ataques de vida"
+      }
+    },
+    "block": {
+      "title": "¿Bloquear con Comodín o Siete de la suerte?",
+      "description": "El jugador {{player}} está atacando tu {{target}} con {{card}}. Puedes bloquear este ataque con un Comodín o un Siete de la suerte.",
+      "selectJoker": "Selecciona un Comodín para usar:",
+      "selectCard": "Selecciona una carta:",
+      "inHand": "En Mano",
+      "inReserve": "En Reserva",
+      "inColumn": "En columna",
+      "block": "Bloquear Ataque",
+      "decline": "Permitir Ataque",
+      "noJokers": "No tienes Comodines para bloquear."
+    }
+  },
+  "home": {
+    "subtitle": "Juego de Cartas",
+    "tagline": "La estrategia y la suerte se encuentran en este rápido juego de cartas. ¡Desafía a la IA o enfrenta a jugadores reales en línea!",
+    "discover": {
+      "title": "Descubre UNIT",
+      "subtitle": "Un juego de cartas estratégico explosivo"
+    },
+    "tutorial": {
+      "button": "Abrir tutorial completo"
+    },
+    "profile": {
+      "title": "Perfil de Jugador",
+      "nicknameLabel": "Tu Apodo:",
+      "nicknamePlaceholder": "Ingresa tu apodo",
+      "statsTitle": "Estadísticas del Jugador",
+      "gamesPlayed": "Partidas Jugadas",
+      "winRate": "Tasa de Victoria"
+    },
+    "solo": {
+      "title": "Modo Solo",
+      "description": "¡Desafía a la IA en un duelo estratégico cara a cara. Perfecto para perfeccionar tus habilidades!",
+      "button": "Jugar contra la Computadora"
+    },
+    "online": {
+      "title": "Modo En Línea",
+      "description": "¡Enfrenta a adversarios reales en línea y demuestra tus habilidades. El matchmaking encontrará el oponente perfecto!",
+      "button": "Encontrar Partida En Línea"
+    },
+    "errors": {
+      "enterNickname": "Por favor ingresa tu apodo",
+      "soloFailed": "Error al iniciar el juego solo. Por favor intenta de nuevo.",
+      "matchFailed": "No se pudo encontrar una partida. Por favor intenta de nuevo."
+    },
+    "presentation": {
+      "line1": "🎙️ « Bienvenido a UNIT – un explosivo juego de cartas estratégico donde cada jugador construye ejércitos para desencadenar... una Revolución. »",
+      "line2": "🎙️ « Con una simple baraja de 54 cartas, ensamblas columnas de unidades – del As al 10 – para atacar, defender y manipular el campo de batalla. »",
+      "line3": "🎙️ « Cuidado: las cartas especiales como los Reyes, las Sotas o los Comodines pueden cambiarlo todo. »",
+      "line4": "🎙️ « ¿El objetivo? Reduce los puntos de vida de tu adversario a cero… o desencadena una Revolución que inflige 10 de daño de un solo golpe. »",
+      "line5": "🎙️ « Simple de entender, profundo de dominar… y cada partida es única. »",
+      "line6": "🎙️ « ¿Listo para cambiar el curso de la Historia? Es el momento de entrar en UNIT. »"
+    }
+  },
+  "matchmaking": {
+    "title": "Buscando Oponente",
+    "searching": "Buscando",
+    "regions": "Buscando en todas las regiones...",
+    "cancel": "Cancelar"
+  },
+  "loading": {
+    "game": "Cargando el juego..."
+  },
+  "tutorial": {
+    "nav": {
+      "chapters": "Capítulos",
+      "close": "✕ Cerrar",
+      "prev": "← Capítulo anterior",
+      "next": "Capítulo siguiente →"
+    },
+    "mainTitle": "📖 Reglas completas del juego UNIT",
+    "chapter1": {
+      "title": "Entender el desarrollo de un turno en UNIT",
+      "subtitle": "Capítulo 1 • Bases del gameplay",
+      "debut-partie": {
+        "title": "Inicio de la Partida",
+        "content": [
+          "Cada jugador empieza con un mazo personal de 54 cartas.",
+          "Roba 7 cartas al inicio de la partida.",
+          "De esas 7 cartas, 2 elegidas por él se colocan boca abajo en reserva, sobre el tablero.",
+          "El jugador conserva 5 cartas en mano y 2 cartas en reserva."
+        ],
+        "highlight": "🧠 Recordatorio importante: La reserva es una extensión estratégica de la mano, permanece boca abajo y es accesible durante la partida."
+      },
+      "structure-tour": {
+        "title": "Estructura de un Turno",
+        "content": [
+          "Cada turno sigue siempre la misma secuencia."
+        ]
+      },
+      "cas-1": {
+        "title": "Caso 1: El jugador comienza su turno con 7 cartas",
+        "subtitle": "(5 en mano + 2 en reserva)",
+        "content": [
+          "Descarte obligatorio: El jugador debe descartar 1 carta de su mano (elige cuál).",
+          "Robar: Luego roba 1 carta para volver a un total de 7 cartas.",
+          "Fase de acción: Puede entonces:",
+          "• Colocar cartas para construir unidades,",
+          "• Usar una carta especial (Jota, Rey, etc.),",
+          "• Atacar o activar un efecto.",
+          "Fin de turno: Una vez terminadas sus acciones, el jugador anuncia el fin de su turno."
+        ],
+        "warning": "🛑 Si el jugador no puede o no quiere realizar ninguna acción, debe igualmente indicar el fin de su turno."
+      },
+      "cas-2": {
+        "title": "Caso 2: El jugador tiene menos de 7 cartas al inicio de su turno",
+        "subtitle": "(porque jugó cartas anteriormente)",
+        "content": [
+          "El jugador roba inmediatamente el número de cartas necesario para volver a 7.",
+          "Luego entra en la fase de acción: puede jugar, atacar, activar un efecto...",
+          "Fin de turno: termina su turno como de costumbre."
+        ]
+      },
+      "rappel-general": {
+        "title": "Recordatorio general",
+        "content": [
+          "Los jugadores nunca pueden superar 7 cartas (5 en mano + 2 en reserva).",
+          "Si está a 7 al inicio del turno: debe descartar 1 carta antes de robar.",
+          "Si jugó cartas: roba directamente, sin descartar.",
+          "Cada turno, un jugador puede actuar o pasar, pero debe indicarlo."
+        ]
+      }
+    },
+    "chapter2": {
+      "title": "La Fase de Acción",
+      "subtitle": "Capítulo 2 • Acciones y estrategias",
+      "introduction-phase": {
+        "title": "La Fase de Acción",
+        "content": [
+          "Durante su turno, después de robar, el jugador entra en su fase de acción.",
+          "Puede realizar varios tipos de acciones, en el orden que desee."
+        ]
+      },
+      "actions-disponibles": {
+        "title": "Acciones disponibles",
+        "content": [
+          "Cada acción cuesta 1 acción, salvo casos especiales.",
+          "Lista de acciones principales que un jugador puede realizar durante su turno:"
+        ]
+      },
+      "action-construire": {
+        "title": "1. Jugar una carta para construir una unidad",
+        "content": [
+          "El jugador coloca una carta en la columna correspondiente (por palo).",
+          "Las unidades deben colocarse en orden ascendente, del As al 10."
+        ],
+        "highlight": "➡️ ✅ Esta acción permite avanzar hacia un ataque o una Revolución."
+      },
+      "action-speciale": {
+        "title": "2. Jugar una carta especial (Jota, Rey, Reina)",
+        "content": [
+          "El jugador puede invocar una carta especial mediante:",
+          "• Sacrificio (cartas ya colocadas),",
+          "• Uso de un Comodín,",
+          "• O un 7 de suerte.",
+          "La invocación cuenta como una acción."
+        ],
+        "highlight": "💡 Excepción: Si una Jota es invocada por Comodín o sacrificio, puede atacar inmediatamente en el mismo turno."
+      },
+      "action-attaquer": {
+        "title": "3. Atacar con una unidad",
+        "content": [
+          "Una unidad puede atacar una sola vez en su categoría.",
+          "Este ataque cuesta 1 acción."
+        ],
+        "warning": "⚠️ Después de un ataque, toda la categoría de unidades queda desactivada, incluso si el ataque fue bloqueado."
+      },
+      "action-echanger": {
+        "title": "4. Intercambiar una carta con un Comodín ya colocado",
+        "content": [
+          "Si un Comodín está en el tablero para reemplazar una carta, el jugador puede reemplazarlo por la carta real.",
+          "El Comodín vuelve a la mano o reserva según su origen."
+        ],
+        "highlight": "➡️ ✅ Este intercambio cuenta como una acción."
+      },
+      "defense": {
+        "title": "5. Defensa durante el turno adversario",
+        "content": [
+          "Un jugador puede bloquear un ataque adversario:",
+          "• Con un COMODÍN (en mano o reserva) → lo juega inmediatamente, bloquea el ataque.",
+          "• Con un 7 de suerte en la columna atacada → bloquea un único ataque."
+        ],
+        "highlight": "🧠 Recuerda: Un Comodín puede bloquear cualquier ataque (salvo Revolución)."
+      },
+      "limites-action": {
+        "title": "Límites de acción",
+        "content": [
+          "El jugador puede realizar todas las acciones que quiera, siempre que tenga cartas.",
+          "Sin embargo:",
+          "• Solo un intercambio de Comodín por turno.",
+          "• Solo un ataque por categoría de unidad.",
+          "• Algunas cartas (Jota) no atacan inmediatamente, salvo casos especiales."
+        ]
+      },
+      "fin-tour": {
+        "title": "Fin de Turno",
+        "content": [
+          "Una vez terminadas todas las acciones, el jugador anuncia el fin de su turno.",
+          "Si no realiza ninguna acción, debe igualmente declarar el fin de su turno."
+        ]
+      }
+    },
+    "chapter3": {
+      "title": "Activadores: 7 de suerte y Comodín",
+      "subtitle": "Capítulo 3 • Mecánicas de activación",
+      "introduction-activateurs": {
+        "title": "Activadores: 7 de suerte y Comodín",
+        "content": [
+          "En UNIT, para construir una columna de unidad, hay que activarla con una carta especial llamada activador.",
+          "Hay dos tipos de activadores:",
+          "• 🟦 El 7 de suerte",
+          "• 🃏 El Comodín"
+        ]
+      },
+      "comment-activer": {
+        "title": "¿Cómo activar una columna?",
+        "content": [
+          "Para iniciar una columna, hay que colocar un As y subir progresivamente hasta el 6.",
+          "Este activador se coloca en una zona especial de la columna, llamada reservaSuitColumna."
+        ],
+        "highlight": "🧠 Para ir más allá del 6 (y jugar el 8, 9, 10), es obligatorio tener un activador en su lugar."
+      },
+      "fonctionnement-activateur": {
+        "title": "Funcionamiento de un activador",
+        "content": [
+          "Cuando un 7 de suerte o un Comodín se juega como activador:",
+          "• Se coloca junto a la columna, en la reservaSuitColumna.",
+          "• Desbloquea el avance hacia el 8, 9, 10.",
+          "• Permanece activo mientras la columna no sea destruida."
+        ]
+      },
+      "exemple-activation": {
+        "title": "Ejemplo",
+        "content": [
+          "Tienes cartas del As al 6 en Diamantes.",
+          "Colocas un 7 de suerte de Diamantes en la reservaSuitColumna.",
+          "Ahora puedes colocar el 8, 9, 10 de Diamantes."
+        ]
+      },
+      "conditions-importantes": {
+        "title": "¡Atención a las condiciones!",
+        "content": [
+          "Un Comodín o cualquier 7 de suerte puede jugarse al inicio para abrir el juego, aunque no corresponda al palo."
+        ],
+        "highlight": "✅ Esto permite avanzar y adaptar la estrategia.",
+        "warning": "❌ Pero para pasar del 6 al 8 en una columna, es obligatorio el 7 de suerte del mismo palo que la columna."
+      },
+      "echange-activateur": {
+        "title": "El intercambio de activador",
+        "content": [
+          "Si colocaste el 7 incorrecto o un Comodín en la reservaSuitColumna:",
+          "• Puedes intercambiar el activador por el 7 de suerte correcto del palo de la columna.",
+          "• El Comodín o 7 anterior vuelve a su posición original.",
+          "• Este intercambio cuesta una acción."
+        ]
+      },
+      "attaque-activateur": {
+        "title": "¿Qué pasa en caso de ataque?",
+        "content": [
+          "Si una Jota ataca una columna activada con un 7 o un Comodín:",
+          "• Todas las cartas de la columna, incluido el activador, van al cementerio.",
+          "• Habrá que empezar de nuevo desde el As."
+        ]
+      },
+      "activateurs-cartes-speciales": {
+        "title": "Activadores y cartas especiales",
+        "content": [
+          "Los 7 de suerte y Comodines también pueden usarse para invocar cartas especiales:",
+          "• Rey → 7 o Comodín → Cementerio",
+          "• Reina → 7 o Comodín → Cementerio",
+          "• Jota → 7 o Comodín → Cementerio"
+        ],
+        "warning": "❗ En cuanto un 7 o Comodín se usa para una carta especial, va inmediatamente al cementerio."
+      },
+      "resume-activateurs": {
+        "title": "Puntos clave",
+        "content": [
+          "▶️ Activar columna = As + 7 o Comodín en la reservaSuitColumna.",
+          "🔒 Para colocar un 8, se necesita el 7 de suerte del mismo palo.",
+          "🔁 Se puede intercambiar el activador si es necesario.",
+          "💥 En caso de ataque de Jota, columna + activador son destruidos.",
+          "👑 Los activadores también pueden usarse para Reyes, Reinas o Jotas, pero van al cementerio."
+        ]
+      }
+    },
+    "chapter4": {
+      "title": "La Revolución - El ataque definitivo",
+      "subtitle": "Capítulo 4 • El objetivo supremo del juego",
+      "revolution-intro": {
+        "title": "La Revolución – El ataque definitivo",
+        "content": [
+          "La Revolución es el objetivo estratégico supremo en UNIT.",
+          "Es el ataque más poderoso del juego, capaz de cambiar una partida entera.",
+          "Simboliza la culminación perfecta de una columna completa."
+        ]
+      },
+      "revolution-conditions": {
+        "title": "Condiciones obligatorias para desencadenar una Revolución",
+        "content": [
+          "Para lanzar una Revolución, deben cumplirse todas estas condiciones:",
+          "",
+          "✅ Haber colocado las 10 cartas del mismo palo en orden, del As al 10",
+          "✅ No haber usado un Comodín en la columna",
+          "✅ Haber activado correctamente la columna con el 7 de suerte correcto",
+          "✅ Haber colocado el 10 (esto desencadena la Revolución automáticamente)"
+        ]
+      },
+      "revolution-effects": {
+        "title": "Efectos inmediatos de la Revolución",
+        "content": [
+          "💥 El Rey adversario del mismo palo es destruido.",
+          "💥 El adversario sufre 10 puntos de daño directo, sin defensa posible.",
+          "🪦 Toda la columna (As al 10) va al cementerio.",
+          "❗ Ningún Comodín, 7 de suerte, Jota u otro efecto puede bloquear una Revolución."
+        ]
+      },
+      "revolution-unstoppable": {
+        "title": "Por qué la Revolución es imparable",
+        "content": [
+          "La Revolución ignora todos los mecanismos de defensa:",
+          "",
+          "✅ Ignora a los Reyes",
+          "✅ Ignora a los Comodines",
+          "✅ Ignora los 7 de suerte",
+          "✅ Ignora las cartas en reserva",
+          "✅ Ignora cualquier contraacción"
+        ]
+      },
+      "revolution-joker-case": {
+        "title": "Caso especial: Comodín en la columna",
+        "content": [
+          "Si un Comodín reemplaza una carta en la columna:",
+          "",
+          "❌ La Revolución queda bloqueada.",
+          "",
+          "Hay que intercambiar el Comodín por la carta real para desbloquear la Revolución."
+        ]
+      },
+      "revolution-strategy": {
+        "title": "Reflexión estratégica",
+        "content": [
+          "El Comodín es peligroso en una columna si se apunta a la Revolución.",
+          "A veces es mejor retrasar una acción que sacrificar la posibilidad de una Revolución.",
+          "Mantener la columna pura garantiza un resultado brutal."
+        ]
+      },
+      "revolution-perfect": {
+        "title": "La Revolución perfecta",
+        "content": [
+          "Una Revolución perfecta ocurre cuando el jugador la desencadena sin haber realizado ningún otro ataque.",
+          "",
+          "🎖️ Demuestra un control absoluto del tempo y un estilo de juego puro."
+        ]
+      },
+      "revolution-summary": {
+        "title": "Resumen rápido",
+        "content": [
+          "🎯 Cartas necesarias: As al 10, mismo palo, sin Comodín",
+          "🔧 Activación obligatoria: Sí, con el 7 de suerte correspondiente",
+          "⚡ Desencadenante: Colocar el 10",
+          "💥 Efectos: Destrucción del Rey + 10 daños directos",
+          "🛡️ ¿Bloqueable?: No, imposible",
+          "🪦 Consecuencias: Columna entera al cementerio"
+        ]
+      }
+    },
+    "chapter5": {
+      "title": "La Defensa - Proteger los puntos de vida",
+      "subtitle": "Capítulo 5 • Mecanismos defensivos",
+      "defense-intro": {
+        "title": "La Defensa – Proteger los puntos de vida y las unidades",
+        "content": [
+          "En UNIT, la defensa es tan importante como el ataque.",
+          "Ciertas cartas y posiciones permiten anular o limitar el impacto de una acción adversaria."
+        ]
+      },
+      "defense-objectives": {
+        "title": "Objetivo de la defensa",
+        "content": [
+          "Impedir al adversario:",
+          "",
+          "• Infligir daños directos a tus puntos de vida.",
+          "• Destruir tus unidades o cartas especiales fácilmente.",
+          "• Romper tu estrategia."
+        ]
+      },
+      "joker-defense": {
+        "title": "El Comodín – Defensor universal",
+        "content": [
+          "🔹 Efecto: Puede bloquear cualquier ataque, sin importar la columna.",
+          "🔹 Límite: No puede bloquear una Revolución.",
+          "",
+          "Después de su uso, va inmediatamente al cementerio.",
+          "",
+          "💡 Consejo: Guardar un Comodín en mano suele ser más seguro que usarlo para atacar."
+        ]
+      },
+      "seven-defense": {
+        "title": "El 7 de suerte – Escudo de columna",
+        "content": [
+          "🔹 Efecto: Un 7 de suerte colocado en una columna puede bloquear un único ataque.",
+          "",
+          "• El 7 debe ser del mismo palo que la columna.",
+          "• Después de su uso, el 7 queda desactivado hasta que la columna sea destruida y reconstruida."
+        ]
+      },
+      "defense-interactions": {
+        "title": "Interacciones importantes",
+        "content": [
+          "🔸 Unidad clásica (1–6): Comodín ✅ | 7 de suerte ✅",
+          "🔸 8 o 9: Comodín ✅ | 7 de suerte ✅",
+          "🔸 Jota: Comodín ✅ | 7 de suerte ✅",
+          "🔸 Rey: Comodín ❌ | 7 de suerte ❌",
+          "🔸 Revolución (10): Comodín ❌ | 7 de suerte ❌"
+        ]
+      },
+      "defense-strategy": {
+        "title": "Estrategia defensiva",
+        "content": [
+          "🎯 Anticipar: Mantener al menos una defensa activa cada turno.",
+          "🎯 Proteger columnas clave: Colocar un 7 de suerte en la columna más avanzada.",
+          "🎯 Gestionar recursos: Un Comodín usado demasiado pronto puede costar la partida."
+        ]
+      },
+      "defense-summary": {
+        "title": "Resumen rápido",
+        "content": [
+          "🃏 Comodín = defensa universal contra todo salvo Revolución.",
+          "7️⃣ 7 de suerte = defensa local en su columna.",
+          "🚫 Ninguna carta bloquea la Revolución."
+        ]
+      }
+    },
+    "chapter6": {
+      "title": "Mezcla Estratégica – Reconstruir el mazo",
+      "subtitle": "Capítulo 6 • La Mezcla Estratégica",
+      "melange-intro": {
+        "title": "Mezcla Estratégica – Reconstruir el mazo",
+        "content": [
+          "En UNIT, a veces es necesario mezclar las cartas del cementerio con el mazo para continuar jugando.",
+          "Esta acción puede servir para recuperar cartas clave o evitar quedarse bloqueado."
+        ]
+      },
+      "quand-melanger": {
+        "title": "¿Cuándo hacer una mezcla estratégica?",
+        "content": [
+          "Una mezcla estratégica puede realizarse antes de cualquier otra acción de tu turno cuando:",
+          "",
+          "• Quieres reintroducir cartas importantes en tu mazo.",
+          "• Estás bloqueado en tu progreso.",
+          "• Tu mazo aún no está vacío pero quieres reiniciar la distribución."
+        ]
+      },
+      "regles-melange": {
+        "title": "Reglas de la mezcla estratégica",
+        "content": [
+          "📅 Momento: Al inicio de tu turno, antes de descartar o robar.",
+          "",
+          "🔄 Procedimiento:",
+          "• Descartas todas las cartas de tu mano.",
+          "• Las 2 cartas de reserva permanecen en su lugar.",
+          "• Mezclas tu mazo y cementerio para formar un nuevo mazo.",
+          "",
+          "🥇 Primera vez: Puedes jugar normalmente después de la mezcla.",
+          "🔁 Veces siguientes: Debes pasar tu turno después de la mezcla."
+        ]
+      },
+      "limitations-melange": {
+        "title": "Limitaciones después de las mezclas siguientes",
+        "content": [
+          "❌ No puedes atacar ese turno.",
+          "❌ No puedes usar un Comodín para defenderte en el turno adversario siguiente.",
+          "✅ Un 7 de suerte ya activo en el tablero conserva su defensa."
+        ]
+      },
+      "cas-particuliers": {
+        "title": "Casos particulares",
+        "content": [
+          "🗂️ Mazo vacío: Se mezcla automáticamente el cementerio con el mazo sin perder el turno.",
+          "• Este caso no se considera una mezcla estratégica.",
+          "",
+          "⚠️ Multiplicar las mezclas estratégicas aumenta el azar."
+        ]
+      },
+      "astuce-strategique": {
+        "title": "Consejo estratégico",
+        "content": [
+          "✅ Puede desbloquear una situación…",
+          "❌ …pero a menudo cuesta tempo.",
+          "",
+          "💡 Úsalo con un objetivo claro, no por costumbre."
+        ],
+        "highlight": "🎯 Consejo: Planifica tu mezcla estratégica en función de cartas específicas que quieras recuperar."
+      }
+    },
+    "chapter7": {
+      "title": "El Sacrificio – Jugar una carta especial",
+      "subtitle": "Capítulo 7 • El Sacrificio",
+      "sacrifice-intro": {
+        "title": "El Sacrificio – Jugar una carta especial",
+        "content": [
+          "En UNIT, para jugar cartas especiales (Rey, Reina, Jota), puedes usar la mecánica del sacrificio.",
+          "Consiste en retirar cartas ya colocadas en el tablero para pagar el coste de invocación."
+        ]
+      },
+      "principe-sacrifice": {
+        "title": "Principio del sacrificio",
+        "content": [
+          "🎯 Objetivo: Retirar un número de cartas del tablero para invocar una carta especial.",
+          "🪦 Destino: Las cartas sacrificadas van al cementerio.",
+          "📏 Regla clave: Siempre empezar por la carta más alta de cada columna elegida."
+        ]
+      },
+      "cartes-non-sacrifiables": {
+        "title": "Cartas que no pueden sacrificarse",
+        "content": [
+          "❌ As",
+          "❌ 7 de suerte colocado en la columna",
+          "❌ 10 de Revolución",
+          "❌ Cualquier carta debajo de un As, un 7 colocado o un 10."
+        ]
+      },
+      "regles-selection": {
+        "title": "Reglas de selección",
+        "content": [
+          "🔝 Siempre empezar por la carta más alta de una columna.",
+          "🔄 Completar con otras cartas más altas de otras columnas si es necesario.",
+          "🌈 Mezcla de palos permitida.",
+          "⛓️ Sacrificio en cadena en una columna posible."
+        ]
+      },
+      "couts-invocation": {
+        "title": "Costes de invocación por sacrificio",
+        "content": [
+          "👑 Rey: 3 cartas",
+          "👸 Reina: 2 cartas",
+          "🃏 Jota: 1 carta (solo 8 o 9)"
+        ]
+      },
+      "attaque-immediate-valet": {
+        "title": "Caso especial – Ataque inmediato con Jota",
+        "content": [
+          "Si una Jota es invocada por Sacrificio o Comodín:",
+          "➡️ Puede atacar inmediatamente en el mismo turno."
+        ]
+      },
+      "astuce-sacrifice": {
+        "title": "Consejo estratégico",
+        "content": [
+          "❌ Pierdes cartas ya colocadas...",
+          "✅ ...pero ganas una pieza clave.",
+          "💡 Úsalo para romper el tempo adversario o sorprender con un efecto inmediato."
+        ],
+        "highlight": "⚔️ El sacrificio transforma tus recursos presentes en poder inmediato. ¡El timing es crucial!"
+      }
+    },
+    "chapter8": {
+      "title": "El Rey – Escudo supremo",
+      "subtitle": "Capítulo 8 • El Rey",
+      "roi-intro": {
+        "title": "El Rey – Escudo supremo",
+        "content": [
+          "El Rey es la pieza defensiva definitiva en UNIT.",
+          "En juego, protege completamente tus puntos de vida contra ataques de unidades del mismo palo."
+        ]
+      },
+      "effet-roi": {
+        "title": "Efecto del Rey",
+        "content": [
+          "Mientras un Rey esté presente para un palo determinado:",
+          "",
+          "🛡️ Ninguna unidad de ese palo menor de 8 puede atacar tus puntos de vida.",
+          "",
+          "Solo ciertos ataques pueden superar al Rey:",
+          "⚔️ 8 o 9 del mismo palo → vencen al Rey y lo destruyen.",
+          "🃏 Comodín → destruye un Rey de cualquier palo.",
+          "💥 Revolución (10) → destruye al Rey e inflige 10 daños directos."
+        ]
+      },
+      "conditions-roi": {
+        "title": "Condiciones para jugar un Rey",
+        "content": [
+          "⚔️ Sacrificio: 3 cartas (la más alta de cada columna).",
+          "🃏 Comodín: va al cementerio.",
+          "7️⃣ 7 de suerte: va al cementerio."
+        ]
+      },
+      "positionnement-roi": {
+        "title": "Posicionamiento",
+        "content": [
+          "👑 El Rey se coloca en el espacio 'Rey' de su palo en el tablero.",
+          "🔒 Una vez colocado, permanece hasta ser destruido por un ataque válido."
+        ]
+      },
+      "perte-roi": {
+        "title": "Pérdida del Rey",
+        "content": [
+          "Si el Rey es vencido por un 8, 9, Comodín o Revolución:",
+          "🪦 Va inmediatamente al cementerio.",
+          "❌ La protección que ofrecía desaparece al instante."
+        ]
+      },
+      "strategie-roi": {
+        "title": "Estrategia con el Rey",
+        "content": [
+          "🛡️ Defensiva: Bloquear un palo avanzado del adversario para ganar tiempo.",
+          "⏰ Temporal: Forzar al adversario a gastar un 8, 9 o Comodín.",
+          "🚧 Preventiva: Un Rey temprano puede frenar una categoría entera del adversario."
+        ]
+      },
+      "resume-roi": {
+        "title": "Puntos clave",
+        "content": [
+          "El Rey no gana la partida, pero puede impedir que el adversario la gane.",
+          "Bien jugado, se convierte en un verdadero muro en el tempo adversario."
+        ],
+        "highlight": "👑 ¡El Rey transforma la defensa pasiva en control activo del tablero!"
+      }
+    },
+    "chapter9": {
+      "title": "La Reina – Damas primero",
+      "subtitle": "Capítulo 9 • La Reina",
+      "dame-intro": {
+        "title": "La Reina – Damas primero",
+        "content": [
+          "La Reina es la única carta completamente inexpugnable de UNIT.",
+          "Nunca puede ser destruida ni impedida de llevar a cabo su efecto.",
+          "Su rol principal: curar tus puntos de vida."
+        ]
+      },
+      "immunite-dame": {
+        "title": "Inmunidad absoluta",
+        "content": [
+          "La Reina nunca puede ser atacada por ninguna carta o efecto:",
+          "",
+          "✅ Inmune al Comodín",
+          "✅ Inmune a la Jota",
+          "✅ Inmune a las unidades clásicas",
+          "",
+          "Su efecto se activa pase lo que pase."
+        ]
+      },
+      "effet-soin": {
+        "title": "Efecto principal – Curación",
+        "content": [
+          "⚔️ Sacrificio (2 cartas): +2 PV",
+          "7️⃣ 7 de suerte: +2 PV",
+          "🃏 Comodín: +4 PV"
+        ]
+      },
+      "defi-dame": {
+        "title": "Caso especial – Desafío de la Reina (solo con Comodín)",
+        "content": [
+          "La Reina se coloca boca abajo. El adversario debe adivinar su palo.",
+          "",
+          "❌ Respuesta incorrecta → +5 PV para el jugador que lanzó el desafío.",
+          "✅ Respuesta correcta → +1 PV para el jugador que lanzó el desafío.",
+          "",
+          "➡️ La Reina y el Comodín van al cementerio después del desafío."
+        ]
+      },
+      "regles-pose-dame": {
+        "title": "Reglas de colocación",
+        "content": [
+          "⚔️ Sacrificio: 2 cartas más altas → +2 PV.",
+          "7️⃣ 7 de suerte → +2 PV.",
+          "🃏 Comodín → +4 PV o Desafío de la Reina."
+        ]
+      },
+      "strategie-dame": {
+        "title": "Estrategia con la Reina",
+        "content": [
+          "🔒 Seguridad: Sin riesgo de perder la Reina antes de que actúe.",
+          "💊 Refuerzo: Ideal para recuperar PV en un momento crítico.",
+          "🎭 Presión psicológica: El Desafío de la Reina fuerza al adversario a adivinar."
+        ]
+      },
+      "resume-dame": {
+        "title": "Puntos clave",
+        "content": [
+          "La Reina es la carta de curación definitiva en UNIT.",
+          "Bien usada, puede revertir una partida en una sola acción."
+        ],
+        "highlight": "👸 ¡La Reina combina seguridad absoluta con potencial de recuperación!"
+      }
+    },
+    "chapter10": {
+      "title": "La Jota – El Arma de Eliminación",
+      "subtitle": "Capítulo 10 • La Jota",
+      "valet-intro": {
+        "title": "La Jota – El Arma de Eliminación",
+        "content": [
+          "La Jota es una carta ofensiva en UNIT.",
+          "Es uno de los medios más poderosos para destruir columnas adversarias, pero a un coste: siempre se sacrifica después de su uso."
+        ]
+      },
+      "role-valet": {
+        "title": "Rol principal",
+        "content": [
+          "⚔️ Puede destruir una unidad adversaria del mismo palo.",
+          "💥 Contra unidades pequeñas, puede barrer una columna entera.",
+          "🪦 Se consume en cuanto ataca."
+        ]
+      },
+      "invocation-valet": {
+        "title": "Invocación de la Jota",
+        "content": [
+          "⚔️ Sacrificio: 8 o 9 → Activa inmediatamente",
+          "🃏 Comodín → Activa inmediatamente",
+          "7️⃣ 7 de suerte → Pasiva, activa el siguiente turno"
+        ]
+      },
+      "cycle-fonctionnement": {
+        "title": "Ciclo de funcionamiento",
+        "content": [
+          "⚡ Activa: Puede atacar inmediatamente, luego va al cementerio.",
+          "😴 Pasiva: Si se jugó con un 7 de suerte, no puede atacar este turno."
+        ]
+      },
+      "cibles-autorisees": {
+        "title": "Objetivos permitidos",
+        "content": [
+          "✅ Unidad ≤ 6 → toda la columna adversaria es destruida.",
+          "⚠️ 8 o 9 → combate directo.",
+          "",
+          "❌ Reina, Rey, otro Comodín: no atacables."
+        ]
+      },
+      "exemples-actions": {
+        "title": "Ejemplos de acciones",
+        "content": [
+          "🎯 Jota activa → ataca un 5♠ → toda la columna Picas adversaria destruida.",
+          "⚠️ Jota activa → ataca un 8♥ → combate arriesgado."
+        ]
+      },
+      "strategie-valet": {
+        "title": "Estrategia con la Jota",
+        "content": [
+          "💥 Destruir una columna avanzada para romper el tempo adversario.",
+          "⚡ Invocarla con Comodín permite atacar inmediatamente.",
+          "⏰ Esperar a que el adversario invierta mucho maximiza el valor."
+        ]
+      },
+      "resume-valet": {
+        "title": "Puntos clave",
+        "content": [
+          "La Jota destruye, pero se destruye con ello.",
+          "Bien jugada, puede cambiar una partida en una sola acción."
+        ],
+        "highlight": "🗡️ ¡La Jota encarna el sacrificio táctico. Su timing puede determinar el resultado!"
+      }
+    },
+    "chapter11": {
+      "title": "El Comodín – La Carta Legendaria",
+      "subtitle": "Capítulo 11 • El Comodín",
+      "joker-intro": {
+        "title": "El Comodín – La Carta Legendaria",
+        "content": [
+          "El Comodín es la carta más poderosa y versátil de UNIT.",
+          "Puede intervenir en casi todas las fases del juego: ataque, defensa, activación, curación o reemplazo temporal.",
+          "Cada uso del Comodín es de un solo uso y siempre tiene una consecuencia importante."
+        ]
+      },
+      "roles-joker": {
+        "title": "Los roles del Comodín",
+        "content": [
+          "El Comodín puede usarse de 5 formas principales:",
+          "",
+          "⚔️ Atacar (destruir unidades o cartas especiales)",
+          "🛡️ Defender (bloquear un ataque)",
+          "🔄 Reemplazar (ocupar temporalmente el lugar de una carta)",
+          "💊 Curar (+3 puntos de vida)",
+          "🔧 Activar una columna o carta especial"
+        ]
+      },
+      "utilisation-offensive": {
+        "title": "Uso ofensivo – Ataque",
+        "content": [
+          "Puede destruir cualquier unidad en una columna adversaria.",
+          "",
+          "✅ También puede destruir un Rey o una Jota.",
+          "❌ No puede atacar un As, un 7 de suerte ni un 10 de Revolución."
+        ]
+      },
+      "utilisation-defensive": {
+        "title": "Uso defensivo – Bloqueo",
+        "content": [
+          "Puede jugarse desde la mano o reserva durante el turno adversario.",
+          "✅ Bloquea cualquier ataque excepto la Revolución.",
+          "Después de su uso, va al cementerio."
+        ]
+      },
+      "utilisation-remplacement": {
+        "title": "Uso como reemplazo",
+        "content": [
+          "Puede colocarse en el tablero para reemplazar temporalmente una carta en una columna.",
+          "",
+          "⚠️ Consecuencias:",
+          "• La categoría de unidades correspondiente queda desactivada.",
+          "• La Revolución es imposible si hay un Comodín en la columna.",
+          "",
+          "📌 Intercambio posible con la carta real (1 acción)."
+        ]
+      },
+      "utilisation-soin": {
+        "title": "Uso de curación",
+        "content": [
+          "💊 Restaura inmediatamente +3 puntos de vida.",
+          "🪦 Después va al cementerio."
+        ]
+      },
+      "utilisation-activateur": {
+        "title": "Uso como activador",
+        "content": [
+          "Puede reemplazar un 7 de suerte como activador de columna.",
+          "También puede usarse para invocar un Rey, Reina o Jota.",
+          "⚠️ Va inmediatamente al cementerio."
+        ]
+      },
+      "interaction-speciale": {
+        "title": "Interacción especial – Comodín vs 7 de suerte",
+        "content": [
+          "Si un Comodín ataca una columna con un 7 de suerte activo:",
+          "🛡️ El ataque es bloqueado por el 7.",
+          "🪦 El Comodín va al cementerio.",
+          "😴 El 7 queda desactivado."
+        ]
+      },
+      "strategie-joker": {
+        "title": "Estrategia con el Comodín",
+        "content": [
+          "🔄 Puede hacerlo todo, pero cada elección es definitiva.",
+          "🛡️ A menudo más rentable usado como bloqueo.",
+          "🚫 Colocarlo en una columna bloquea el acceso a la Revolución.",
+          "💎 Cada Comodín es precioso."
+        ]
+      },
+      "resume-joker": {
+        "title": "Resumen rápido",
+        "content": [
+          "⚔️ Ataque → Destruye Rey, Jota o unidad → No As, 7, 10",
+          "🛡️ Defensa → Bloquea cualquier ataque → No Revolución",
+          "🔄 Reemplazo → Desactiva categoría / bloquea Revolución",
+          "💊 Curación → +3 PV inmediatos",
+          "🔧 Activador → Reemplaza 7 → Va al cementerio"
+        ]
+      },
+      "conclusion-joker": {
+        "title": "Puntos clave",
+        "content": [
+          "El Comodín es la carta más flexible y peligrosa de UNIT.",
+          "Mal usado, puede bloquear tus propias estrategias.",
+          "Bien usado, puede salvar una partida o destruir el plan adversario."
+        ],
+        "highlight": "🃏 El Comodín: una carta, cinco usos, mil posibilidades. ¡Dominar su timing es dominar UNIT!"
+      }
+    }
+  },
+  "matomo": {
+    "examples": {
+      "title": "Ejemplos de uso de Matomo",
+      "buttons": {
+        "startGame": "Iniciar partida (Seguimiento de evento)",
+        "playCard": "Jugar Comodín (Seguimiento de carta)",
+        "userLogin": "Inicio de sesión (Establecer ID de usuario)",
+        "gameWin": "Victoria (Seguimiento de objetivo)"
+      }
+    }
+  },
+  "nav": {
+    "home": "Inicio",
+    "play": "Jugar",
+    "rules": "Reglas del juego",
+    "ranking": "Clasificación",
+    "community": "Comunidad",
+    "shop": "Tienda",
+    "lore": "Historia",
+    "search": "Buscar",
+    "menu": "Menú",
+    "assistant": "Asistente IA"
+  },
+  "settings": {
+    "theme": {
+      "light": "Cambiar al modo claro",
+      "dark": "Cambiar al modo noche"
+    },
+    "language": {
+      "change": "Cambiar idioma"
+    }
+  },
+  "auth": {
+    "login": "Iniciar sesión",
+    "register": "Registrarse"
+  }
+}

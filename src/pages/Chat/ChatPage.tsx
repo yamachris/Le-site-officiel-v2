@@ -1,32 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  Box,
-  Container,
-  Typography,
-  TextField,
-  Button,
-  Paper,
-  List,
-  ListItem,
-  ListItemText,
-  IconButton,
-  Fade,
-  useTheme,
-} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import PersonIcon from '@mui/icons-material/Person';
+import { CinePage, CineContainer, CinePageHeader, CineCard } from '../../components/cine';
 
-// Questions fréquemment posées
-const commonQuestions = [
-  "Comment fonctionne le classement Elo ?",
-  "Que fait la carte 10 Révolution ?",
-  "Comment utiliser mes Unitos ?",
-  "Quelles sont les règles de base ?",
-  "Comment obtenir des cartes Premium ?",
+const COMMON_QUESTIONS = [
+  'Comment fonctionne le classement Elo ?',
+  'Que fait la carte 10 Révolution ?',
+  'Comment utiliser mes Unitos ?',
+  'Quelles sont les règles de base ?',
+  'Comment obtenir des cartes Premium ?',
 ];
 
-// Interface pour les messages
 interface Message {
   content: string;
   role: 'user' | 'assistant';
@@ -34,221 +19,196 @@ interface Message {
 }
 
 const ChatPage: React.FC = () => {
-  const theme = useTheme();
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const messagesEndRef = useRef<null | HTMLDivElement>(null);
-  const chatContainerRef = useRef<null | HTMLDivElement>(null);
-
-  // Fonction pour faire défiler automatiquement vers le bas
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    scrollToBottom();
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  // Simuler l'envoi d'un message à l'API (à remplacer par votre vraie API)
   const sendToAPI = async (message: string) => {
     setIsTyping(true);
-    // Simuler un délai de réponse
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    // Exemple de réponse (à remplacer par l'appel API réel)
-    const response = "Je suis l'assistant UNIT, je suis là pour vous aider avec toutes vos questions sur le jeu. " + 
-                    "Votre question était : " + message;
-    
+    await new Promise((resolve) => setTimeout(resolve, 900));
     setIsTyping(false);
-    return response;
+    return `Je suis l'assistant UNIT, je suis là pour vous aider. Votre question : « ${message} »`;
   };
 
-  // Gérer l'envoi d'un message
   const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
-
-    const userMessage: Message = {
-      content: inputMessage,
-      role: 'user',
-      timestamp: new Date(),
-    };
-
-    setMessages(prev => [...prev, userMessage]);
+    const userMessage: Message = { content: inputMessage, role: 'user', timestamp: new Date() };
+    setMessages((prev) => [...prev, userMessage]);
     setInputMessage('');
-
-    const response = await sendToAPI(inputMessage);
-    
-    const assistantMessage: Message = {
-      content: response,
-      role: 'assistant',
-      timestamp: new Date(),
-    };
-
-    setMessages(prev => [...prev, assistantMessage]);
-  };
-
-  // Gérer la sélection d'une question fréquente
-  const handleQuestionClick = (question: string) => {
-    setInputMessage(question);
+    const response = await sendToAPI(userMessage.content);
+    setMessages((prev) => [...prev, { content: response, role: 'assistant', timestamp: new Date() }]);
   };
 
   return (
-    <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Typography
-        variant="h2"
-        align="center"
-        gutterBottom
-        sx={{
-          fontWeight: 'bold',
-          color: theme.palette.primary.main,
-          mb: 4,
-        }}
-      >
-        Découvrez l'Assistant UNIT
-      </Typography>
-      
-      <Typography
-        variant="h5"
-        align="center"
-        sx={{
-          color: theme.palette.text.secondary,
-          mb: 6,
-        }}
-      >
-        Posez vos questions sur le jeu, les stratégies ou les fonctionnalités.
-        Notre assistant IA vous répond instantanément.
-      </Typography>
+    <CinePage>
+      <CinePageHeader
+        eyebrow="Assistant"
+        title={<>Posez vos <em>questions.</em></>}
+        lede="Notre IA répond instantanément à toutes vos questions sur UNIT — règles, stratégies, fonctionnalités."
+      />
 
-      {/* Zone de chat principale */}
-      <Paper
-        elevation={3}
-        sx={{
-          height: '60vh',
-          display: 'flex',
-          flexDirection: 'column',
-          bgcolor: 'background.paper',
-          borderRadius: 2,
-          overflow: 'hidden',
-        }}
-      >
-        {/* Messages */}
-        <Box
-          ref={chatContainerRef}
-          sx={{
-            flex: 1,
-            overflow: 'auto',
-            p: 2,
-            bgcolor: 'background.default',
-          }}
-        >
-          {messages.map((message, index) => (
-            <Fade in key={index}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: message.role === 'user' ? 'flex-end' : 'flex-start',
-                  mb: 2,
-                }}
-              >
-                <Paper
-                  elevation={1}
-                  sx={{
-                    p: 2,
-                    maxWidth: '70%',
-                    bgcolor: message.role === 'user' ? 'primary.main' : 'background.paper',
-                    color: message.role === 'user' ? 'white' : 'text.primary',
-                    borderRadius: 2,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1,
+      <CineContainer>
+        <div className="cine-shell-grid" style={{ paddingBottom: '5rem', alignItems: 'start' }}>
+          <CineCard
+            style={{
+              padding: 0,
+              height: 'min(68vh, 680px)',
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'hidden',
+            }}
+          >
+            <div
+              style={{
+                flex: 1,
+                overflowY: 'auto',
+                padding: '1.5rem',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem',
+              }}
+            >
+              {messages.length === 0 && (
+                <div
+                  style={{
+                    margin: 'auto',
+                    textAlign: 'center',
+                    color: 'var(--cine-ink-dim)',
+                    fontFamily: 'var(--cine-font-mono)',
+                    fontSize: '0.78rem',
+                    letterSpacing: '0.18em',
+                    textTransform: 'uppercase',
                   }}
                 >
-                  {message.role === 'assistant' ? (
-                    <SmartToyIcon color="primary" />
-                  ) : (
-                    <PersonIcon />
-                  )}
-                  <Typography>{message.content}</Typography>
-                </Paper>
-              </Box>
-            </Fade>
-          ))}
-          {isTyping && (
-            <Box sx={{ display: 'flex', gap: 1, p: 1 }}>
-              <SmartToyIcon color="primary" />
-              <Typography color="text.secondary">L'assistant écrit...</Typography>
-            </Box>
-          )}
-          <div ref={messagesEndRef} />
-        </Box>
+                  La conversation commencera ici
+                </div>
+              )}
 
-        {/* Zone de saisie */}
-        <Box sx={{ p: 2, bgcolor: 'background.paper' }}>
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <TextField
-              fullWidth
-              variant="outlined"
-              placeholder="Posez votre question..."
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-              sx={{ bgcolor: 'background.default' }}
-            />
-            <IconButton
-              color="primary"
-              onClick={handleSendMessage}
-              disabled={!inputMessage.trim()}
-              sx={{
-                bgcolor: 'primary.main',
-                color: 'white',
-                '&:hover': {
-                  bgcolor: 'primary.dark',
-                },
-                '&.Mui-disabled': {
-                  bgcolor: 'action.disabledBackground',
-                },
+              {messages.map((m, i) => (
+                <div
+                  key={i}
+                  style={{
+                    display: 'flex',
+                    justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start',
+                  }}
+                >
+                  <div
+                    style={{
+                      display: 'flex',
+                      gap: '0.6rem',
+                      alignItems: 'flex-start',
+                      maxWidth: '78%',
+                      padding: '0.8rem 1.1rem',
+                      borderRadius: 'var(--cine-radius-md)',
+                      background: m.role === 'user' ? 'var(--cine-accent)' : 'var(--cine-surface-hi)',
+                      color: m.role === 'user' ? '#fff' : 'var(--cine-ink)',
+                      border: m.role === 'assistant' ? '1px solid var(--cine-line)' : 'none',
+                      fontSize: '0.95rem',
+                      lineHeight: 1.5,
+                    }}
+                  >
+                    {m.role === 'assistant' ? <SmartToyIcon sx={{ fontSize: 18, color: 'var(--cine-accent-2)', flexShrink: 0, mt: '2px' }} /> : <PersonIcon sx={{ fontSize: 18, flexShrink: 0, mt: '2px' }} />}
+                    <span>{m.content}</span>
+                  </div>
+                </div>
+              ))}
+
+              {isTyping && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: 'var(--cine-ink-soft)', fontSize: '0.9rem' }}>
+                  <SmartToyIcon sx={{ fontSize: 18, color: 'var(--cine-accent-2)' }} />
+                  <span style={{ fontFamily: 'var(--cine-font-mono)', fontSize: '0.78rem', letterSpacing: '0.16em', textTransform: 'uppercase' }}>
+                    L'assistant écrit…
+                  </span>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* Input */}
+            <div
+              style={{
+                borderTop: '1px solid var(--cine-line)',
+                padding: '1rem 1.2rem',
+                background: 'var(--cine-bg-soft)',
+                display: 'flex',
+                gap: '0.6rem',
               }}
             >
-              <SendIcon />
-            </IconButton>
-          </Box>
-        </Box>
-      </Paper>
+              <input
+                className="cine-input"
+                type="text"
+                placeholder="Posez votre question…"
+                value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
+                style={{ flex: 1 }}
+              />
+              <button
+                type="button"
+                onClick={handleSendMessage}
+                disabled={!inputMessage.trim()}
+                className="cine-button cine-button--primary"
+                style={{
+                  padding: '0 1rem',
+                  opacity: inputMessage.trim() ? 1 : 0.4,
+                  cursor: inputMessage.trim() ? 'pointer' : 'not-allowed',
+                }}
+                aria-label="Envoyer"
+              >
+                <SendIcon fontSize="small" />
+              </button>
+            </div>
+          </CineCard>
 
-      {/* Questions fréquentes */}
-      <Paper
-        elevation={2}
-        sx={{
-          mt: 4,
-          p: 2,
-          bgcolor: 'background.paper',
-          borderRadius: 2,
-        }}
-      >
-        <Typography variant="h6" gutterBottom>
-          Questions Fréquentes
-        </Typography>
-        <List>
-          {commonQuestions.map((question, index) => (
-            <ListItem
-              key={index}
-              component="div"
-              onClick={() => handleQuestionClick(question)}
-              sx={{
-                borderRadius: 1,
-                cursor: 'pointer',
-                '&:hover': {
-                  bgcolor: 'action.hover',
-                },
-              }}
-            >
-              <ListItemText primary={question} />
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
-    </Container>
+          <div className="cine-section-slab">
+            <span className="cine-section-eyebrow">Questions fréquentes</span>
+            <h2 className="cine-section-title">Console d'aide</h2>
+            <p style={{ color: 'var(--cine-ink-soft)', lineHeight: 1.55, marginTop: '0.8rem' }}>
+              Démarrez une conversation avec un sujet récurrent ou posez votre propre question à l'assistant UNIT.
+            </p>
+            <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {COMMON_QUESTIONS.map((q) => (
+                <button
+                  key={q}
+                  type="button"
+                  onClick={() => setInputMessage(q)}
+                  style={{
+                    textAlign: 'left',
+                    padding: '0.9rem 1.2rem',
+                    background: 'var(--cine-surface)',
+                    border: '1px solid var(--cine-line)',
+                    borderRadius: 'var(--cine-radius-md)',
+                    color: 'var(--cine-ink-soft)',
+                    cursor: 'pointer',
+                    fontFamily: 'var(--cine-font-body)',
+                    fontSize: '0.95rem',
+                    transition: 'border-color var(--cine-transition), color var(--cine-transition), background var(--cine-transition)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--cine-line-hi)';
+                    e.currentTarget.style.color = 'var(--cine-ink)';
+                    e.currentTarget.style.background = 'var(--cine-surface-hi)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = 'var(--cine-line)';
+                    e.currentTarget.style.color = 'var(--cine-ink-soft)';
+                    e.currentTarget.style.background = 'var(--cine-surface)';
+                  }}
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </CineContainer>
+    </CinePage>
   );
 };
 

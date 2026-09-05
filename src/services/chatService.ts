@@ -6,7 +6,7 @@ export interface ChatMessage {
 }
 
 // Configuration de l'API
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:4101';
 const API_KEY = process.env.REACT_APP_OPENAI_API_KEY;
 
 // Service pour gérer les interactions avec l'API de chat

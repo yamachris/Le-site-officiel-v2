@@ -1,0 +1,1008 @@
+{
+  "game": {
+    "turn": "Turno {{number}}",
+    "discard": "Scarti",
+    "draw": "Pesca",
+    "play": "Giocare",
+    "yourTurn": "Il Tuo Turno",
+    "opponentTurn": "Turno dell'Avversario",
+    "waitingForPlayers": "In attesa degli altri giocatori...",
+    "timeRunningOut": "Il tempo sta per scadere!",
+    "messages": {
+      "discardPhase": "Scarta una carta per continuare",
+      "drawPhase": "Pesca una carta",
+      "actionPhase": "Gioca le tue carte o passa il turno",
+      "canEndTurn": "Puoi terminare il tuo turno",
+      "strategicShuffleFirst": "Primo Mescolamento Strategico! ⚠️ Il prossimo utilizzo ti farà saltare il turno.",
+      "strategicShuffleNext": "Mescolamento strategico completato - Fine del tuo turno",
+      "blockWithJokerSuccess": "Attacco bloccato con un Jolly!",
+      "blockWithSevenSuccess": "Attacco bloccato con un Sette!",
+      "reserveSuitOccupied": "Questa colonna ha già un attivatore (7 o Jolly)",
+      "faceCardPlaced": "{{value}} posizionato con un attivatore",
+      "wrongSuit": "Questa carta deve essere posizionata nella sua colonna di seme",
+      "slotOccupied": "Questo spazio è già occupato",
+      "queenHealing": "La Regina ti cura di {{amount}} PV!",
+      "queenChallengeResult": "Sfida {{result}}! Guadagni {{amount}} PV ❤️",
+      "queenChallengeStart": "Sfida della Buona Regina lanciata!",
+      "cardExchanged": "Carte scambiate",
+      "valetAttack": "Il Fante ha distrutto {{count}} carte dalla colonna {{suit}}!",
+      "valetCannotAttack": "Il Fante non può attaccare adesso",
+      "valetPassive": "Fante passivo - Non può attaccare questo turno",
+      "valetActive": "Clicca per attaccare con il Fante"
+    },
+    "gameOver": {
+      "title": "Partita Terminata",
+      "surrendered": "Hai abbandonato",
+      "finalScore": "Punteggio Finale",
+      "newGame": "Nuova Partita"
+    },
+    "setup": {
+      "title": "Fase di Preparazione",
+      "welcome": "Benvenuto in UNIT Card Game! Seleziona 2 carte per la tua riserva",
+      "reserve": "Riserva",
+      "yourHand": "La tua mano",
+      "handCount": "carte",
+      "selectCards": "Seleziona 2 carte per la riserva",
+      "startGame": "Inizia la Partita",
+      "timeLeft": "Tempo Rimanente",
+      "timeExpired": "Partita annullata - Tempo di preparazione scaduto"
+    },
+    "cards": {
+      "deck": "Mazzo",
+      "discard": "Scarti",
+      "hand": "Mano",
+      "reserve": "Riserva",
+      "total": "Totale",
+      "slot": "Slot",
+      "jack": "Fante",
+      "king": "Re",
+      "as": "Asso",
+      "revolution": "rivoluzione",
+      "of": "di",
+      "suits": {
+        "hearts": "Cuori",
+        "diamonds": "Quadri",
+        "clubs": "Fiori",
+        "spades": "Picche"
+      }
+    },
+    "actions": {
+      "exchange": "Scambia",
+      "surrender": "Abbandona",
+      "skipAction": "Salta Azione",
+      "endTurn": "Termina Turno",
+      "turnPassed": "Turno Saltato",
+      "strategicShuffle": {
+        "button": "Mischiata Strategica",
+        "tooltip": "Mescola le carte in modo strategico"
+      },
+      "placeSeven": "Posiziona",
+      "confirmSurrender": "Sei sicuro di voler abbandonare la partita?",
+      "nextPhase": "Fase Successiva",
+      "startTurn": "Inizia Turno",
+      "block": {
+        "action": "Blocca",
+        "tooltip": "Blocca un attacco avversario",
+        "success": "Blocco attivato! Sei protetto contro il prossimo attacco."
+      },
+      "sacrifice": {
+        "button": "Sacrificio",
+        "tooltip": "Sacrifica una carta speciale"
+      }
+    },
+    "ui": {
+      "startMessage": "Seleziona la tua prima carta da scartare",
+      "cardCount": "carte",
+      "strategicShuffle": "Mischiata Strategica",
+      "cancel": "Annulla",
+      "confirm": "Conferma",
+      "opponentCards": "Carte dell'Avversario"
+    },
+    "attack": {
+      "chooseAttack": "Scegli il tuo attacco",
+      "selectTarget": "Seleziona un bersaglio",
+      "noValidTargets": "Nessun bersaglio valido disponibile",
+      "healthTarget": "punti vita",
+      "warnings": {
+        "invalidTarget": "Bersaglio non valido",
+        "unitAlreadyAttacked": "Questa unità ha già attaccato",
+        "protectedByKing": "Protetto dal Re",
+        "cardNotAvailable": "Carta non disponibile in mano",
+        "invalidHealthAttackCard": "Questa carta non può essere usata per attacchi ai punti vita"
+      }
+    },
+    "block": {
+      "title": "Bloccare con Jolly o Sette di fortuna?",
+      "description": "Il giocatore {{player}} sta attaccando il tuo {{target}} con {{card}}. Puoi bloccare questo attacco con un Jolly o un Sette di fortuna.",
+      "selectJoker": "Seleziona un Jolly da usare:",
+      "selectCard": "Seleziona una carta:",
+      "inHand": "In Mano",
+      "inReserve": "In Riserva",
+      "inColumn": "In colonna",
+      "block": "Blocca Attacco",
+      "decline": "Lascia Passare l'Attacco",
+      "noJokers": "Non hai Jolly per bloccare."
+    }
+  },
+  "home": {
+    "subtitle": "Gioco di Carte",
+    "tagline": "Strategia e fortuna si incontrano in questo veloce gioco di carte. Sfida l'IA o affronta veri giocatori online!",
+    "discover": {
+      "title": "Scopri UNIT",
+      "subtitle": "Un gioco di carte strategico esplosivo"
+    },
+    "tutorial": {
+      "button": "Apri il tutorial completo"
+    },
+    "profile": {
+      "title": "Profilo Giocatore",
+      "nicknameLabel": "Il tuo Soprannome:",
+      "nicknamePlaceholder": "Inserisci il tuo soprannome",
+      "statsTitle": "Statistiche Giocatore",
+      "gamesPlayed": "Partite Giocate",
+      "winRate": "Tasso di Vittoria"
+    },
+    "solo": {
+      "title": "Modalità Solo",
+      "description": "Sfida l'IA in un duello strategico testa a testa. Perfetto per perfezionare le tue abilità!",
+      "button": "Gioca contro il Computer"
+    },
+    "online": {
+      "title": "Modalità Online",
+      "description": "Affronta veri avversari online e dimostra le tue abilità. Il matchmaking troverà l'avversario perfetto!",
+      "button": "Trova una Partita Online"
+    },
+    "errors": {
+      "enterNickname": "Inserisci il tuo soprannome",
+      "soloFailed": "Impossibile avviare il gioco in solitaria. Per favore riprova.",
+      "matchFailed": "Impossibile trovare una partita. Per favore riprova."
+    },
+    "presentation": {
+      "line1": "🎙️ « Benvenuto in UNIT – un esplosivo gioco di carte strategico dove ogni giocatore costruisce eserciti per scatenare... una Rivoluzione. »",
+      "line2": "🎙️ « Con un semplice mazzo di 54 carte, assembli colonne di unità – dall'Asso al 10 – per attaccare, difendere e manipolare il campo di battaglia. »",
+      "line3": "🎙️ « Attenzione: le carte speciali come i Re, i Fanti o i Jolly possono ribaltare tutto. »",
+      "line4": "🎙️ « L'obiettivo? Ridurre i punti vita del tuo avversario a zero… o scatenare una Rivoluzione che infligge 10 danni in un colpo solo. »",
+      "line5": "🎙️ « Semplice da capire, profondo da padroneggiare… e ogni partita è unica. »",
+      "line6": "🎙️ « Pronto a cambiare il corso della Storia? È il momento di entrare in UNIT. »"
+    }
+  },
+  "matchmaking": {
+    "title": "Ricerca Avversario",
+    "searching": "Ricerca in corso",
+    "regions": "Ricerca in tutte le regioni...",
+    "cancel": "Annulla"
+  },
+  "loading": {
+    "game": "Caricamento del gioco..."
+  },
+  "tutorial": {
+    "nav": {
+      "chapters": "Capitoli",
+      "close": "✕ Chiudi",
+      "prev": "← Capitolo precedente",
+      "next": "Capitolo successivo →"
+    },
+    "mainTitle": "📖 Regole complete del gioco UNIT",
+    "chapter1": {
+      "title": "Capire lo svolgimento di un turno in UNIT",
+      "subtitle": "Capitolo 1 • Le basi del gameplay",
+      "debut-partie": {
+        "title": "Inizio della Partita",
+        "content": [
+          "Ogni giocatore inizia con un mazzo personale di 54 carte.",
+          "Pesca 7 carte all'inizio della partita.",
+          "Di queste 7 carte, 2 a sua scelta vengono piazzate coperte in riserva, sul campo.",
+          "Il giocatore conserva quindi 5 carte in mano e 2 carte in riserva."
+        ],
+        "highlight": "🧠 Promemoria importante: La riserva è un'estensione strategica della mano, rimane coperta e accessibile durante la partita."
+      },
+      "structure-tour": {
+        "title": "Struttura di un Turno",
+        "content": [
+          "Ogni turno segue sempre la stessa sequenza."
+        ]
+      },
+      "cas-1": {
+        "title": "Caso 1: Il giocatore inizia il suo turno con 7 carte",
+        "subtitle": "(5 in mano + 2 in riserva)",
+        "content": [
+          "Scarto obbligatorio: Il giocatore deve scartare 1 carta dalla sua mano.",
+          "Pesca: Poi pesca 1 carta per tornare a 7 carte totali.",
+          "Fase d'azione: Può allora:",
+          "• Piazzare carte per costruire unità,",
+          "• Usare una carta speciale (Fante, Re, ecc.),",
+          "• Attaccare o attivare un effetto.",
+          "Fine turno: Una volta terminate le sue azioni, il giocatore annuncia la fine del turno."
+        ],
+        "warning": "🛑 Se il giocatore non può o non vuole effettuare nessuna azione, deve comunque indicare la fine del turno."
+      },
+      "cas-2": {
+        "title": "Caso 2: Il giocatore ha meno di 7 carte all'inizio del turno",
+        "subtitle": "(perché ha giocato carte precedentemente)",
+        "content": [
+          "Il giocatore pesca immediatamente il numero di carte necessario per tornare a 7.",
+          "Poi entra nella fase d'azione: può giocare, attaccare, attivare un effetto...",
+          "Fine turno: termina il suo turno come di consueto."
+        ]
+      },
+      "rappel-general": {
+        "title": "Promemoria generale",
+        "content": [
+          "I giocatori non possono mai superare 7 carte (5 in mano + 2 in riserva).",
+          "Se a 7 all'inizio del turno: deve scartare 1 carta prima di pescare.",
+          "Se ha giocato carte: pesca direttamente, senza scartare.",
+          "Ogni turno, un giocatore può agire o passare, ma deve indicarlo."
+        ]
+      }
+    },
+    "chapter2": {
+      "title": "La Fase d'Azione",
+      "subtitle": "Capitolo 2 • Azioni e strategie",
+      "introduction-phase": {
+        "title": "La Fase d'Azione",
+        "content": [
+          "Durante il suo turno, dopo aver pescato, il giocatore entra nella sua fase d'azione.",
+          "Può eseguire vari tipi di azioni, nell'ordine che preferisce."
+        ]
+      },
+      "actions-disponibles": {
+        "title": "Azioni disponibili",
+        "content": [
+          "Ogni azione costa 1 azione, tranne casi speciali.",
+          "Ecco l'elenco delle azioni principali che un giocatore può eseguire durante il suo turno:"
+        ]
+      },
+      "action-construire": {
+        "title": "1. Giocare una carta per costruire un'unità",
+        "content": [
+          "Il giocatore piazza una carta nella colonna corrispondente (per seme).",
+          "Le unità devono essere piazzate in ordine crescente, dall'Asso al 10."
+        ],
+        "highlight": "➡️ ✅ Questa azione permette di avanzare verso un attacco o una Rivoluzione."
+      },
+      "action-speciale": {
+        "title": "2. Giocare una carta speciale (Fante, Re, Regina)",
+        "content": [
+          "Il giocatore può evocare una carta speciale tramite:",
+          "• Sacrificio (carte già piazzate),",
+          "• Uso di un Jolly,",
+          "• O un 7 fortunato.",
+          "L'evocazione conta come un'azione."
+        ],
+        "highlight": "💡 Eccezione: Se un Fante viene evocato tramite Jolly o sacrificio, può attaccare immediatamente nello stesso turno."
+      },
+      "action-attaquer": {
+        "title": "3. Attaccare con un'unità",
+        "content": [
+          "Un'unità può attaccare una sola volta nella sua categoria.",
+          "Questo attacco costa 1 azione."
+        ],
+        "warning": "⚠️ Dopo un attacco, l'intera categoria di unità viene disattivata, anche se l'attacco è stato bloccato."
+      },
+      "action-echanger": {
+        "title": "4. Scambiare una carta con un Jolly già piazzato",
+        "content": [
+          "Se un Jolly è piazzato sul campo per sostituire una carta, il giocatore può sostituirlo con la carta reale.",
+          "Il Jolly torna in mano o riserva a seconda della sua origine."
+        ],
+        "highlight": "➡️ ✅ Questo scambio conta come un'azione."
+      },
+      "defense": {
+        "title": "5. Difesa durante il turno avversario",
+        "content": [
+          "Un giocatore può bloccare un attacco avversario:",
+          "• Con un JOLLY (in mano o riserva) → lo gioca immediatamente, blocca l'attacco.",
+          "• Con un 7 fortunato nella colonna attaccata → blocca un singolo attacco."
+        ],
+        "highlight": "🧠 Ricorda: Un Jolly può bloccare qualsiasi attacco (tranne Rivoluzione)."
+      },
+      "limites-action": {
+        "title": "Limiti d'azione",
+        "content": [
+          "Il giocatore può eseguire tutte le azioni che vuole nel suo turno.",
+          "Tuttavia:",
+          "• Solo uno scambio di Jolly per turno.",
+          "• Solo un attacco per categoria di unità.",
+          "• Alcune carte (Fante) non attaccano immediatamente, tranne casi speciali."
+        ]
+      },
+      "fin-tour": {
+        "title": "Fine Turno",
+        "content": [
+          "Una volta terminate tutte le azioni, il giocatore annuncia la fine del suo turno.",
+          "Se non effettua nessuna azione, deve comunque dichiarare la fine del turno."
+        ]
+      }
+    },
+    "chapter3": {
+      "title": "Attivatori: 7 Fortunato & Jolly",
+      "subtitle": "Capitolo 3 • Meccaniche di attivazione",
+      "introduction-activateurs": {
+        "title": "Attivatori: 7 Fortunato & Jolly",
+        "content": [
+          "In UNIT, per costruire una colonna di unità, bisogna attivarla con una carta speciale chiamata attivatore.",
+          "Ci sono due tipi di attivatori:",
+          "• 🟦 Il 7 fortunato",
+          "• 🃏 Il Jolly"
+        ]
+      },
+      "comment-activer": {
+        "title": "Come attivare una colonna?",
+        "content": [
+          "Per iniziare una colonna, bisogna piazzare un Asso e salire progressivamente fino al 6.",
+          "Questo attivatore viene piazzato in una zona speciale della colonna, chiamata reservaSuitColonna."
+        ],
+        "highlight": "🧠 Per andare oltre il 6 (e giocare l'8, 9, 10), è obbligatorio avere un attivatore in posizione."
+      },
+      "fonctionnement-activateur": {
+        "title": "Funzionamento di un attivatore",
+        "content": [
+          "Quando un 7 fortunato o un Jolly viene giocato come attivatore:",
+          "• Viene piazzato accanto alla colonna, nella reservaSuitColonna.",
+          "• Sblocca la progressione verso l'8, 9, 10.",
+          "• Rimane attivo finché la colonna non viene distrutta."
+        ]
+      },
+      "exemple-activation": {
+        "title": "Esempio",
+        "content": [
+          "Hai carte dall'Asso al 6 in Quadri.",
+          "Piazzi un 7 fortunato di Quadri nella reservaSuitColonna.",
+          "Puoi ora piazzare l'8, 9, 10 di Quadri."
+        ]
+      },
+      "conditions-importantes": {
+        "title": "Attenzione alle condizioni!",
+        "content": [
+          "Un Jolly o qualsiasi 7 fortunato può essere giocato all'inizio per aprire il gioco, anche se non corrisponde al seme."
+        ],
+        "highlight": "✅ Questo permette di avanzare e adattare la strategia.",
+        "warning": "❌ Ma per passare dal 6 all'8 in una colonna, è obbligatorio il 7 fortunato dello stesso seme della colonna."
+      },
+      "echange-activateur": {
+        "title": "Lo scambio dell'attivatore",
+        "content": [
+          "Se hai piazzato il 7 sbagliato o un Jolly nella reservaSuitColonna:",
+          "• Puoi scambiare l'attivatore con il 7 fortunato corretto del seme della colonna.",
+          "• Il Jolly o 7 precedente torna alla sua posizione originale.",
+          "• Questo scambio costa un'azione."
+        ]
+      },
+      "attaque-activateur": {
+        "title": "Cosa succede in caso di attacco?",
+        "content": [
+          "Se un Fante attacca una colonna attivata con un 7 o un Jolly:",
+          "• Tutte le carte della colonna, incluso l'attivatore, vanno nel cimitero.",
+          "• Bisognerà ricominciare dall'Asso."
+        ]
+      },
+      "activateurs-cartes-speciales": {
+        "title": "Attivatori e carte speciali",
+        "content": [
+          "I 7 fortunati e Jolly possono anche essere usati per evocare carte speciali:",
+          "• Re → 7 o Jolly → Cimitero",
+          "• Regina → 7 o Jolly → Cimitero",
+          "• Fante → 7 o Jolly → Cimitero"
+        ],
+        "warning": "❗ Non appena un 7 o un Jolly viene usato per una carta speciale, va immediatamente nel cimitero."
+      },
+      "resume-activateurs": {
+        "title": "Punti chiave",
+        "content": [
+          "▶️ Attivare colonna = Asso + 7 o Jolly nella reservaSuitColonna.",
+          "🔒 Per piazzare un 8, serve il 7 fortunato dello stesso seme.",
+          "🔁 Si può scambiare l'attivatore se necessario.",
+          "💥 In caso di attacco del Fante, colonna + attivatore vengono distrutti.",
+          "👑 Gli attivatori possono anche servire per Re, Regina o Fante, ma poi vanno nel cimitero."
+        ]
+      }
+    },
+    "chapter4": {
+      "title": "La Rivoluzione - L'attacco definitivo",
+      "subtitle": "Capitolo 4 • L'obiettivo supremo del gioco",
+      "revolution-intro": {
+        "title": "La Rivoluzione – L'attacco definitivo",
+        "content": [
+          "La Rivoluzione è l'obiettivo strategico supremo in UNIT.",
+          "È l'attacco più potente del gioco, capace di ribaltare un'intera partita.",
+          "Simboleggia la perfetta realizzazione di una colonna completa."
+        ]
+      },
+      "revolution-conditions": {
+        "title": "Condizioni obbligatorie per scatenare una Rivoluzione",
+        "content": [
+          "Per lanciare una Rivoluzione, devono essere soddisfatte tutte queste condizioni:",
+          "",
+          "✅ Aver piazzato le 10 carte dello stesso seme in ordine, dall'Asso al 10",
+          "✅ Non aver usato un Jolly nella colonna",
+          "✅ Aver attivato correttamente la colonna con il giusto 7 fortunato",
+          "✅ Aver piazzato il 10 (questo scatena la Rivoluzione automaticamente)"
+        ]
+      },
+      "revolution-effects": {
+        "title": "Effetti immediati della Rivoluzione",
+        "content": [
+          "💥 Il Re avversario dello stesso seme viene distrutto.",
+          "💥 L'avversario subisce 10 punti di danno diretto, senza possibile difesa.",
+          "🪦 L'intera colonna (Asso al 10) va nel cimitero.",
+          "❗ Nessun Jolly, 7 fortunato, Fante o altro effetto può bloccare una Rivoluzione."
+        ]
+      },
+      "revolution-unstoppable": {
+        "title": "Perché la Rivoluzione è inarrestabile",
+        "content": [
+          "La Rivoluzione ignora tutti i meccanismi di difesa:",
+          "",
+          "✅ Ignora i Re",
+          "✅ Ignora i Jolly",
+          "✅ Ignora i 7 fortunati",
+          "✅ Ignora le carte in riserva",
+          "✅ Ignora qualsiasi contromossa"
+        ]
+      },
+      "revolution-joker-case": {
+        "title": "Caso speciale: Jolly nella colonna",
+        "content": [
+          "Se un Jolly sostituisce una carta nella colonna:",
+          "",
+          "❌ La Rivoluzione è bloccata.",
+          "",
+          "Bisogna scambiare il Jolly con la carta reale per sbloccare la Rivoluzione."
+        ]
+      },
+      "revolution-strategy": {
+        "title": "Riflessione strategica",
+        "content": [
+          "Il Jolly è pericoloso in una colonna se si punta alla Rivoluzione.",
+          "A volte è meglio ritardare un'azione che sacrificare la possibilità di una Rivoluzione.",
+          "Mantenere la colonna pura garantisce un risultato brutale."
+        ]
+      },
+      "revolution-perfect": {
+        "title": "La Rivoluzione perfetta",
+        "content": [
+          "Una Rivoluzione perfetta si produce quando il giocatore la scatena senza aver effettuato nessun altro attacco.",
+          "",
+          "🎖️ Dimostra un controllo assoluto del tempo di gioco e uno stile puro."
+        ]
+      },
+      "revolution-summary": {
+        "title": "Riepilogo rapido",
+        "content": [
+          "🎯 Carte necessarie: Asso al 10, stesso seme, senza Jolly",
+          "🔧 Attivazione obbligatoria: Sì, con il 7 fortunato corrispondente",
+          "⚡ Innesco: Piazzare il 10",
+          "💥 Effetti: Distruzione del Re + 10 danni diretti",
+          "🛡️ Bloccabile?: No, impossibile",
+          "🪦 Conseguenze: Intera colonna nel cimitero"
+        ]
+      }
+    },
+    "chapter5": {
+      "title": "La Difesa - Proteggere i punti vita",
+      "subtitle": "Capitolo 5 • Meccanismi difensivi",
+      "defense-intro": {
+        "title": "La Difesa – Proteggere i punti vita e le unità",
+        "content": [
+          "In UNIT, la difesa è importante quanto l'attacco.",
+          "Certe carte e posizioni permettono di annullare o limitare l'impatto di un'azione avversaria."
+        ]
+      },
+      "defense-objectives": {
+        "title": "Obiettivo della difesa",
+        "content": [
+          "Impedire all'avversario di:",
+          "",
+          "• Infliggere danni diretti ai tuoi punti vita.",
+          "• Distruggere le tue unità o carte speciali troppo facilmente.",
+          "• Rompere la tua strategia."
+        ]
+      },
+      "joker-defense": {
+        "title": "Il Jolly – Difensore universale",
+        "content": [
+          "🔹 Effetto: Può bloccare qualsiasi attacco, indipendentemente dalla colonna.",
+          "🔹 Limite: Non può bloccare una Rivoluzione.",
+          "",
+          "Dopo l'uso, va immediatamente nel cimitero.",
+          "💡 Consiglio: Tenere un Jolly in mano è spesso più sicuro che usarlo per attaccare."
+        ]
+      },
+      "seven-defense": {
+        "title": "Il 7 fortunato – Scudo di colonna",
+        "content": [
+          "🔹 Effetto: Un 7 fortunato piazzato in una colonna può bloccare un singolo attacco.",
+          "",
+          "• Il 7 deve essere dello stesso seme della colonna.",
+          "• Dopo l'uso, il 7 viene disattivato finché la colonna non viene distrutta e ricostruita."
+        ]
+      },
+      "defense-interactions": {
+        "title": "Interazioni importanti",
+        "content": [
+          "🔸 Unità classica (1–6): Jolly ✅ | 7 fortunato ✅",
+          "🔸 8 o 9: Jolly ✅ | 7 fortunato ✅",
+          "🔸 Fante: Jolly ✅ | 7 fortunato ✅",
+          "🔸 Re: Jolly ❌ | 7 fortunato ❌",
+          "🔸 Rivoluzione (10): Jolly ❌ | 7 fortunato ❌"
+        ]
+      },
+      "defense-strategy": {
+        "title": "Strategia difensiva",
+        "content": [
+          "🎯 Anticipare: Mantenere almeno una difesa attiva ogni turno.",
+          "🎯 Proteggere le colonne chiave: Piazzare un 7 fortunato sulla colonna più avanzata.",
+          "🎯 Gestire le risorse: Un Jolly usato troppo presto può costare la partita."
+        ]
+      },
+      "defense-summary": {
+        "title": "Riepilogo rapido",
+        "content": [
+          "🃏 Jolly = difesa universale contro tutto tranne la Rivoluzione.",
+          "7️⃣ 7 fortunato = difesa locale sulla sua colonna.",
+          "🚫 Nessuna carta blocca la Rivoluzione."
+        ]
+      }
+    },
+    "chapter6": {
+      "title": "Mescolata Strategica – Ricostruire il mazzo",
+      "subtitle": "Capitolo 6 • La Mescolata Strategica",
+      "melange-intro": {
+        "title": "Mescolata Strategica – Ricostruire il mazzo",
+        "content": [
+          "In UNIT, a volte è necessario mescolare le carte del cimitero con il mazzo per continuare a giocare.",
+          "Questa azione può servire per recuperare carte chiave o evitare di rimanere bloccati."
+        ]
+      },
+      "quand-melanger": {
+        "title": "Quando fare una mescolata strategica?",
+        "content": [
+          "Prima di qualsiasi altra azione del tuo turno, quando:",
+          "",
+          "• Vuoi reintrodurre carte importanti nel tuo mazzo.",
+          "• Sei bloccato nella tua progressione.",
+          "• Il tuo mazzo non è ancora vuoto ma vuoi resettare la distribuzione."
+        ]
+      },
+      "regles-melange": {
+        "title": "Regole della mescolata strategica",
+        "content": [
+          "📅 Momento: All'inizio del turno, prima di scartare o pescare.",
+          "",
+          "🔄 Procedura:",
+          "• Scarta tutte le carte della tua mano.",
+          "• Le 2 carte in riserva rimangono al loro posto.",
+          "• Mescoli il tuo mazzo e cimitero per formare un nuovo mazzo.",
+          "",
+          "🥇 Prima volta: Puoi giocare normalmente dopo la mescolata.",
+          "🔁 Volte successive: Devi passare il turno dopo la mescolata."
+        ]
+      },
+      "limitations-melange": {
+        "title": "Limitazioni dopo le mescolate successive",
+        "content": [
+          "❌ Non puoi attaccare in quel turno.",
+          "❌ Non puoi usare un Jolly per difenderti nel turno avversario successivo.",
+          "✅ Un 7 fortunato già attivo sul campo mantiene la sua difesa."
+        ]
+      },
+      "cas-particuliers": {
+        "title": "Casi particolari",
+        "content": [
+          "🗂️ Mazzo vuoto: Mescolata automatica del cimitero senza perdere il turno.",
+          "• Questo caso non è considerato una mescolata strategica.",
+          "",
+          "⚠️ Moltiplicare le mescolate strategiche aumenta l'aleatorietà."
+        ]
+      },
+      "astuce-strategique": {
+        "title": "Consiglio strategico",
+        "content": [
+          "✅ Può sbloccare una situazione…",
+          "❌ …ma spesso costa tempo.",
+          "",
+          "💡 Usala con un obiettivo chiaro, non per abitudine."
+        ],
+        "highlight": "🎯 Consiglio: Pianifica la tua mescolata strategica in base a carte specifiche che vuoi recuperare."
+      }
+    },
+    "chapter7": {
+      "title": "Il Sacrificio – Giocare una carta speciale",
+      "subtitle": "Capitolo 7 • Il Sacrificio",
+      "sacrifice-intro": {
+        "title": "Il Sacrificio – Giocare una carta speciale",
+        "content": [
+          "In UNIT, per giocare carte speciali (Re, Regina, Fante), puoi usare la meccanica del sacrificio.",
+          "Consiste nel rimuovere carte già piazzate sul campo per pagare il costo di evocazione."
+        ]
+      },
+      "principe-sacrifice": {
+        "title": "Principio del sacrificio",
+        "content": [
+          "🎯 Obiettivo: Rimuovere un certo numero di carte dal campo per evocare una carta speciale.",
+          "🪦 Destinazione: Le carte sacrificate vanno nel cimitero.",
+          "📏 Regola chiave: Iniziare sempre dalla carta più alta di ogni colonna scelta."
+        ]
+      },
+      "cartes-non-sacrifiables": {
+        "title": "Carte che non possono essere sacrificate",
+        "content": [
+          "❌ Asso",
+          "❌ 7 fortunato piazzato nella colonna",
+          "❌ 10 della Rivoluzione",
+          "❌ Qualsiasi carta sotto un Asso, un 7 piazzato o un 10."
+        ]
+      },
+      "regles-selection": {
+        "title": "Regole di selezione",
+        "content": [
+          "🔝 Iniziare sempre dalla carta più alta di una colonna.",
+          "🔄 Completare con altre carte più alte di altre colonne se necessario.",
+          "🌈 Mischiare i semi è permesso.",
+          "⛓️ Sacrificio a catena in una colonna possibile."
+        ]
+      },
+      "couts-invocation": {
+        "title": "Costi di evocazione per sacrificio",
+        "content": [
+          "👑 Re: 3 carte",
+          "👸 Regina: 2 carte",
+          "🃏 Fante: 1 carta (solo 8 o 9)"
+        ]
+      },
+      "attaque-immediate-valet": {
+        "title": "Caso speciale – Attacco immediato con il Fante",
+        "content": [
+          "Se un Fante viene evocato tramite Sacrificio o Jolly:",
+          "➡️ Può attaccare immediatamente nello stesso turno."
+        ]
+      },
+      "astuce-sacrifice": {
+        "title": "Consiglio strategico",
+        "content": [
+          "❌ Perdi carte già piazzate...",
+          "✅ ...ma guadagni un pezzo chiave.",
+          "💡 Usalo per rompere il tempo avversario o sorprendere con un effetto immediato."
+        ],
+        "highlight": "⚔️ Il sacrificio trasforma le tue risorse presenti in potere immediato. Il timing è cruciale!"
+      }
+    },
+    "chapter8": {
+      "title": "Il Re – Scudo supremo",
+      "subtitle": "Capitolo 8 • Il Re",
+      "roi-intro": {
+        "title": "Il Re – Scudo supremo",
+        "content": [
+          "Il Re è il pezzo difensivo definitivo in UNIT.",
+          "In gioco, protegge completamente i tuoi punti vita contro gli attacchi di unità dello stesso seme."
+        ]
+      },
+      "effet-roi": {
+        "title": "Effetto del Re",
+        "content": [
+          "Finché un Re è presente per un dato seme:",
+          "",
+          "🛡️ Nessuna unità di quel seme inferiore a 8 può attaccare i tuoi punti vita.",
+          "",
+          "Solo certi attacchi possono bypassare il Re:",
+          "⚔️ 8 o 9 dello stesso seme → battono il Re e lo distruggono.",
+          "🃏 Jolly → distrugge un Re di qualsiasi seme.",
+          "💥 Rivoluzione (10) → distrugge il Re e infligge 10 danni diretti."
+        ]
+      },
+      "conditions-roi": {
+        "title": "Condizioni per giocare un Re",
+        "content": [
+          "⚔️ Sacrificio: 3 carte (la più alta di ogni colonna).",
+          "🃏 Jolly: va nel cimitero.",
+          "7️⃣ 7 fortunato: va nel cimitero."
+        ]
+      },
+      "positionnement-roi": {
+        "title": "Posizionamento",
+        "content": [
+          "👑 Il Re viene piazzato nello spazio 'Re' del suo seme sul campo.",
+          "🔒 Una volta piazzato, rimane fino a essere distrutto da un attacco valido."
+        ]
+      },
+      "perte-roi": {
+        "title": "Perdita del Re",
+        "content": [
+          "Se il Re viene sconfitto da un 8, 9, Jolly o Rivoluzione:",
+          "🪦 Va immediatamente nel cimitero.",
+          "❌ La protezione che offriva scompare all'istante."
+        ]
+      },
+      "strategie-roi": {
+        "title": "Strategia con il Re",
+        "content": [
+          "🛡️ Difensiva: Bloccare un seme avanzato dell'avversario per guadagnare tempo.",
+          "⏰ Temporanea: Costringere l'avversario a sprecare un 8, 9 o Jolly.",
+          "🚧 Preventiva: Un Re precoce può limitare un'intera categoria dell'avversario."
+        ]
+      },
+      "resume-roi": {
+        "title": "Punti chiave",
+        "content": [
+          "Il Re non fa vincere la partita, ma può impedire all'avversario di vincerla.",
+          "Ben giocato, diventa un vero muro nel ritmo avversario."
+        ],
+        "highlight": "👑 Il Re trasforma la difesa passiva in controllo attivo del campo!"
+      }
+    },
+    "chapter9": {
+      "title": "La Regina – Prima le Signore",
+      "subtitle": "Capitolo 9 • La Regina",
+      "dame-intro": {
+        "title": "La Regina – Prima le Signore",
+        "content": [
+          "La Regina è l'unica carta completamente inattaccabile di UNIT.",
+          "Non può mai essere distrutta né impedita di portare a termine il suo effetto.",
+          "Il suo ruolo principale: curare i tuoi punti vita."
+        ]
+      },
+      "immunite-dame": {
+        "title": "Immunità assoluta",
+        "content": [
+          "La Regina non può mai essere attaccata da nessuna carta o effetto:",
+          "",
+          "✅ Immune al Jolly",
+          "✅ Immune al Fante",
+          "✅ Immune alle unità classiche",
+          "",
+          "Il suo effetto si attiva sempre."
+        ]
+      },
+      "effet-soin": {
+        "title": "Effetto principale – Cura",
+        "content": [
+          "⚔️ Sacrificio (2 carte): +2 PV",
+          "7️⃣ 7 fortunato: +2 PV",
+          "🃏 Jolly: +4 PV"
+        ]
+      },
+      "defi-dame": {
+        "title": "Caso speciale – Sfida della Regina (solo con Jolly)",
+        "content": [
+          "La Regina viene piazzata coperta. L'avversario deve indovinare il suo seme.",
+          "",
+          "❌ Risposta errata → +5 PV per il giocatore che ha lanciato la sfida.",
+          "✅ Risposta corretta → +1 PV per il giocatore che ha lanciato la sfida.",
+          "",
+          "➡️ La Regina e il Jolly vanno nel cimitero dopo la sfida."
+        ]
+      },
+      "regles-pose-dame": {
+        "title": "Regole di piazzamento",
+        "content": [
+          "⚔️ Sacrificio: 2 carte più alte → +2 PV.",
+          "7️⃣ 7 fortunato → +2 PV.",
+          "🃏 Jolly → +4 PV o Sfida della Regina."
+        ]
+      },
+      "strategie-dame": {
+        "title": "Strategia con la Regina",
+        "content": [
+          "🔒 Sicurezza: Nessun rischio di perdere la Regina prima che agisca.",
+          "💊 Supporto: Ideale per recuperare PV in un momento critico.",
+          "🎭 Pressione psicologica: La Sfida della Regina costringe l'avversario a indovinare."
+        ]
+      },
+      "resume-dame": {
+        "title": "Punti chiave",
+        "content": [
+          "La Regina è la carta di cura definitiva in UNIT.",
+          "Ben usata, può ribaltare una partita in una sola azione."
+        ],
+        "highlight": "👸 La Regina combina sicurezza assoluta con potenziale di recupero!"
+      }
+    },
+    "chapter10": {
+      "title": "Il Fante – L'Arma di Eliminazione",
+      "subtitle": "Capitolo 10 • Il Fante",
+      "valet-intro": {
+        "title": "Il Fante – L'Arma di Eliminazione",
+        "content": [
+          "Il Fante è una carta offensiva in UNIT.",
+          "È uno dei mezzi più potenti per distruggere le colonne avversarie, ma a un costo: viene sempre sacrificato dopo l'uso."
+        ]
+      },
+      "role-valet": {
+        "title": "Ruolo principale",
+        "content": [
+          "⚔️ Può distruggere un'unità avversaria dello stesso seme.",
+          "💥 Contro unità piccole, può spazzare un'intera colonna.",
+          "🪦 Viene consumato non appena attacca."
+        ]
+      },
+      "invocation-valet": {
+        "title": "Evocazione del Fante",
+        "content": [
+          "⚔️ Sacrificio: 8 o 9 → Attivo immediatamente",
+          "🃏 Jolly → Attivo immediatamente",
+          "7️⃣ 7 fortunato → Passivo, attivo al turno successivo"
+        ]
+      },
+      "cycle-fonctionnement": {
+        "title": "Ciclo di funzionamento",
+        "content": [
+          "⚡ Attivo: Può attaccare immediatamente, poi va nel cimitero.",
+          "😴 Passivo: Se giocato con un 7 fortunato, non può attaccare questo turno."
+        ]
+      },
+      "cibles-autorisees": {
+        "title": "Bersagli consentiti",
+        "content": [
+          "✅ Unità ≤ 6 → l'intera colonna avversaria viene distrutta.",
+          "⚠️ 8 o 9 → combattimento diretto.",
+          "",
+          "❌ Regina, Re, altro Jolly: non attaccabili."
+        ]
+      },
+      "exemples-actions": {
+        "title": "Esempi di azioni",
+        "content": [
+          "🎯 Fante attivo → attacca un 5♠ → tutta la colonna Picche avversaria distrutta.",
+          "⚠️ Fante attivo → attacca un 8♥ → combattimento rischioso."
+        ]
+      },
+      "strategie-valet": {
+        "title": "Strategia con il Fante",
+        "content": [
+          "💥 Distruggere una colonna avanzata per rompere il ritmo avversario.",
+          "⚡ Evocarlo con Jolly permette di attaccare immediatamente.",
+          "⏰ Aspettare che l'avversario investa molto massimizza il valore."
+        ]
+      },
+      "resume-valet": {
+        "title": "Punti chiave",
+        "content": [
+          "Il Fante distrugge, ma si distrugge con esso.",
+          "Ben giocato, può ribaltare una partita in una sola azione."
+        ],
+        "highlight": "🗡️ Il Fante incarna il sacrificio tattico. Il suo timing può determinare l'esito!"
+      }
+    },
+    "chapter11": {
+      "title": "Il Jolly – La Carta Leggendaria",
+      "subtitle": "Capitolo 11 • Il Jolly",
+      "joker-intro": {
+        "title": "Il Jolly – La Carta Leggendaria",
+        "content": [
+          "Il Jolly è la carta più potente e versatile di UNIT.",
+          "Può intervenire in quasi tutte le fasi del gioco: attacco, difesa, attivazione, cura o sostituzione temporanea.",
+          "Ogni uso del Jolly è monouso e ha sempre una conseguenza importante."
+        ]
+      },
+      "roles-joker": {
+        "title": "I ruoli del Jolly",
+        "content": [
+          "Il Jolly può essere usato in 5 modi principali:",
+          "",
+          "⚔️ Attaccare (distruggere unità o carte speciali)",
+          "🛡️ Difendere (bloccare un attacco)",
+          "🔄 Sostituire (occupare temporaneamente il posto di una carta)",
+          "💊 Curare (+3 punti vita)",
+          "🔧 Attivare una colonna o carta speciale"
+        ]
+      },
+      "utilisation-offensive": {
+        "title": "Uso offensivo – Attacco",
+        "content": [
+          "Può distruggere qualsiasi unità in una colonna avversaria.",
+          "",
+          "✅ Può anche distruggere un Re o un Fante.",
+          "❌ Non può attaccare un Asso, un 7 fortunato né un 10 della Rivoluzione."
+        ]
+      },
+      "utilisation-defensive": {
+        "title": "Uso difensivo – Blocco",
+        "content": [
+          "Può essere giocato dalla mano o riserva durante il turno avversario.",
+          "✅ Blocca qualsiasi attacco tranne la Rivoluzione.",
+          "Dopo l'uso, va nel cimitero."
+        ]
+      },
+      "utilisation-remplacement": {
+        "title": "Uso come sostituto",
+        "content": [
+          "Può essere piazzato sul campo per sostituire temporaneamente una carta in una colonna.",
+          "",
+          "⚠️ Conseguenze:",
+          "• La categoria di unità corrispondente viene disattivata.",
+          "• La Rivoluzione è impossibile se c'è un Jolly nella colonna.",
+          "",
+          "📌 Scambio con la carta reale possibile (1 azione)."
+        ]
+      },
+      "utilisation-soin": {
+        "title": "Uso di cura",
+        "content": [
+          "💊 Ripristina immediatamente +3 punti vita.",
+          "🪦 Poi va nel cimitero."
+        ]
+      },
+      "utilisation-activateur": {
+        "title": "Uso come attivatore",
+        "content": [
+          "Può sostituire un 7 fortunato come attivatore di colonna.",
+          "Può anche essere sacrificato per evocare un Re, Regina o Fante.",
+          "⚠️ Va immediatamente nel cimitero."
+        ]
+      },
+      "interaction-speciale": {
+        "title": "Interazione speciale – Jolly vs 7 fortunato",
+        "content": [
+          "Se un Jolly attacca una colonna con un 7 fortunato attivo:",
+          "🛡️ L'attacco viene bloccato dal 7.",
+          "🪦 Il Jolly va nel cimitero.",
+          "😴 Il 7 viene disattivato."
+        ]
+      },
+      "strategie-joker": {
+        "title": "Strategia con il Jolly",
+        "content": [
+          "🔄 Può fare tutto, ma ogni scelta è definitiva.",
+          "🛡️ Spesso più redditizio usato come blocco.",
+          "🚫 Piazzarlo in una colonna blocca l'accesso alla Rivoluzione.",
+          "💎 Ogni Jolly è prezioso."
+        ]
+      },
+      "resume-joker": {
+        "title": "Riepilogo rapido",
+        "content": [
+          "⚔️ Attacco → Distrugge Re, Fante o unità → Non Asso, 7, 10",
+          "🛡️ Difesa → Blocca qualsiasi attacco → Non Rivoluzione",
+          "🔄 Sostituzione → Disattiva categoria / blocca Rivoluzione",
+          "💊 Cura → +3 PV immediati",
+          "🔧 Attivatore → Sostituisce 7 → Va nel cimitero"
+        ]
+      },
+      "conclusion-joker": {
+        "title": "Punti chiave",
+        "content": [
+          "Il Jolly è la carta più flessibile e pericolosa di UNIT.",
+          "Mal usato, può bloccare le tue stesse strategie.",
+          "Ben usato, può salvare una partita o distruggere il piano avversario."
+        ],
+        "highlight": "🃏 Il Jolly: una carta, cinque usi, mille possibilità. Padroneggiare il suo timing significa padroneggiare UNIT!"
+      }
+    }
+  },
+  "matomo": {
+    "examples": {
+      "title": "Esempi di utilizzo Matomo",
+      "buttons": {
+        "startGame": "Inizia partita (Traccia evento)",
+        "playCard": "Gioca Jolly (Traccia carta)",
+        "userLogin": "Accesso utente (Imposta ID utente)",
+        "gameWin": "Vittoria (Traccia obiettivo)"
+      }
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "play": "Gioca",
+    "rules": "Regole del gioco",
+    "ranking": "Classifica",
+    "community": "Comunità",
+    "shop": "Negozio",
+    "lore": "Storia",
+    "search": "Cerca",
+    "menu": "Menu",
+    "assistant": "Assistente IA"
+  },
+  "settings": {
+    "theme": {
+      "light": "Passa alla modalità chiara",
+      "dark": "Passa alla modalità notte"
+    },
+    "language": {
+      "change": "Cambia lingua"
+    }
+  },
+  "auth": {
+    "login": "Accedi",
+    "register": "Iscriviti"
+  }
+}

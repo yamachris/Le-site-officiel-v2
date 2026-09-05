@@ -1,318 +1,232 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Container,
-  Paper,
-  Typography,
-  TextField,
-  Button,
-  Link,
-  Alert,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  IconButton,
-} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import CloseIcon from '@mui/icons-material/Close';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
+import { CinePage, CineContainer } from '../../components/cine';
 
 const LoginPage: React.FC = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [openForgotPassword, setOpenForgotPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [resetOpen, setResetOpen] = useState(false);
   const [resetEmail, setResetEmail] = useState('');
   const [resetSuccess, setResetSuccess] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Vérification simple des identifiants
-    if (username === 'new' && password === 'hello') {
-      // Stocker les informations de connexion
-      localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('username', username);
-      
-      // Rediriger vers la page de profil
-      navigate('/profile');
-    } else {
-      setError('Nom d\'utilisateur ou mot de passe incorrect');
+    setLoading(true);
+    setError('');
+    try {
+      await login(email, password);
+      const redirectPath = localStorage.getItem('postLoginRedirect') || '/profile';
+      localStorage.removeItem('postLoginRedirect');
+      navigate(redirectPath);
+    } catch (err) {
+      setError('Email ou mot de passe incorrect');
+      console.error('Erreur de connexion:', err);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleForgotPassword = (e: React.FormEvent) => {
+  const handleReset = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulation d'envoi d'email de réinitialisation
-    if (resetEmail) {
-      setResetSuccess(true);
-      setTimeout(() => {
-        setOpenForgotPassword(false);
-        setResetSuccess(false);
-        setResetEmail('');
-      }, 3000);
-    }
-  };
-
-  const textFieldStyle = {
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#FFD700',
-      },
-      '&:hover fieldset': {
-        borderColor: '#FFA500',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: '#FFA500',
-      },
-    },
-    '& .MuiInputLabel-root': {
-      color: '#FFD700',
-      '&.Mui-focused': {
-        color: '#FFA500',
-      },
-    },
-    '& .MuiInputBase-input': {
-      color: 'white',
-    },
+    setResetSuccess(true);
+    setTimeout(() => {
+      setResetOpen(false);
+      setResetSuccess(false);
+      setResetEmail('');
+    }, 3000);
   };
 
   return (
-    <Box
-      sx={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        background: 'linear-gradient(180deg, rgba(10,25,41,0.95) 0%, rgba(19,47,76,0.95) 100%)',
-        position: 'relative',
-        overflow: 'hidden',
-        pt: { xs: 8, md: 0 },
-      }}
-    >
-      <Container maxWidth="sm">
-        <Box
-          sx={{
+    <CinePage>
+      <div className="cine-auth-shell">
+        <CineContainer variant="narrow">
+          <div className="cine-auth-grid">
+            <aside className="cine-auth-visual">
+              <div>
+                <span className="cine-page-eyebrow" style={{ marginBottom: '1rem' }}>Compte</span>
+                <h1 className="cine-page-title" style={{ fontSize: 'clamp(2.2rem, 6vw, 4.8rem)' }}>
+                  Reprendre la <em>partie.</em>
+                </h1>
+                <p className="cine-page-lede">Retrouvez votre deck, vos statistiques, vos Unitos et la table en quelques secondes.</p>
+              </div>
+              <div className="cine-kpi-strip" style={{ marginTop: '2rem' }}>
+                <div className="cine-kpi cine-kpi--accent"><strong>MMR</strong><span>synchronisé</span></div>
+                <div className="cine-kpi cine-kpi--cyan"><strong>Deck</strong><span>sauvegardé</span></div>
+              </div>
+            </aside>
+
+            <div className="cine-auth-form">
+              {error && (
+                <div
+                  role="alert"
+                  style={{
+                    marginBottom: '1.5rem',
+                    padding: '0.9rem 1.1rem',
+                    border: '1px solid rgba(248, 113, 113, 0.4)',
+                    borderRadius: 'var(--cine-radius-md)',
+                    background: 'rgba(248, 113, 113, 0.08)',
+                    color: 'var(--cine-danger)',
+                    fontFamily: 'var(--cine-font-mono)',
+                    fontSize: '0.85rem',
+                  }}
+                >
+                  {error}
+                </div>
+              )}
+
+              <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1.4rem' }}>
+                <label className="cine-field">
+                  <span className="cine-label">Email</span>
+                  <input
+                    className="cine-input"
+                    type="email"
+                    required
+                    autoFocus
+                    autoComplete="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="vous@exemple.com"
+                  />
+                </label>
+
+                <label className="cine-field">
+                  <span className="cine-label">Mot de passe</span>
+                  <input
+                    className="cine-input"
+                    type="password"
+                    required
+                    autoComplete="current-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                  />
+                </label>
+
+                <button
+                  type="submit"
+                  className="cine-button cine-button--primary"
+                  disabled={loading}
+                  style={{ marginTop: '0.5rem', justifyContent: 'center', opacity: loading ? 0.6 : 1 }}
+                >
+                  {loading ? 'Connexion…' : 'Se connecter'}
+                </button>
+
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                    gap: '1rem',
+                    marginTop: '0.5rem',
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setResetOpen(true)}
+                    className="cine-link-subtle"
+                    style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}
+                  >
+                    Mot de passe oublié ?
+                  </button>
+                  <RouterLink to="/register" className="cine-link-subtle" style={{ color: 'var(--cine-accent-2)' }}>
+                    Créer un compte →
+                  </RouterLink>
+                </div>
+              </form>
+            </div>
+          </div>
+        </CineContainer>
+      </div>
+
+      {resetOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(2, 2, 3, 0.78)',
+            backdropFilter: 'blur(16px)',
+            zIndex: 2000,
             display: 'flex',
-            flexDirection: 'column',
             alignItems: 'center',
-            position: 'relative',
-            zIndex: 1,
+            justifyContent: 'center',
+            padding: '1.5rem',
           }}
+          onClick={(e) => { if (e.target === e.currentTarget && !resetSuccess) setResetOpen(false); }}
         >
-          <Paper
-            elevation={3}
-            sx={{
-              padding: 4,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
+          <div
+            style={{
               width: '100%',
-              backgroundColor: 'rgba(10,25,41,0.9)',
-              border: '1px solid #FFD700',
-              borderRadius: '12px',
+              maxWidth: 460,
+              background: 'var(--cine-bg-soft)',
+              border: '1px solid var(--cine-line)',
+              borderRadius: 'var(--cine-radius-lg)',
+              padding: '2rem',
             }}
           >
-            <Typography 
-              component="h1" 
-              variant="h4" 
-              sx={{ 
-                mb: 3,
-                fontFamily: 'Orbitron',
-                color: '#FFD700',
-                textAlign: 'center',
-                fontWeight: 'bold',
+            <h2
+              style={{
+                fontFamily: 'var(--cine-font-display)',
+                fontSize: '1.6rem',
+                fontWeight: 500,
+                margin: 0,
+                letterSpacing: 0,
               }}
             >
-              Connexion
-            </Typography>
-
-            {error && (
-              <Alert severity="error" sx={{ width: '100%', mb: 2 }}>
-                {error}
-              </Alert>
-            )}
-
-            <Box component="form" onSubmit={handleLogin} sx={{ width: '100%' }}>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="username"
-                label="Nom d'utilisateur"
-                name="username"
-                autoComplete="username"
-                autoFocus
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                sx={textFieldStyle}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Mot de passe"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                sx={textFieldStyle}
-              />
-
-              <Box sx={{ textAlign: 'right', mt: 1 }}>
-                <Link
-                  component="button"
-                  type="button"
-                  onClick={() => setOpenForgotPassword(true)}
-                  sx={{
-                    color: '#FFD700',
-                    textDecoration: 'none',
-                    fontFamily: 'Orbitron',
-                    fontSize: '0.875rem',
-                    '&:hover': {
-                      color: '#FFA500',
-                    },
-                  }}
-                >
-                  Mot de passe oublié ?
-                </Link>
-              </Box>
-
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{
-                  mt: 3,
-                  mb: 2,
-                  bgcolor: '#FFD700',
-                  color: '#000',
-                  padding: '12px',
-                  fontFamily: 'Orbitron',
-                  fontWeight: 'bold',
-                  '&:hover': {
-                    bgcolor: '#FFA500',
-                  },
+              Réinitialiser le mot de passe
+            </h2>
+            {resetSuccess ? (
+              <p
+                style={{
+                  marginTop: '1.5rem',
+                  padding: '0.9rem 1.1rem',
+                  border: '1px solid rgba(74, 222, 128, 0.4)',
+                  borderRadius: 'var(--cine-radius-md)',
+                  background: 'rgba(74, 222, 128, 0.08)',
+                  color: 'var(--cine-success)',
+                  fontFamily: 'var(--cine-font-mono)',
+                  fontSize: '0.85rem',
                 }}
               >
-                Se connecter
-              </Button>
-
-              <Box sx={{ textAlign: 'center' }}>
-                <Link 
-                  href="/register"
-                  sx={{
-                    color: '#FFD700',
-                    textDecoration: 'none',
-                    fontFamily: 'Orbitron',
-                    '&:hover': {
-                      color: '#FFA500',
-                    },
-                  }}
-                >
-                  Pas encore de compte ? S'inscrire
-                </Link>
-              </Box>
-            </Box>
-          </Paper>
-        </Box>
-      </Container>
-
-      {/* Popup de mot de passe oublié */}
-      <Dialog 
-        open={openForgotPassword} 
-        onClose={() => setOpenForgotPassword(false)}
-        PaperProps={{
-          sx: {
-            backgroundColor: 'rgba(10,25,41,0.95)',
-            border: '1px solid #FFD700',
-            borderRadius: '12px',
-            minWidth: '300px',
-          }
-        }}
-      >
-        <DialogTitle sx={{ 
-          color: '#FFD700',
-          fontFamily: 'Orbitron',
-          fontWeight: 'bold',
-          pr: 6,
-        }}>
-          Réinitialisation du mot de passe
-          <IconButton
-            onClick={() => setOpenForgotPassword(false)}
-            sx={{
-              position: 'absolute',
-              right: 8,
-              top: 8,
-              color: '#FFD700',
-              '&:hover': {
-                color: '#FFA500',
-              },
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-        </DialogTitle>
-        
-        <DialogContent>
-          {resetSuccess ? (
-            <Alert severity="success" sx={{ mt: 2 }}>
-              Email de réinitialisation envoyé !
-            </Alert>
-          ) : (
-            <>
-              <Typography sx={{ color: 'white', mb: 2 }}>
-                Entrez votre adresse email pour recevoir un lien de réinitialisation.
-              </Typography>
-              <TextField
-                autoFocus
-                margin="dense"
-                id="resetEmail"
-                label="Adresse email"
-                type="email"
-                fullWidth
-                value={resetEmail}
-                onChange={(e) => setResetEmail(e.target.value)}
-                sx={textFieldStyle}
-              />
-            </>
-          )}
-        </DialogContent>
-
-        <DialogActions sx={{ p: 2 }}>
-          <Button 
-            onClick={() => setOpenForgotPassword(false)}
-            sx={{
-              color: '#FFD700',
-              fontFamily: 'Orbitron',
-              '&:hover': {
-                color: '#FFA500',
-              },
-            }}
-          >
-            Annuler
-          </Button>
-          <Button 
-            onClick={handleForgotPassword}
-            variant="contained"
-            disabled={resetSuccess}
-            sx={{
-              bgcolor: '#FFD700',
-              color: '#000',
-              fontFamily: 'Orbitron',
-              fontWeight: 'bold',
-              '&:hover': {
-                bgcolor: '#FFA500',
-              },
-            }}
-          >
-            Envoyer
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </Box>
+                Email de réinitialisation envoyé ✓
+              </p>
+            ) : (
+              <form onSubmit={handleReset} style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                <label className="cine-field">
+                  <span className="cine-label">Email</span>
+                  <input
+                    className="cine-input"
+                    type="email"
+                    required
+                    autoFocus
+                    value={resetEmail}
+                    onChange={(e) => setResetEmail(e.target.value)}
+                  />
+                </label>
+                <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'flex-end' }}>
+                  <button
+                    type="button"
+                    onClick={() => setResetOpen(false)}
+                    className="cine-button cine-button--ghost cine-button--mono"
+                  >
+                    Annuler
+                  </button>
+                  <button type="submit" className="cine-button cine-button--primary cine-button--mono">
+                    Envoyer
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+    </CinePage>
   );
 };
 
